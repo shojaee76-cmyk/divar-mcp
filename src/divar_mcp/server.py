@@ -173,7 +173,26 @@ def _emit(stream_out, payload: dict, binary: bool) -> None:
     stream_out.flush()
 
 
+def _force_utf8_streams() -> None:
+    """Never let a Windows ANSI code page break Persian output.
+
+    `divar-mcp --list-tools > out.json` and `divar search` both print Persian.
+    On Windows the default stdio encoding is the ANSI code page, which raises
+    UnicodeEncodeError on those characters (and, when redirected, writes an
+    error message into the output file). Force UTF-8 wherever we can.
+    """
+    for name in ("stdout", "stderr"):
+        stream = getattr(sys, name, None)
+        reconfigure = getattr(stream, "reconfigure", None)
+        if callable(reconfigure):
+            try:
+                reconfigure(encoding="utf-8", errors="replace")
+            except (ValueError, OSError):  # pragma: no cover - detached stream
+                pass
+
+
 def main(argv: list[str] | None = None) -> int:
+    _force_utf8_streams()
     argv = list(sys.argv[1:] if argv is None else argv)
 
     if "--version" in argv:

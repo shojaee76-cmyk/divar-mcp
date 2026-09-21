@@ -40,5 +40,22 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -e ".[dev]"
+      - name: Probe whether divar.ir is reachable from this runner
+        id: probe
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' -m 25 \
+            -X POST https://api.divar.ir/v8/postlist/w/search \
+            -H 'content-type: application/json' -H 'origin: https://divar.ir' \
+            -d '{"city_ids":["1"],"pagination_data":{"@type":"type.googleapis.com/post_list.PaginationData","page":1,"page_size":1}}' \
+            || echo 000)
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          echo "divar.ir probe -> HTTP $code"
       - name: Hit the real divar.ir API
+        if: steps.probe.outputs.code == '200'
         run: DIVAR_LIVE=1 pytest tests/test_live.py -v
+      - name: "Note: this runner cannot reach divar.ir"
+        if: steps.probe.outputs.code != '200'
+        run: |
+          echo "divar.ir answered HTTP ${{ steps.probe.outputs.code }} from this runner."
+          echo "Divar serves its API to Iranian networks; run the live suite from a"
+          echo "machine that can reach it (see README). The offline suite is unaffected."

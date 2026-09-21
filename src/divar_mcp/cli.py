@@ -41,6 +41,9 @@ def _table(posts: list[dict]) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
+    from .server import _force_utf8_streams
+
+    _force_utf8_streams()
     parser = argparse.ArgumentParser(prog="divar", description="Read divar.ir listings from the terminal.")
     parser.add_argument("--version", action="version", version=__version__)
     sub = parser.add_subparsers(dest="command", required=True)

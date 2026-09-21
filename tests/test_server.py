@@ -153,6 +153,30 @@ def test_stdio_end_to_end_subprocess():
     assert cities["cities"][0]["id"] == "3"
 
 
+def test_persian_survives_ansi_stdio():
+    """Regression: on Windows (or PYTHONIOENCODING=cp1252) redirecting this CLI
+    to a file used to crash with UnicodeEncodeError and write a traceback into
+    the output file. stdout must be forced to UTF-8."""
+    import os
+    import subprocess
+    import sys
+
+    env = _env()
+    env["PYTHONIOENCODING"] = "cp1252"
+    out_file = ROOT / "tools" / "ansi_smoke.json"
+    proc = subprocess.run(
+        [sys.executable, "-m", "divar_mcp.server", "--list-tools"],
+        stdout=open(out_file, "wb"), stderr=subprocess.PIPE,
+        cwd=str(ROOT), env=env, timeout=120,
+    )
+    assert proc.returncode == 0, proc.stderr.decode("utf-8", "replace")[-500:]
+    raw = out_file.read_bytes()
+    assert "تهران".encode("utf-8") in raw, "Persian text did not survive the redirect as UTF-8"
+    tools = json.loads(raw.decode("utf-8"))
+    assert len(tools) == 8
+    out_file.unlink()
+
+
 def _env():
     import os
 
