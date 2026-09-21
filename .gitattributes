@@ -1,0 +1,12 @@
+# Keep line endings deterministic across Windows/macOS/Linux contributors.
+* text=auto eol=lf
+
+# Generated data files must stay byte-identical on every platform.
+src/divar_mcp/data/*.json text eol=lf
+tests/fixtures/*.json text eol=lf
+
+# Binary never gets line-ending mangled.
+*.png binary
+*.jpg binary
+*.webp binary
+*.mp4 binary
