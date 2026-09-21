@@ -6,6 +6,7 @@ Same code path as the MCP tools, so anything an agent can do you can do by hand.
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import sys
 
@@ -75,7 +76,10 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="command", required=True)
 
     def add_search_args(p):
-        p.add_argument("query", nargs="?")
+        # accept the search text either positionally or as -q/--query, so both
+        # `divar search "پژو"` and `divar watch create --query "پژو"` work
+        p.add_argument("query", nargs="?", help="search text (Persian works)")
+        p.add_argument("-q", "--query", dest="query_opt", help="same as the positional query")
         p.add_argument("--city", default="تهران", help="id, Persian name or slug")
         p.add_argument("--city2", action="append", dest="cities", help="extra city (repeatable)")
         p.add_argument("--category", help="slug or Persian name, e.g. mobile-phones")
@@ -111,8 +115,15 @@ def main(argv: list[str] | None = None) -> int:
     breakdown = add_search_args(sub.add_parser("breakdown", help="price by district"))
     breakdown.set_defaults(pages=2)
 
-    trend = add_search_args(sub.add_parser("trend", help="local price history"))
+    # local history is keyed by city + category + query only, so it takes a
+    # narrower argument set than a search subcommand (nothing is silently dropped)
+    trend = sub.add_parser("trend", help="local price history")
+    trend.add_argument("query", nargs="?", help="search text (Persian works)")
+    trend.add_argument("-q", "--query", dest="query_opt")
+    trend.add_argument("--city", default="تهران")
+    trend.add_argument("--category")
     trend.add_argument("--days", type=int, default=30)
+    trend.add_argument("--json", action="store_true")
 
     similar = sub.add_parser("similar", help="comparables for a post")
     similar.add_argument("token")
@@ -164,20 +175,36 @@ def main(argv: list[str] | None = None) -> int:
     prune.add_argument("--days", type=int, default=180)
 
     args = parser.parse_args(argv)
-    search_kwargs = lambda a: dict(  # noqa: E731
-        query=getattr(a, "query", None),
-        city=getattr(a, "city", "تهران"),
-        cities=getattr(a, "cities", None),
-        category=getattr(a, "category", None),
-        price_min=getattr(a, "price_min", None),
-        price_max=getattr(a, "price_max", None),
-        has_photo=getattr(a, "has_photo", False),
-        pages=getattr(a, "pages", 1),
-    )
+
+    def search_kwargs(a) -> dict:
+        """The options every search-shaped subcommand shares."""
+        return dict(
+            query=getattr(a, "query", None) or getattr(a, "query_opt", None),
+            city=getattr(a, "city", "تهران"),
+            cities=getattr(a, "cities", None),
+            category=getattr(a, "category", None),
+            price_min=getattr(a, "price_min", None),
+            price_max=getattr(a, "price_max", None),
+            has_photo=getattr(a, "has_photo", False),
+            pages=getattr(a, "pages", 1),
+        )
+
+    def call_tool_fn(fn, **kwargs):
+        """Call a tool with only the arguments it actually declares.
+
+        Guards against the class of bug where a shared CLI flag (has_photo) is
+        forwarded to a tool that does not take it: the CLI must never crash on
+        its own wiring.
+        """
+        accepted = inspect.signature(fn).parameters
+        if any(p.kind is p.VAR_KEYWORD for p in accepted.values()):
+            return fn(**kwargs)
+        return fn(**{k: v for k, v in kwargs.items() if k in accepted})
 
     try:
         if args.command == "search":
-            result = divar_search(
+            result = call_tool_fn(
+                divar_search,
                 **search_kwargs(args),
                 page_size=max(24, args.limit),
                 sort=args.sort,
@@ -194,10 +221,11 @@ def main(argv: list[str] | None = None) -> int:
         elif args.command == "post":
             _dump(divar_get_post(args.token))
         elif args.command == "price":
-            stats = divar_price_analysis(**search_kwargs(args))
+            stats = call_tool_fn(divar_price_analysis, **search_kwargs(args))
             _dump(stats) if args.json else _human_price_summary(stats)
         elif args.command == "deals":
-            report = divar_find_deals(
+            report = call_tool_fn(
+                divar_find_deals,
                 **search_kwargs(args), min_discount=args.min_discount,
                 require_photo=args.require_photo, limit=args.limit,
             )
@@ -205,14 +233,14 @@ def main(argv: list[str] | None = None) -> int:
         elif args.command == "appraise":
             _dump(divar_appraise_post(args.token, city=args.city, pages=args.pages))
         elif args.command == "breakdown":
-            _dump(divar_market_breakdown(**search_kwargs(args)))
+            _dump(call_tool_fn(divar_market_breakdown, **search_kwargs(args)))
         elif args.command == "trend":
-            _dump(divar_price_trend(**search_kwargs(args), days=args.days))
+            _dump(call_tool_fn(divar_price_trend, **search_kwargs(args), days=args.days))
         elif args.command == "similar":
             _dump(divar_similar_posts(args.token, city=args.city, limit=args.limit))
         elif args.command == "watch":
             if args.watch_action == "create":
-                _dump(divar_watch_create(name=args.name, **search_kwargs(args)))
+                _dump(call_tool_fn(divar_watch_create, name=args.name, **search_kwargs(args)))
             elif args.watch_action == "check":
                 _dump(divar_watch_check(args.name, pages=args.pages))
             elif args.watch_action == "list":
@@ -220,8 +248,8 @@ def main(argv: list[str] | None = None) -> int:
             else:
                 _dump(divar_watch_delete(args.name))
         elif args.command == "export":
-            _dump(divar_export(**search_kwargs(args), path=args.path, format=args.format,
-                               full=args.full))
+            _dump(call_tool_fn(divar_export, **search_kwargs(args), path=args.path,
+                               format=args.format, full=args.full))
         elif args.command == "cities":
             _dump(divar_list_cities(args.query))
         elif args.command == "categories":

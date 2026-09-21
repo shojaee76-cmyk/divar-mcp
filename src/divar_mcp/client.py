@@ -817,6 +817,7 @@ class DivarClient:
         page_size: int = 24,
         cities: list | None = None,
         districts: bool = True,
+        has_photo: bool = False,
     ) -> dict:
         """Price distribution for a query/category, from live listings.
 
@@ -831,6 +832,7 @@ class DivarClient:
             price_min=price_min,
             price_max=price_max,
             page_size=page_size,
+            has_photo=bool(has_photo),
         )
         posts = found.get("posts", [])
         stats: dict = {
@@ -862,13 +864,14 @@ class DivarClient:
         price_max: int | None = None,
         min_discount: float = 0.05,
         require_photo: bool = False,
+        has_photo: bool = False,
         limit: int = 10,
         cities: list | None = None,
     ) -> dict:
         """Listings priced below the live market for the same query."""
         found = self.search_many(
             pages=pages, city=city, cities=cities, query=query, category=category,
-            price_min=price_min, price_max=price_max,
+            price_min=price_min, price_max=price_max, has_photo=bool(has_photo),
         )
         posts = found.get("posts", [])
         report = analytics.rank_deals(
@@ -889,6 +892,11 @@ class DivarClient:
             dict(self.brief(deal), deal_score=deal["deal_score"], reasons=deal["reasons"],
                  price_vs_median_pct=deal["factors"].get("price_vs_median_pct"))
             for deal in report["deals"]
+        ]
+        report["suspicious"] = [
+            dict(self.brief(row), insight=row["insight"],
+                 price_vs_median_pct=row["price_vs_median_pct"])
+            for row in report.get("suspicious", [])
         ]
         return report
 
@@ -945,10 +953,15 @@ class DivarClient:
         category: str | None = None,
         pages: int = 2,
         min_listings: int = 1,
+        has_photo: bool = False,
+        cities: list | None = None,
+        price_min: int | None = None,
+        price_max: int | None = None,
     ) -> dict:
         """Where the stock sits: price by district, bands and freshness for one query."""
         found = self.search_many(
-            pages=pages, city=city, query=query, category=category, page_size=60
+            pages=pages, city=city, cities=cities, query=query, category=category,
+            page_size=60, has_photo=bool(has_photo), price_min=price_min, price_max=price_max,
         )
         posts = found.get("posts", [])
         return {
@@ -991,13 +1004,16 @@ class DivarClient:
         path: str | None = None,
         fmt: str = "csv",
         full: bool = False,
+        has_photo: bool = False,
+        cities: list | None = None,
     ) -> dict:
         """Dump listings to a CSV/JSONL file on disk and return the path."""
         import csv as _csv
 
         found = self.search_many(
-            pages=max(1, min(int(pages), 10)), city=city, query=query, category=category,
-            price_min=price_min, price_max=price_max,
+            pages=max(1, min(int(pages), 10)), city=city, cities=cities, query=query,
+            category=category, price_min=price_min, price_max=price_max,
+            has_photo=bool(has_photo),
         )
         posts = found.get("posts", [])
         fmt = "jsonl" if str(fmt).lower() in ("jsonl", "json") else "csv"
@@ -1029,10 +1045,12 @@ class DivarClient:
             "meta": found.get("meta"),
         }
 
-    def watch_create(self, name: str, params: dict, store: Store | None = None) -> dict:
+    def watch_create(self, name: str, params: dict, store: Store | None = None,
+                     pages: int = 1) -> dict:
         """Save a search as a watch and remember today's results as the baseline."""
         target = store or get_store()
-        found = self.search_many(pages=1, **params)
+        params = {k: v for k, v in params.items() if k not in ("pages",)}
+        found = self.search_many(pages=max(1, min(int(pages or 1), 3)), **params)
         tokens = [p["token"] for p in found.get("posts", [])]
         saved = target.save_watch(name, params)
         if "error" in saved:

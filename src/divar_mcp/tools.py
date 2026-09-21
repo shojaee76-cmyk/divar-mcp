@@ -182,6 +182,7 @@ def divar_price_analysis(
     pages: int = 2,
     price_min: int | None = None,
     price_max: int | None = None,
+    has_photo: bool = False,
     client: DivarClient | None = None,
 ) -> dict:
     """Comparable-listing price distribution, for valuing an item before listing it."""
@@ -194,6 +195,7 @@ def divar_price_analysis(
         pages=max(1, min(int(pages or 2), 6)),
         price_min=price_min,
         price_max=price_max,
+        has_photo=bool(has_photo),
     )
     stats["source"] = "api.divar.ir (public read-only web API)"
     stats["how_to_read"] = (
@@ -214,6 +216,7 @@ def divar_find_deals(
     price_max: int | None = None,
     min_discount: float = 0.05,
     require_photo: bool = False,
+    has_photo: bool = False,
     limit: int = 10,
     client: DivarClient | None = None,
 ) -> dict:
@@ -222,8 +225,8 @@ def divar_find_deals(
     report = client.find_deals(
         city=city, cities=cities, query=query, category=category,
         pages=max(1, min(int(pages or 3), 6)), price_min=price_min, price_max=price_max,
-        min_discount=min_discount, require_photo=bool(require_photo),
-        limit=max(1, min(int(limit or 10), 40)),
+        min_discount=min_discount, require_photo=bool(require_photo or has_photo),
+        has_photo=bool(has_photo), limit=max(1, min(int(limit or 10), 40)),
     )
     report["source"] = "api.divar.ir (public read-only web API)"
     report["caveat"] = CAVEATS["price"]
@@ -248,15 +251,20 @@ def divar_market_breakdown(
     query: str | None = None,
     category: str | None = None,
     city: str | int | None = "تهران",
+    cities: list | None = None,
     pages: int = 2,
     min_listings: int = 1,
+    has_photo: bool = False,
+    price_min: int | None = None,
+    price_max: int | None = None,
     client: DivarClient | None = None,
 ) -> dict:
     """Where the stock sits: price by district, bands, and how fresh the listings are."""
     client = client or build_client()
     report = client.market_breakdown(
-        city=city, query=query, category=category,
+        city=city, cities=cities, query=query, category=category,
         pages=max(1, min(int(pages or 2), 6)), min_listings=int(min_listings or 1),
+        has_photo=bool(has_photo), price_min=price_min, price_max=price_max,
     )
     report["source"] = "api.divar.ir (public read-only web API)"
     return report
@@ -302,6 +310,7 @@ def divar_watch_create(
     price_min: int | None = None,
     price_max: int | None = None,
     has_photo: bool = False,
+    pages: int = 1,
     client: DivarClient | None = None,
 ) -> dict:
     """Save a search as a named watch; today's listings become the quiet baseline."""
@@ -313,7 +322,7 @@ def divar_watch_create(
     if cities:
         params["cities"] = cities
     params = {k: v for k, v in params.items() if v not in (None, False)}
-    report = client.watch_create(name, params)
+    report = client.watch_create(name, params, pages=max(1, min(int(pages or 1), 3)))
     report["next"] = f"divar_watch_check(name={name!r}) reports listings newer than this baseline."
     return report
 
@@ -341,19 +350,22 @@ def divar_export(
     query: str | None = None,
     category: str | None = None,
     city: str | int | None = "تهران",
+    cities: list | None = None,
     pages: int = 3,
     price_min: int | None = None,
     price_max: int | None = None,
     path: str | None = None,
     format: str = "csv",
     full: bool = False,
+    has_photo: bool = False,
     client: DivarClient | None = None,
 ) -> dict:
     """Write listings to a CSV or JSONL file on disk and return the absolute path."""
     client = client or build_client()
     return client.export_rows(
-        city=city, query=query, category=category, pages=pages,
+        city=city, cities=cities, query=query, category=category, pages=pages,
         price_min=price_min, price_max=price_max, path=path, fmt=format, full=bool(full),
+        has_photo=bool(has_photo),
     )
 
 

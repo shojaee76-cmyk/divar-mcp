@@ -145,22 +145,32 @@ def rank_deals(
     min_discount: float = 0.05,
     require_photo: bool = False,
     median: int | None = None,
+    min_price_ratio: float = 0.15,
 ) -> dict:
     """Rank listings by how far below the market they sit.
 
-    Honest guardrails: an unusually low price can mean a broken item, a very old
+    Honest guardrails: an unusually low price can mean a broken item, an old
     model, a typo, or a scam, so every row carries its score factors and the
-    caller gets the caveat verbatim.
+    caller gets the caveat verbatim. Prices below ``min_price_ratio`` of the
+    median are treated as implausible (placeholder prices like "1,000 Toman",
+    parts listings, typos) and are reported separately instead of topping the
+    ranking.
     """
     rows = priced(posts)
     if median is None:
         median = percentile([p["price_toman"] for p in rows], 0.5)
-    candidates = []
+    candidates: list[dict] = []
+    implausible: list[dict] = []
     for post in rows:
         if require_photo and not post.get("image_count"):
             continue
         if median:
             discount = (median - post["price_toman"]) / median
+            if post["price_toman"] < median * min_price_ratio:
+                implausible.append(
+                    self_critique(post, median, min_price_ratio)
+                )
+                continue
             if discount < min_discount:
                 continue
         score, reasons, factors = deal_score(post, median)
@@ -170,19 +180,40 @@ def rank_deals(
         entry["factors"] = factors
         candidates.append(entry)
     candidates.sort(key=lambda p: (-p["deal_score"], p["price_toman"]))
+    implausible.sort(key=lambda p: p["price_toman"])
     out = {
         "sampled_posts": len(posts),
         "priced_posts": len(rows),
         "median_price": median,
         "min_discount": min_discount,
+        "min_price_ratio": min_price_ratio,
         "deal_count": len(candidates),
         "deals": candidates[: max(1, limit)],
+        "suspicious_count": len(implausible),
+        "suspicious": implausible[:5],
         "caveat": (
             "A low price is a signal to check, not a verdict: verify the item, its condition and the "
-            "seller. This score only uses price, age and photo count from public listing data."
+            "seller. This score only uses price, age and photo count from public listing data. "
+            "Prices under "
+            f"{int(min_price_ratio * 100)}% of the median are listed under 'suspicious' rather than "
+            "as deals, because they are usually placeholders, parts listings, typos or bait."
         ),
     }
     return out
+
+
+def self_critique(post: dict, median: int, min_price_ratio: float) -> dict:
+    """Why a listing was kept out of the deal ranking."""
+    from .normalize import human_toman
+
+    entry = dict(post)
+    entry["insight"] = (
+        f"price {human_toman(post.get('price_toman'))} is under "
+        f"{int(min_price_ratio * 100)}% of the {human_toman(median)} median: likely a placeholder, "
+        "a parts-only listing, a typo, or bait."
+    )
+    entry["price_vs_median_pct"] = round((post["price_toman"] - median) / median * 100, 1)
+    return entry
 
 
 # ------------------------------------------------------------- appraisal

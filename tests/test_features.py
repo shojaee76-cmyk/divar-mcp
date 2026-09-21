@@ -96,6 +96,21 @@ def test_rank_deals_filters_and_sorts():
     assert "nophoto" not in [d["token"] for d in strict["deals"]]
 
 
+def test_rank_deals_quarantines_implausible_prices():
+    """A 1,000 Toman placeholder must not top the deal ranking (median 100 here)."""
+    posts = make_posts([
+        ("placeholder", 1, 1, 9, "a"),
+        ("real-deal", 70, 2, 4, "b"),
+        ("normal", 99, 2, 4, "c"),
+    ])
+    report = analytics.rank_deals(posts, median=100, min_discount=0.05)
+    assert [d["token"] for d in report["deals"]] == ["real-deal"]
+    assert report["suspicious_count"] == 1
+    assert report["suspicious"][0]["token"] == "placeholder"
+    assert "placeholder" in report["suspicious"][0]["insight"]
+    assert "suspicious" in report["caveat"]
+
+
 @pytest.mark.parametrize(
     "price,expected",
     [
