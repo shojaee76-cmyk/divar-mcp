@@ -1,0 +1,1380 @@
+{
+ "accounting-and-finance": {
+  "slug": "accounting-and-finance",
+  "name": "مالی، حقوقی و اداری",
+  "parents": [
+   "خدمات"
+  ],
+  "parent_slugs": [
+   "services"
+  ]
+ },
+ "accounting-finance-legal": {
+  "slug": "accounting-finance-legal",
+  "name": "مالی، حسابداری، حقوقی",
+  "parents": [
+   "استخدام و کاریابی"
+  ],
+  "parent_slugs": [
+   "jobs"
+  ]
+ },
+ "administration-and-hr": {
+  "slug": "administration-and-hr",
+  "name": "اداری و مدیریت",
+  "parents": [
+   "استخدام و کاریابی"
+  ],
+  "parent_slugs": [
+   "jobs"
+  ]
+ },
+ "air-conditioning-fan-coil": {
+  "slug": "air-conditioning-fan-coil",
+  "name": "کولر گازی و فن‌کوئل",
+  "parents": [
+   "تهویه، سرمایش، گرمایش",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "ventilation-cooling-heating",
+   "home-kitchen"
+  ]
+ },
+ "artificial-flower": {
+  "slug": "artificial-flower",
+  "name": "گل مصنوعی",
+  "parents": [
+   "لوازم دکوری و تزئینی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "decoration",
+   "home-kitchen"
+  ]
+ },
+ "audio-video": {
+  "slug": "audio-video",
+  "name": "صوتی و تصویری",
+  "parents": [
+   "کالای دیجیتال"
+  ],
+  "parent_slugs": [
+   "electronic-devices"
+  ]
+ },
+ "ball-sports": {
+  "slug": "ball-sports",
+  "name": "ورزش‌های توپی",
+  "parents": [
+   "ورزش و تناسب اندام",
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "sport-leisure",
+   "leisure-hobbies"
+  ]
+ },
+ "batch": {
+  "slug": "batch",
+  "name": "عمده‌فروشی",
+  "parents": [
+   "تجهیزات و صنعتی"
+  ],
+  "parent_slugs": [
+   "tools-materials-equipment"
+  ]
+ },
+ "beauty-and-haircare": {
+  "slug": "beauty-and-haircare",
+  "name": "زیبایی و سلامت",
+  "parents": [
+   "خدمات"
+  ],
+  "parent_slugs": [
+   "services"
+  ]
+ },
+ "bed-pillow-blanket": {
+  "slug": "bed-pillow-blanket",
+  "name": "رختخواب، بالش، پتو",
+  "parents": [
+   "تشک، روتختی، رختخواب",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "sleep-goods",
+   "home-kitchen"
+  ]
+ },
+ "bed-service": {
+  "slug": "bed-service",
+  "name": "تخت و سرویس خواب",
+  "parents": [
+   "مبلمان و صنایع چوب",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "furniture-wood",
+   "home-kitchen"
+  ]
+ },
+ "bicycle": {
+  "slug": "bicycle",
+  "name": "دوچرخه، اسکیت، اسکوتر",
+  "parents": [
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "leisure-hobbies"
+  ]
+ },
+ "birds": {
+  "slug": "birds",
+  "name": "پرنده",
+  "parents": [
+   "حیوانات",
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "animals",
+   "leisure-hobbies"
+  ]
+ },
+ "buffet-showcases": {
+  "slug": "buffet-showcases",
+  "name": "بوفه، ویترین، کنسول",
+  "parents": [
+   "مبلمان و صنایع چوب",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "furniture-wood",
+   "home-kitchen"
+  ]
+ },
+ "building-equipment": {
+  "slug": "building-equipment",
+  "name": "مصالح و تجهیزات ساختمان",
+  "parents": [
+   "تجهیزات و صنعتی"
+  ],
+  "parent_slugs": [
+   "tools-materials-equipment"
+  ]
+ },
+ "cafe-and-restaurant": {
+  "slug": "cafe-and-restaurant",
+  "name": "کافی‌شاپ و رستوران",
+  "parents": [
+   "تجهیزات کسب‌وکار",
+   "تجهیزات و صنعتی"
+  ],
+  "parent_slugs": [
+   "work-equipment",
+   "tools-materials-equipment"
+  ]
+ },
+ "camera-camcoders": {
+  "slug": "camera-camcoders",
+  "name": "دوربین عکاسی و فیلم‌برداری",
+  "parents": [
+   "صوتی و تصویری",
+   "کالای دیجیتال"
+  ],
+  "parent_slugs": [
+   "audio-video",
+   "electronic-devices"
+  ]
+ },
+ "car-and-motor": {
+  "slug": "car-and-motor",
+  "name": "خودرو و موتورسیکلت",
+  "parents": [
+   "خدمات"
+  ],
+  "parent_slugs": [
+   "services"
+  ]
+ },
+ "care-health-beauty": {
+  "slug": "care-health-beauty",
+  "name": "درمانی، زیبایی، بهداشتی",
+  "parents": [
+   "استخدام و کاریابی"
+  ],
+  "parent_slugs": [
+   "jobs"
+  ]
+ },
+ "catering": {
+  "slug": "catering",
+  "name": "پذیرایی، مراسم",
+  "parents": [
+   "خدمات"
+  ],
+  "parent_slugs": [
+   "services"
+  ]
+ },
+ "chandeliers": {
+  "slug": "chandeliers",
+  "name": "لوستر و چراغ آویز",
+  "parents": [
+   "نور و روشنایی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-lighting",
+   "home-kitchen"
+  ]
+ },
+ "childrens-clothing-and-shoe": {
+  "slug": "childrens-clothing-and-shoe",
+  "name": "کفش و لباس بچه",
+  "parents": [
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "personal"
+  ]
+ },
+ "childrens-furniture": {
+  "slug": "childrens-furniture",
+  "name": "اسباب و اثاث بچه",
+  "parents": [
+   "وسایل بچه و اسباب‌بازی",
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "baby-and-toys",
+   "personal"
+  ]
+ },
+ "cleaning": {
+  "slug": "cleaning",
+  "name": "نظافت",
+  "parents": [
+   "خدمات"
+  ],
+  "parent_slugs": [
+   "services"
+  ]
+ },
+ "cleaning-supplies": {
+  "slug": "cleaning-supplies",
+  "name": "لوازم نظافت",
+  "parents": [
+   "شست‌وشو و نظافت",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "washing-cleaning",
+   "home-kitchen"
+  ]
+ },
+ "clothing": {
+  "slug": "clothing",
+  "name": "لباس",
+  "parents": [
+   "کیف، کفش، لباس",
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "clothing-and-shoes",
+   "personal"
+  ]
+ },
+ "computer-and-it": {
+  "slug": "computer-and-it",
+  "name": "رایانه و فناوری اطلاعات",
+  "parents": [
+   "استخدام و کاریابی"
+  ],
+  "parent_slugs": [
+   "jobs"
+  ]
+ },
+ "construction-craft": {
+  "slug": "construction-craft",
+  "name": "معماری، عمران و ساختمانی",
+  "parents": [
+   "استخدام و کاریابی"
+  ],
+  "parent_slugs": [
+   "jobs"
+  ]
+ },
+ "containers": {
+  "slug": "containers",
+  "name": "ظروف نگهدارنده، پلاستیکی، یک‌بارمصرف",
+  "parents": [
+   "ظروف و لوازم آشپزخانه",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "kitchen-utensils",
+   "home-kitchen"
+  ]
+ },
+ "cooking-utensils": {
+  "slug": "cooking-utensils",
+  "name": "ظروف پخت‌وپز",
+  "parents": [
+   "ظروف و لوازم آشپزخانه",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "kitchen-utensils",
+   "home-kitchen"
+  ]
+ },
+ "crafts": {
+  "slug": "crafts",
+  "name": "صنایع دستی و سایر لوازم تزئینی",
+  "parents": [
+   "لوازم دکوری و تزئینی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "decoration",
+   "home-kitchen"
+  ]
+ },
+ "craftsmen": {
+  "slug": "craftsmen",
+  "name": "پیشه و مهارت",
+  "parents": [
+   "خدمات"
+  ],
+  "parent_slugs": [
+   "services"
+  ]
+ },
+ "curtains-table-cover": {
+  "slug": "curtains-table-cover",
+  "name": "پرده، رانر، رومیزی",
+  "parents": [
+   "لوازم دکوری و تزئینی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "decoration",
+   "home-kitchen"
+  ]
+ },
+ "desk": {
+  "slug": "desk",
+  "name": "میز تحریر و کامپیوتر",
+  "parents": [
+   "مبلمان و صنایع چوب",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "furniture-wood",
+   "home-kitchen"
+  ]
+ },
+ "dining-table": {
+  "slug": "dining-table",
+  "name": "میز و صندلی غذاخوری",
+  "parents": [
+   "مبلمان و صنایع چوب",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "furniture-wood",
+   "home-kitchen"
+  ]
+ },
+ "dog": {
+  "slug": "dog",
+  "name": "سگ",
+  "parents": [
+   "حیوانات",
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "animals",
+   "leisure-hobbies"
+  ]
+ },
+ "drink-maker": {
+  "slug": "drink-maker",
+  "name": "سماور، چای‌ساز، قهوه‌ساز",
+  "parents": [
+   "لوازم خانگی برقی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "appliance",
+   "home-kitchen"
+  ]
+ },
+ "educational": {
+  "slug": "educational",
+  "name": "آموزشی",
+  "parents": [
+   "کتاب و مجله",
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "book-student-literature",
+   "leisure-hobbies"
+  ]
+ },
+ "farm-animals": {
+  "slug": "farm-animals",
+  "name": "حیوانات مزرعه",
+  "parents": [
+   "حیوانات",
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "animals",
+   "leisure-hobbies"
+  ]
+ },
+ "food-and-drink": {
+  "slug": "food-and-drink",
+  "name": "خوردنی و آشامیدنی",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "food-mill": {
+  "slug": "food-mill",
+  "name": "خردکن، آسیاب، غذاساز",
+  "parents": [
+   "لوازم خانگی برقی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "appliance",
+   "home-kitchen"
+  ]
+ },
+ "furniture": {
+  "slug": "furniture",
+  "name": "مبلمان خانگی و میز عسلی",
+  "parents": [
+   "مبلمان و صنایع چوب",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "furniture-wood",
+   "home-kitchen"
+  ]
+ },
+ "game-consoles-and-video-games": {
+  "slug": "game-consoles-and-video-games",
+  "name": "کنسول، بازی ویدئویی و آنلاین",
+  "parents": [
+   "کالای دیجیتال"
+  ],
+  "parent_slugs": [
+   "electronic-devices"
+  ]
+ },
+ "health-beauty": {
+  "slug": "health-beauty",
+  "name": "آرایشی، بهداشتی، درمانی",
+  "parents": [
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "personal"
+  ]
+ },
+ "home-catering": {
+  "slug": "home-catering",
+  "name": "ظروف سرو و پذیرایی",
+  "parents": [
+   "ظروف و لوازم آشپزخانه",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "kitchen-utensils",
+   "home-kitchen"
+  ]
+ },
+ "industrial-machinery": {
+  "slug": "industrial-machinery",
+  "name": "ماشین‌آلات صنعتی",
+  "parents": [
+   "تجهیزات و صنعتی"
+  ],
+  "parent_slugs": [
+   "tools-materials-equipment"
+  ]
+ },
+ "janitorial-cleaning": {
+  "slug": "janitorial-cleaning",
+  "name": "سرایداری و نظافت",
+  "parents": [
+   "استخدام و کاریابی"
+  ],
+  "parent_slugs": [
+   "jobs"
+  ]
+ },
+ "jewelry": {
+  "slug": "jewelry",
+  "name": "جواهرات",
+  "parents": [
+   "زیورآلات و اکسسوری",
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "jewelry-and-watches",
+   "personal"
+  ]
+ },
+ "jewelry-and-watches": {
+  "slug": "jewelry-and-watches",
+  "name": "زیورآلات و اکسسوری",
+  "parents": [
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "personal"
+  ]
+ },
+ "light": {
+  "slug": "light",
+  "name": "سواری و وانت",
+  "parents": [
+   "خودرو",
+   "وسایل نقلیه"
+  ],
+  "parent_slugs": [
+   "cars",
+   "vehicles"
+  ]
+ },
+ "literary": {
+  "slug": "literary",
+  "name": "ادبی",
+  "parents": [
+   "کتاب و مجله",
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "book-student-literature",
+   "leisure-hobbies"
+  ]
+ },
+ "media-advertising": {
+  "slug": "media-advertising",
+  "name": "هنری و رسانه",
+  "parents": [
+   "استخدام و کاریابی"
+  ],
+  "parent_slugs": [
+   "jobs"
+  ]
+ },
+ "medical-equipment": {
+  "slug": "medical-equipment",
+  "name": "پزشکی",
+  "parents": [
+   "تجهیزات کسب‌وکار",
+   "تجهیزات و صنعتی"
+  ],
+  "parent_slugs": [
+   "work-equipment",
+   "tools-materials-equipment"
+  ]
+ },
+ "mobile-phones": {
+  "slug": "mobile-phones",
+  "name": "موبایل",
+  "parents": [
+   "موبایل و تبلت",
+   "کالای دیجیتال"
+  ],
+  "parent_slugs": [
+   "mobile-tablet",
+   "electronic-devices"
+  ]
+ },
+ "mobile-tablet-accessories": {
+  "slug": "mobile-tablet-accessories",
+  "name": "لوازم جانبی موبایل و تبلت",
+  "parents": [
+   "موبایل و تبلت",
+   "کالای دیجیتال"
+  ],
+  "parent_slugs": [
+   "mobile-tablet",
+   "electronic-devices"
+  ]
+ },
+ "motorcycles": {
+  "slug": "motorcycles",
+  "name": "موتورسیکلت",
+  "parents": [
+   "وسایل نقلیه"
+  ],
+  "parent_slugs": [
+   "vehicles"
+  ]
+ },
+ "natural-plants": {
+  "slug": "natural-plants",
+  "name": "گل و گیاه طبیعی",
+  "parents": [
+   "لوازم دکوری و تزئینی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "decoration",
+   "home-kitchen"
+  ]
+ },
+ "office-decoration": {
+  "slug": "office-decoration",
+  "name": "مبلمان اداری",
+  "parents": [
+   "مبلمان و صنایع چوب",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "furniture-wood",
+   "home-kitchen"
+  ]
+ },
+ "office-rent": {
+  "slug": "office-rent",
+  "name": "دفتر کار، اتاق اداری، مطب",
+  "parents": [
+   "اجارهٔ اداری و تجاری",
+   "املاک"
+  ],
+  "parent_slugs": [
+   "commercial-rent",
+   "real-estate"
+  ]
+ },
+ "other-appliances": {
+  "slug": "other-appliances",
+  "name": "سایر لوازم برقی",
+  "parents": [
+   "لوازم خانگی برقی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "appliance",
+   "home-kitchen"
+  ]
+ },
+ "oven-baking-appliances": {
+  "slug": "oven-baking-appliances",
+  "name": "اجاق گاز و لوازم برقی پخت‌وپز",
+  "parents": [
+   "لوازم خانگی برقی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "appliance",
+   "home-kitchen"
+  ]
+ },
+ "paintings-picture": {
+  "slug": "paintings-picture",
+  "name": "تابلو، نقاشی، عکس",
+  "parents": [
+   "لوازم دکوری و تزئینی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "decoration",
+   "home-kitchen"
+  ]
+ },
+ "parts-accessories": {
+  "slug": "parts-accessories",
+  "name": "قطعات یدکی و لوازم جانبی",
+  "parents": [
+   "وسایل نقلیه"
+  ],
+  "parent_slugs": [
+   "vehicles"
+  ]
+ },
+ "pictorial-carpet": {
+  "slug": "pictorial-carpet",
+  "name": "تابلو فرش",
+  "parents": [
+   "فرش، گلیم، موکت",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "carpet-moquette",
+   "home-kitchen"
+  ]
+ },
+ "pot-kettle": {
+  "slug": "pot-kettle",
+  "name": "قوری، کتری، قهوه‌ساز دستی",
+  "parents": [
+   "ظروف و لوازم آشپزخانه",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "kitchen-utensils",
+   "home-kitchen"
+  ]
+ },
+ "refrigerator-freezer": {
+  "slug": "refrigerator-freezer",
+  "name": "یخچال و فریزر",
+  "parents": [
+   "لوازم خانگی برقی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "appliance",
+   "home-kitchen"
+  ]
+ },
+ "religious": {
+  "slug": "religious",
+  "name": "مذهبی",
+  "parents": [
+   "کتاب و مجله",
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "book-student-literature",
+   "leisure-hobbies"
+  ]
+ },
+ "rhinestones": {
+  "slug": "rhinestones",
+  "name": "بدلیجات",
+  "parents": [
+   "زیورآلات و اکسسوری",
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "jewelry-and-watches",
+   "personal"
+  ]
+ },
+ "ride-sharing": {
+  "slug": "ride-sharing",
+  "name": "سفر اشتراکی",
+  "parents": [
+   "داوطلبانه",
+   "اجتماعی"
+  ],
+  "parent_slugs": [
+   "volunteers",
+   "community"
+  ]
+ },
+ "rugs-woolen-cloth": {
+  "slug": "rugs-woolen-cloth",
+  "name": "گلیم، جاجیم، گبه",
+  "parents": [
+   "فرش، گلیم، موکت",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "carpet-moquette",
+   "home-kitchen"
+  ]
+ },
+ "sales-marketing": {
+  "slug": "sales-marketing",
+  "name": "بازاریابی و فروش",
+  "parents": [
+   "استخدام و کاریابی"
+  ],
+  "parent_slugs": [
+   "jobs"
+  ]
+ },
+ "sewing-accessories": {
+  "slug": "sewing-accessories",
+  "name": "لوازم خیاطی و بافتنی",
+  "parents": [
+   "خیاطی و بافتنی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "sewing-knitting",
+   "home-kitchen"
+  ]
+ },
+ "sewing-machine": {
+  "slug": "sewing-machine",
+  "name": "چرخ خیاطی و ریسندگی",
+  "parents": [
+   "خیاطی و بافتنی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "sewing-knitting",
+   "home-kitchen"
+  ]
+ },
+ "shoe-rack-drawer": {
+  "slug": "shoe-rack-drawer",
+  "name": "جاکفشی، کمد، دراور",
+  "parents": [
+   "مبلمان و صنایع چوب",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "furniture-wood",
+   "home-kitchen"
+  ]
+ },
+ "shoes-belt-bag": {
+  "slug": "shoes-belt-bag",
+  "name": "کیف، کفش، کمربند",
+  "parents": [
+   "کیف، کفش، لباس",
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "clothing-and-shoes",
+   "personal"
+  ]
+ },
+ "shop-rent": {
+  "slug": "shop-rent",
+  "name": "مغازه و غرفه",
+  "parents": [
+   "اجارهٔ اداری و تجاری",
+   "املاک"
+  ],
+  "parent_slugs": [
+   "commercial-rent",
+   "real-estate"
+  ]
+ },
+ "shop-restaurant": {
+  "slug": "shop-restaurant",
+  "name": "خدمات فروشگاه و رستوران",
+  "parents": [
+   "استخدام و کاریابی"
+  ],
+  "parent_slugs": [
+   "jobs"
+  ]
+ },
+ "shop-sell": {
+  "slug": "shop-sell",
+  "name": "مغازه و غرفه",
+  "parents": [
+   "فروش اداری و تجاری",
+   "املاک"
+  ],
+  "parent_slugs": [
+   "commercial-sell",
+   "real-estate"
+  ]
+ },
+ "sim-card": {
+  "slug": "sim-card",
+  "name": "سیم‌کارت",
+  "parents": [
+   "موبایل و تبلت",
+   "کالای دیجیتال"
+  ],
+  "parent_slugs": [
+   "mobile-tablet",
+   "electronic-devices"
+  ]
+ },
+ "stationery": {
+  "slug": "stationery",
+  "name": "لوازم التحریر",
+  "parents": [
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "personal"
+  ]
+ },
+ "stoves-heaters-fireplaces": {
+  "slug": "stoves-heaters-fireplaces",
+  "name": "بخاری، هیتر، شومینه",
+  "parents": [
+   "تهویه، سرمایش، گرمایش",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "ventilation-cooling-heating",
+   "home-kitchen"
+  ]
+ },
+ "tablet": {
+  "slug": "tablet",
+  "name": "تبلت",
+  "parents": [
+   "موبایل و تبلت",
+   "کالای دیجیتال"
+  ],
+  "parent_slugs": [
+   "mobile-tablet",
+   "electronic-devices"
+  ]
+ },
+ "teaching": {
+  "slug": "teaching",
+  "name": "آموزشی",
+  "parents": [
+   "خدمات"
+  ],
+  "parent_slugs": [
+   "services"
+  ]
+ },
+ "toolbox": {
+  "slug": "toolbox",
+  "name": "ابزارآلات",
+  "parents": [
+   "تجهیزات و صنعتی"
+  ],
+  "parent_slugs": [
+   "tools-materials-equipment"
+  ]
+ },
+ "training": {
+  "slug": "training",
+  "name": "تجهیزات ورزشی",
+  "parents": [
+   "ورزش و تناسب اندام",
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "sport-leisure",
+   "leisure-hobbies"
+  ]
+ },
+ "transport": {
+  "slug": "transport",
+  "name": "حمل و نقل",
+  "parents": [
+   "خدمات"
+  ],
+  "parent_slugs": [
+   "services"
+  ]
+ },
+ "travel-packages": {
+  "slug": "travel-packages",
+  "name": "تور و چارتر",
+  "parents": [
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "leisure-hobbies"
+  ]
+ },
+ "tv-projector": {
+  "slug": "tv-projector",
+  "name": "تلویزیون و پروژکتور",
+  "parents": [
+   "صوتی و تصویری",
+   "کالای دیجیتال"
+  ],
+  "parent_slugs": [
+   "audio-video",
+   "electronic-devices"
+  ]
+ },
+ "vacuums-cleaner": {
+  "slug": "vacuums-cleaner",
+  "name": "جاروبرقی، جارو شارژی، بخارشو",
+  "parents": [
+   "لوازم خانگی برقی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "appliance",
+   "home-kitchen"
+  ]
+ },
+ "washing-machines": {
+  "slug": "washing-machines",
+  "name": "ماشین لباسشویی و خشک‌کن لباس",
+  "parents": [
+   "لوازم خانگی برقی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "appliance",
+   "home-kitchen"
+  ]
+ },
+ "watches": {
+  "slug": "watches",
+  "name": "ساعت",
+  "parents": [
+   "زیورآلات و اکسسوری",
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "jewelry-and-watches",
+   "personal"
+  ]
+ },
+ "water-cooler": {
+  "slug": "water-cooler",
+  "name": "کولر آبی",
+  "parents": [
+   "تهویه، سرمایش، گرمایش",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "ventilation-cooling-heating",
+   "home-kitchen"
+  ]
+ },
+ "water-cooler-refinery": {
+  "slug": "water-cooler-refinery",
+  "name": "آب‌سردکن و تصفیه آب",
+  "parents": [
+   "لوازم خانگی برقی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "appliance",
+   "home-kitchen"
+  ]
+ },
+ "wc-accessories": {
+  "slug": "wc-accessories",
+  "name": "لوازم سرویس بهداشتی",
+  "parents": [
+   "حمام و سرویس بهداشتی",
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "bathrooms",
+   "home-kitchen"
+  ]
+ },
+ "animals": {
+  "slug": "animals",
+  "name": "حیوانات",
+  "parents": [
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "leisure-hobbies"
+  ]
+ },
+ "appliance": {
+  "slug": "appliance",
+  "name": "لوازم خانگی برقی",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "baby-and-toys": {
+  "slug": "baby-and-toys",
+  "name": "وسایل بچه و اسباب‌بازی",
+  "parents": [
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "personal"
+  ]
+ },
+ "bathrooms": {
+  "slug": "bathrooms",
+  "name": "حمام و سرویس بهداشتی",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "book-student-literature": {
+  "slug": "book-student-literature",
+  "name": "کتاب و مجله",
+  "parents": [
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "leisure-hobbies"
+  ]
+ },
+ "carpet-moquette": {
+  "slug": "carpet-moquette",
+  "name": "فرش، گلیم، موکت",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "cars": {
+  "slug": "cars",
+  "name": "خودرو",
+  "parents": [
+   "وسایل نقلیه"
+  ],
+  "parent_slugs": [
+   "vehicles"
+  ]
+ },
+ "clothing-and-shoes": {
+  "slug": "clothing-and-shoes",
+  "name": "کیف، کفش، لباس",
+  "parents": [
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "personal"
+  ]
+ },
+ "commercial-rent": {
+  "slug": "commercial-rent",
+  "name": "اجارهٔ اداری و تجاری",
+  "parents": [
+   "املاک"
+  ],
+  "parent_slugs": [
+   "real-estate"
+  ]
+ },
+ "commercial-sell": {
+  "slug": "commercial-sell",
+  "name": "فروش اداری و تجاری",
+  "parents": [
+   "املاک"
+  ],
+  "parent_slugs": [
+   "real-estate"
+  ]
+ },
+ "community": {
+  "slug": "community",
+  "name": "اجتماعی",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "decoration": {
+  "slug": "decoration",
+  "name": "لوازم دکوری و تزئینی",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "electronic-devices": {
+  "slug": "electronic-devices",
+  "name": "کالای دیجیتال",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "furniture-wood": {
+  "slug": "furniture-wood",
+  "name": "مبلمان و صنایع چوب",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "historical-objects": {
+  "slug": "historical-objects",
+  "name": "اشیاء عتیقه",
+  "parents": [
+   "کلکسیون و سرگرمی",
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "hobby-collectibles",
+   "leisure-hobbies"
+  ]
+ },
+ "home-kitchen": {
+  "slug": "home-kitchen",
+  "name": "خانه و آشپزخانه",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "home-lighting": {
+  "slug": "home-lighting",
+  "name": "نور و روشنایی",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "jobs": {
+  "slug": "jobs",
+  "name": "استخدام و کاریابی",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "kitchen-utensils": {
+  "slug": "kitchen-utensils",
+  "name": "ظروف و لوازم آشپزخانه",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "leisure-hobbies": {
+  "slug": "leisure-hobbies",
+  "name": "سرگرمی و فراغت",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "mobile-tablet": {
+  "slug": "mobile-tablet",
+  "name": "موبایل و تبلت",
+  "parents": [
+   "کالای دیجیتال"
+  ],
+  "parent_slugs": [
+   "electronic-devices"
+  ]
+ },
+ "personal": {
+  "slug": "personal",
+  "name": "وسایل شخصی",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "real-estate": {
+  "slug": "real-estate",
+  "name": "املاک",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "services": {
+  "slug": "services",
+  "name": "خدمات",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "sewing-knitting": {
+  "slug": "sewing-knitting",
+  "name": "خیاطی و بافتنی",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "sleep-goods": {
+  "slug": "sleep-goods",
+  "name": "تشک، روتختی، رختخواب",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "sport-leisure": {
+  "slug": "sport-leisure",
+  "name": "ورزش و تناسب اندام",
+  "parents": [
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "leisure-hobbies"
+  ]
+ },
+ "strollers-and-accessories": {
+  "slug": "strollers-and-accessories",
+  "name": "کالسکه و لوازم جانبی",
+  "parents": [
+   "وسایل بچه و اسباب‌بازی",
+   "وسایل شخصی"
+  ],
+  "parent_slugs": [
+   "baby-and-toys",
+   "personal"
+  ]
+ },
+ "tools-materials-equipment": {
+  "slug": "tools-materials-equipment",
+  "name": "تجهیزات و صنعتی",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "vehicles": {
+  "slug": "vehicles",
+  "name": "وسایل نقلیه",
+  "parents": [],
+  "parent_slugs": []
+ },
+ "ventilation-cooling-heating": {
+  "slug": "ventilation-cooling-heating",
+  "name": "تهویه، سرمایش، گرمایش",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "volunteers": {
+  "slug": "volunteers",
+  "name": "داوطلبانه",
+  "parents": [
+   "اجتماعی"
+  ],
+  "parent_slugs": [
+   "community"
+  ]
+ },
+ "washing-cleaning": {
+  "slug": "washing-cleaning",
+  "name": "شست‌وشو و نظافت",
+  "parents": [
+   "خانه و آشپزخانه"
+  ],
+  "parent_slugs": [
+   "home-kitchen"
+  ]
+ },
+ "work-equipment": {
+  "slug": "work-equipment",
+  "name": "تجهیزات کسب‌وکار",
+  "parents": [
+   "تجهیزات و صنعتی"
+  ],
+  "parent_slugs": [
+   "tools-materials-equipment"
+  ]
+ },
+ "hobby-collectibles": {
+  "slug": "hobby-collectibles",
+  "name": "کلکسیون و سرگرمی",
+  "parents": [
+   "سرگرمی و فراغت"
+  ],
+  "parent_slugs": [
+   "leisure-hobbies"
+  ]
+ }
+}

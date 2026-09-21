@@ -1,0 +1,1110 @@
+{
+ "sections": [
+  {
+   "section_name": "BREADCRUMB",
+   "widgets": [
+    {
+     "widget_type": "BREADCRUMB",
+     "data": {
+      "@type": "type.googleapis.com/widgets.BreadcrumbData",
+      "parent_items": [
+       {
+        "title": "کالای دیجیتال",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "electronic-devices"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       },
+       {
+        "title": "موبایل و تبلت",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "mobile-tablet"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       },
+       {
+        "title": "موبایل",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "mobile-phones"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       },
+       {
+        "title": "samsung",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "mobile-phones"
+              }
+             },
+             "brand_model": {
+              "repeated_string": {
+               "value": [
+                "samsung"
+               ]
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       },
+       {
+        "title": "samsung galaxy s21 5g",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "mobile-phones"
+              }
+             },
+             "brand_model": {
+              "repeated_string": {
+               "value": [
+                "samsung galaxy s21 5g"
+               ]
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       }
+      ],
+      "current_page_title": "سامسونگ s21ef اورجینال",
+      "padded": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "TITLE",
+   "widgets": [
+    {
+     "widget_type": "LEGEND_TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.LegendTitleRowData",
+      "title": "سامسونگ s21ef اورجینال",
+      "high_level_heading": true,
+      "padding": "NO_PADDING"
+     }
+    },
+    {
+     "widget_type": "EXPANDABLE_SECTION",
+     "data": {
+      "@type": "type.googleapis.com/widgets.ExpandableSectionData",
+      "widget_list": [
+       {
+        "widget_type": "DESCRIPTION_ROW",
+        "data": {
+         "@type": "type.googleapis.com/widgets.DescriptionRowData",
+         "text": "انتشار آگهی: ۳۱ شهریور ۱۴۰۵، ۰۰:۲۰\nآخرین به‌روز‌رسانی: ۳۱ شهریور ۱۴۰۵، ۰۰:۲۱",
+         "is_primary": true,
+         "small": true,
+         "text_alignment": "RIGHT"
+        }
+       }
+      ],
+      "title": "دقایقی پیش در تهران، دهقان",
+      "icon": {}
+     }
+    },
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "زنگ خطرهای قبل از معامله",
+      "action": {
+       "type": "OPEN_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPagePayload",
+        "request_http_method": "POST",
+        "request_data": {
+         "@type": "type.googleapis.com/post_api_v2.GetFraudAlertPageRequest.Data",
+         "category": "mobile-phones"
+        },
+        "specification": {
+         "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification",
+         "navigation_button": "BACK"
+        },
+        "is_modal": true,
+        "rest_request_path": "/v8/postview/fraud-alert",
+        "grpc_request_path": "/post_api_v2.PostApi/GetFraudAlertPage"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/warning.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/warning.png",
+       "icon_name": "WARNING",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "has_arrow": true,
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.PostWarningInfo",
+        "post_token": "gaxi5lYL"
+       },
+       "item_type": {
+        "type": "POST_WARNING"
+       }
+      },
+      "enabled": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "DESCRIPTION",
+   "widgets": [
+    {
+     "widget_type": "TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.TitleRowData",
+      "text": "توضیحات",
+      "text_color": "TEXT_PRIMARY",
+      "text_type": "SECONDARY"
+     }
+    },
+    {
+     "widget_type": "DESCRIPTION_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.DescriptionRowData",
+      "text": "گوشی سامسونگ s21ef اورجینال باجعبه وانتقال فقط بردش کار نمیکنه دوربین عالی همچی پلمپ ....",
+      "is_primary": true,
+      "text_alignment": "RIGHT"
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "IMAGE",
+   "widgets": [
+    {
+     "widget_type": "IMAGE_CAROUSEL",
+     "data": {
+      "@type": "type.googleapis.com/widgets.ImageCarouselData",
+      "items": [
+       {
+        "image": {
+         "url": "https://s100.divarcdn.com/static/photo/neda/webp_post/qQVbDVgY5-SSR3J-93hcnw/bcd18dcf-c824-4674-a1b7-c299ac414e59.webp",
+         "alt": "سامسونگ s21ef اورجینال|موبایل|تهران, دهقان|دیوار",
+         "thumbnail_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/ovX9jlBzMLqkmGoMH2HtPg/bcd18dcf-c824-4674-a1b7-c299ac414e59.webp"
+        }
+       },
+       {
+        "image": {
+         "url": "https://s100.divarcdn.com/static/photo/neda/webp_post/KPJIoFlwEEp_UVuvbhsCqA/6cd55aae-11c7-42f8-9c66-8b3bb7b24730.webp",
+         "alt": "سامسونگ s21ef اورجینال|موبایل|تهران, دهقان|دیوار",
+         "thumbnail_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/U5pH_zWIhDMmufskrbKV-A/6cd55aae-11c7-42f8-9c66-8b3bb7b24730.webp"
+        }
+       }
+      ],
+      "image_aspect_ratio": {
+       "dynamic_aspect_ratio": {
+        "height": 3,
+        "width": 4
+       }
+      },
+      "has_preview": true,
+      "has_thumbnails": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "LIST_DATA",
+   "widgets": [
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "برند و مدل",
+      "value": "سامسونگ Galaxy S21 5G",
+      "action": {
+       "type": "OPEN_POSTLIST_PAGE_GRPC",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+        "search_data": {
+         "form_data": {
+          "data": {
+           "brand_model": {
+            "repeated_string": {
+             "value": [
+              "samsung galaxy s21 5g"
+             ]
+            }
+           },
+           "category": {
+            "str": {
+             "value": "mobile-phones"
+            }
+           }
+          }
+         }
+        },
+        "source_view": "POST_VIEW_LIST_DATA_ITEM",
+        "tooltip": "آگهی‌های بیشتر برای سامسونگ Galaxy S21 5G",
+        "source_view_str": "POST_VIEW_LIST_DATA_ITEM"
+       }
+      },
+      "has_divider": true
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.PostViewListDataItemInfo",
+        "post_token": "gaxi5lYL",
+        "jli": {
+         "category": {
+          "value": "mobile-phones"
+         },
+         "brand_model": {
+          "value": [
+           "samsung galaxy s21 5g"
+          ]
+         }
+        },
+        "field": "brand_model",
+        "value": "samsung galaxy s21 5g"
+       },
+       "item_type": {
+        "type": "POST_VIEW_LIST_DATA_ITEM"
+       }
+      },
+      "enabled": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "تعداد سیم‌کارت",
+      "value": "۲",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "اصالت برند",
+      "value": "اصل",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "وضعیت",
+      "value": "کارکرده",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "حافظهٔ داخلی",
+      "value": "۵۱۲ مگابایت",
+      "action": {
+       "type": "OPEN_POSTLIST_PAGE_GRPC",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+        "search_data": {
+         "form_data": {
+          "data": {
+           "brand_model": {
+            "repeated_string": {
+             "value": [
+              "samsung galaxy s21 5g"
+             ]
+            }
+           },
+           "internal_storage": {
+            "repeated_string": {
+             "value": [
+              "512MB"
+             ]
+            }
+           },
+           "category": {
+            "str": {
+             "value": "mobile-phones"
+            }
+           }
+          }
+         }
+        },
+        "source_view": "POST_VIEW_LIST_DATA_ITEM",
+        "tooltip": "آگهی‌های بیشتر برای سامسونگ Galaxy S21 5G ۵۱۲ مگابایت",
+        "source_view_str": "POST_VIEW_LIST_DATA_ITEM"
+       }
+      },
+      "has_divider": true
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.PostViewListDataItemInfo",
+        "post_token": "gaxi5lYL",
+        "jli": {
+         "category": {
+          "value": "mobile-phones"
+         },
+         "brand_model": {
+          "value": [
+           "samsung galaxy s21 5g"
+          ]
+         },
+         "internal_storage": {
+          "value": [
+           "512MB"
+          ]
+         }
+        },
+        "field": "internal_storage",
+        "value": "512MB"
+       },
+       "item_type": {
+        "type": "POST_VIEW_LIST_DATA_ITEM"
+       }
+      },
+      "enabled": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "مقدار رم",
+      "value": "۵۱۲ مگابایت",
+      "action": {
+       "type": "OPEN_POSTLIST_PAGE_GRPC",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+        "search_data": {
+         "form_data": {
+          "data": {
+           "category": {
+            "str": {
+             "value": "mobile-phones"
+            }
+           },
+           "brand_model": {
+            "repeated_string": {
+             "value": [
+              "samsung galaxy s21 5g"
+             ]
+            }
+           },
+           "ram_memory": {
+            "repeated_string": {
+             "value": [
+              "512MB"
+             ]
+            }
+           }
+          }
+         }
+        },
+        "source_view": "POST_VIEW_LIST_DATA_ITEM",
+        "tooltip": "آگهی‌های بیشتر برای سامسونگ Galaxy S21 5G ۵۱۲ مگابایت",
+        "source_view_str": "POST_VIEW_LIST_DATA_ITEM"
+       }
+      },
+      "has_divider": true
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.PostViewListDataItemInfo",
+        "post_token": "gaxi5lYL",
+        "jli": {
+         "category": {
+          "value": "mobile-phones"
+         },
+         "brand_model": {
+          "value": [
+           "samsung galaxy s21 5g"
+          ]
+         },
+         "ram_memory": {
+          "value": [
+           "512MB"
+          ]
+         }
+        },
+        "field": "ram_memory",
+        "value": "512MB"
+       },
+       "item_type": {
+        "type": "POST_VIEW_LIST_DATA_ITEM"
+       }
+      },
+      "enabled": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "رنگ",
+      "value": "مشکی",
+      "action": {
+       "type": "OPEN_POSTLIST_PAGE_GRPC",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+        "search_data": {
+         "form_data": {
+          "data": {
+           "category": {
+            "str": {
+             "value": "mobile-phones"
+            }
+           },
+           "brand_model": {
+            "repeated_string": {
+             "value": [
+              "samsung galaxy s21 5g"
+             ]
+            }
+           },
+           "base_color": {
+            "repeated_string": {
+             "value": [
+              "مشکی"
+             ]
+            }
+           }
+          }
+         }
+        },
+        "source_view": "POST_VIEW_LIST_DATA_ITEM",
+        "tooltip": "آگهی‌های بیشتر برای سامسونگ Galaxy S21 5G مشکی",
+        "source_view_str": "POST_VIEW_LIST_DATA_ITEM"
+       }
+      },
+      "has_divider": true
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.PostViewListDataItemInfo",
+        "post_token": "gaxi5lYL",
+        "jli": {
+         "brand_model": {
+          "value": [
+           "samsung galaxy s21 5g"
+          ]
+         },
+         "base_color": {
+          "value": [
+           "مشکی"
+          ]
+         },
+         "category": {
+          "value": "mobile-phones"
+         }
+        },
+        "field": "base_color",
+        "value": "مشکی"
+       },
+       "item_type": {
+        "type": "POST_VIEW_LIST_DATA_ITEM"
+       }
+      },
+      "enabled": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "قیمت",
+      "value": "‏۱۲,۰۰۰,۰۰۰ تومان",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "مایل به معاوضه",
+      "value": "هستم",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "سایر ویژگی‌ها و امکانات",
+      "action": {
+       "type": "LOAD_MODAL_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.LoadModalPagePayload",
+        "modal_page": {
+         "title": "ویژگی‌ها و امکانات",
+         "widget_list": [
+          {
+           "widget_type": "UNEXPANDABLE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "وضعیت دوربین",
+            "value": "کاملا سالم",
+            "has_divider": true
+           }
+          },
+          {
+           "widget_type": "UNEXPANDABLE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "وضعیت صفحه‌نمایش",
+            "value": "سالم و بدون مشکل",
+            "has_divider": true
+           }
+          },
+          {
+           "widget_type": "UNEXPANDABLE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "انتقال مالکیت",
+            "value": "بله",
+            "has_divider": true
+           }
+          },
+          {
+           "widget_type": "UNEXPANDABLE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "وضعیت جعبه دستگاه",
+            "value": "دارد",
+            "has_divider": true
+           }
+          }
+         ]
+        }
+       }
+      },
+      "has_divider": true,
+      "icon": {},
+      "has_arrow": true,
+      "last_notification_date": "0001-01-01T00:00:00Z",
+      "fullwidth": true
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.ViewPostFeaturesInfo",
+        "post_token": "gaxi5lYL"
+       },
+       "item_type": {
+        "type": "VIEW_POST_FEATURES"
+       }
+      },
+      "enabled": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "TAGS",
+   "widgets": [
+    {
+     "widget_type": "WRAPPER_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.WrapperRowData",
+      "chip_list": {
+       "chips": [
+        {
+         "text": "موبایل",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_POSTLIST_PAGE_GRPC",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+           "search_data": {
+            "form_data": {
+             "data": {
+              "category": {
+               "str": {
+                "value": "mobile-phones"
+               }
+              }
+             }
+            }
+           },
+           "source_view": "CATEGORY_BREAD_CRUMB",
+           "source_view_str": "CATEGORY_BREAD_CRUMB"
+          }
+         }
+        },
+        {
+         "text": "موبایل در دهقان",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_POSTLIST_PAGE_GRPC",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+           "search_data": {
+            "form_data": {
+             "data": {
+              "category": {
+               "str": {
+                "value": "mobile-phones"
+               }
+              },
+              "districts": {
+               "repeated_string": {
+                "value": [
+                 "962"
+                ]
+               }
+              }
+             }
+            }
+           },
+           "source_view": "CATEGORY_BREAD_CRUMB",
+           "source_view_str": "CATEGORY_BREAD_CRUMB"
+          }
+         }
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "MAP",
+   "widgets": [
+    {
+     "widget_type": "MAP_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.MapRowData",
+      "location": {
+       "type": "FUZZY",
+       "fuzzy_data": {
+        "point": {
+         "latitude": 35.696268825507,
+         "longitude": 51.476612798034
+        },
+        "radius": 500
+       }
+      },
+      "image_url": "https://mapimage.divarcdn.com/v8/mapimage?encrypted_data=MTIzNDU2Nzg5MTIzXDAML8dBzqzuQqaDxoQvZvpLaawRMFfmgC_ueJWFxSewug==&is_nearby=true"
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.MapInfo",
+        "post_token": "gaxi5lYL"
+       },
+       "item_type": {
+        "type": "MAP"
+       }
+      },
+      "enabled": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "NOTE",
+   "widgets": [
+    {
+     "widget_type": "NOTE",
+     "data": {
+      "@type": "type.googleapis.com/widgets.NoteData",
+      "title": "یادداشت من",
+      "button_title": "ویرایش یادداشت",
+      "post_token": "gaxi5lYL",
+      "icon_button": {
+       "icon": {
+        "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/more_vert.png",
+        "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/more_vert.png",
+        "icon_name": "MORE_VERT",
+        "icon_color": "ICON_SECONDARY"
+       },
+       "action": {
+        "type": "LOAD_MENU",
+        "payload": {
+         "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+         "menu": {
+          "items": [
+           {
+            "text": "ویرایش یادداشت",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/edit.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/edit.png",
+             "icon_name": "EDIT",
+             "icon_color": "ICON_SECONDARY"
+            },
+            "action": {
+             "type": "NOTE",
+             "payload": {
+              "@type": "type.googleapis.com/widgets.NotePayload",
+              "post_token": "gaxi5lYL",
+              "max_character_count": 256
+             }
+            },
+            "alignment": "RIGHT"
+           },
+           {
+            "text": "حذف یادداشت",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_primary/v1/trash_o.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_primary/v1/trash_o.png",
+             "icon_name": "TRASH_O",
+             "icon_color": "ICON_PRIMARY"
+            },
+            "action": {
+             "type": "MAKE_NETWORK_CALL",
+             "payload": {
+              "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+              "grpc_request_path": "/yaad_v2.YaadV2/DeleteNoteV2",
+              "rest_request_path": "/yaad/delete-note-v2",
+              "request_data": {
+               "@type": "type.googleapis.com/yaad_v2.DeleteNoteV2Request.RequestData",
+               "token": "gaxi5lYL"
+              },
+              "needs_auth": true
+             }
+            },
+            "alignment": "RIGHT",
+            "state": "STATE_NEGATIVE"
+           }
+          ],
+          "banner": {}
+         },
+         "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "STATIC",
+   "widgets": [
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "گزارش آگهی",
+      "action": {
+       "type": "OPEN_FORM_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenFormPagePayload",
+        "grpc_servicer": "/post_quality.PostQualityFeedback/GetFeedbackForm",
+        "request_data": {
+         "@type": "type.googleapis.com/post_quality.GetFeedbackFormRequest.RequestData",
+         "post_token": "gaxi5lYL"
+        },
+        "rest_request_path": "/v8/post-quality/feedback-form"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/report.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/report.png",
+       "icon_name": "REPORT",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "MESSAGE",
+   "widgets": [
+    {
+     "widget_type": "STATEMENT",
+     "data": {
+      "@type": "type.googleapis.com/widgets.StatementData",
+      "title": "هشدار سامانهٔ همتا:",
+      "description": "در صورت انجام معامله، از فروشنده کد فعال‌سازی را گرفته و حتما در حضور ایشان، دستگاه را از طریق #7777* برای سیمکارت خود فعال‌سازی نمایید.",
+      "link": "http://hmti.ir/06",
+      "type": "OUTLINE",
+      "link_title": "آموزش تصویری"
+     }
+    }
+   ]
+  }
+ ],
+ "share": {
+  "title": "سامسونگ s21ef اورجینال",
+  "web_url": "https://divar.ir/v/gaxi5lYL"
+ },
+ "seo": {
+  "title": "سامسونگ s21ef اورجینال در تهران - ۳۱ شهریور ۱۴۰۵",
+  "description": "آگهی سامسونگ s21ef اورجینال در دیوار تهران",
+  "android_package_name": "ir.divar",
+  "android_app_url": "android-app://ir.divar/http/v/سامسونگ s21ef اورجینال/gaxi5lYL/",
+  "web_info": {
+   "title": "سامسونگ s21ef اورجینال",
+   "district_persian": "دهقان",
+   "city_persian": "تهران",
+   "category_slug_persian": "موبایل"
+  },
+  "unavailable_after": "2026-10-23T00:20:36.52703",
+  "bread_crumb": [
+   {
+    "name": "سامسونگ Galaxy S21 5G",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "brand_model": {
+        "repeated_string": {
+         "value": [
+          "samsung galaxy s21 5g"
+         ]
+        }
+       },
+       "category": {
+        "str": {
+         "value": "mobile-phones"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "962"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "موبایل",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "category": {
+        "str": {
+         "value": "mobile-phones"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "962"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "موبایل و تبلت",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "962"
+         ]
+        }
+       },
+       "category": {
+        "str": {
+         "value": "mobile-tablet"
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "کالای دیجیتال",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "category": {
+        "str": {
+         "value": "electronic-devices"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "962"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "دهقان",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "962"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "1",
+    "search_data": {
+     "form_data": {}
+    }
+   },
+   {
+    "name": "دیوار"
+   }
+  ],
+  "post_seo_schema": {
+   "description": "گوشی سامسونگ s21ef اورجینال باجعبه وانتقال فقط بردش کار نمیکنه دوربین عالی همچی پلمپ ....",
+   "image": "https://s100.divarcdn.com/static/photo/neda/webp_post/qQVbDVgY5-SSR3J-93hcnw/bcd18dcf-c824-4674-a1b7-c299ac414e59.webp",
+   "offers": {
+    "@type": "Offer",
+    "priceCurrency": "IRR",
+    "price": "12000000"
+   },
+   "@context": "https://schema.org",
+   "@type": "Product",
+   "url": "https://divar.ir/v/سامسونگ-s21ef-اورجینال/gaxi5lYL",
+   "name": "سامسونگ s21ef اورجینال",
+   "category": "mobile-phones",
+   "web_info": {
+    "title": "سامسونگ s21ef اورجینال",
+    "city_persian": "تهران",
+    "district_persian": "دهقان",
+    "category_slug_persian": "موبایل"
+   }
+  },
+  "image_url": "https://s100.divarcdn.com/static/photo/neda/post/yZH0CPgk3_ny80ML8BHWFA/bcd18dcf-c824-4674-a1b7-c299ac414e59.jpg"
+ },
+ "contact": {
+  "chat_enabled": true,
+  "action_log": {
+   "server_side_info": {
+    "info": {
+     "@type": "type.googleapis.com/action_log.ContactInfoInfo",
+     "post_token": "gaxi5lYL",
+     "method_name": "GetContactWeb",
+     "contact_uuid": "1d53da6a-9f33-40ea-aae7-bac93ef37ddd"
+    },
+    "item_type": {
+     "type": "CONTACT_INFO"
+    }
+   },
+   "enabled": true
+  },
+  "contact_uuid": "1d53da6a-9f33-40ea-aae7-bac93ef37ddd"
+ },
+ "webengage": {
+  "token": "gaxi5lYL",
+  "credit": 0,
+  "source_view": "",
+  "rent": 0,
+  "cat_2": "mobile-tablet",
+  "cat_1": "electronic-devices",
+  "status": "used",
+  "category": "mobile-phones",
+  "business_type": "personal",
+  "cat_3": "mobile-phones",
+  "district": "dehqan",
+  "price": 12000000,
+  "originality": "original",
+  "city": "tehran",
+  "brand_model": "samsung galaxy s21 5g",
+  "business_ref": "",
+  "gender": "",
+  "image_count": 2
+ },
+ "analytics": {
+  "cat1": "electronic-devices",
+  "cat2": "mobile-tablet",
+  "cat3": "mobile-phones",
+  "city": "tehran"
+ },
+ "city": {
+  "city_id": "1",
+  "name": "تهران",
+  "parent_id": "904",
+  "second_slug": "tehran"
+ }
+}

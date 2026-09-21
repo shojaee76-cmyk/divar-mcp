@@ -1,0 +1,3066 @@
+{
+ "list_top_widgets": [
+  {
+   "widget_type": "POST_LIST_HEADLINE",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostListHeadline",
+    "text": "انواع آگهی\u200cها و نیازمندی های تهران - صفحه ۲"
+   }
+  }
+ ],
+ "list_widgets": [
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "استخدام منشی  و دستیار خانم",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWZCEz",
+      "web_info": {
+       "title": "استخدام منشی  و دستیار خانم",
+       "district_persian": "بلوار کشاورز",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWZCEz_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/EmJ3PB5JVPbJTw_94smlCQ/e6932a20-8a7a-4068-a968-2c5f39f20869.webp",
+    "bottom_description_text": "لحظاتی پیش در بلوار کشاورز",
+    "has_chat": true,
+    "middle_description_text": "پرداخت توافقی",
+    "has_divider": true,
+    "image_count": 1,
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWZCEz",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWZCEz_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWZCEz",
+      "index": 0,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:10.203722Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "کتابخانه ۴طبقه و ۳طبقه",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWpM5V",
+      "web_info": {
+       "title": "کتابخانه ۴طبقه و ۳طبقه",
+       "district_persian": "میرداماد",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWpM5V_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/4JJX5z5qVDTeZuZRvFRAgg/c5791b7f-16b5-4a7e-88e6-4d4fd1485b8c.webp",
+    "bottom_description_text": "لحظاتی پیش در میرداماد",
+    "has_chat": true,
+    "middle_description_text": "۷,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 3,
+    "top_description_text": "نو",
+    "image_top_left_tag": {
+     "text": "۳",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWpM5V",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWpM5V_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWpM5V",
+      "index": 1,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:09.842540Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "روشویی پایه دار معمولی تک به قیمت عمده",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaqiV8Oz",
+      "web_info": {
+       "title": "روشویی پایه دار معمولی تک به قیمت عمده",
+       "district_persian": "بنی\u200cهاشم",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaqiV8Oz_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/scqmynZAhcwt7HlHKi8nNQ/e0e7392a-0009-4458-8bf4-1c08bbf21454.webp",
+    "bottom_description_text": "در بنی\u200cهاشم",
+    "has_chat": true,
+    "red_text": "نردبان شده | فروشگاه",
+    "middle_description_text": "۱,۸۹۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 9,
+    "top_description_text": "نو",
+    "image_overlay_tag": {
+     "text": "پرداخت امن",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/success_secondary/v1/payment.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/success_secondary/v1/payment.png",
+      "icon_name": "PAYMENT",
+      "icon_color": "SUCCESS_SECONDARY"
+     }
+    },
+    "image_top_left_tag": {
+     "text": "۹",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaqiV8Oz",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaqiV8Oz_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaqiV8Oz",
+      "index": 2,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:09.707882Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "بوفه دکوری",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWpMGI",
+      "web_info": {
+       "title": "بوفه دکوری",
+       "district_persian": "نبی اکرم",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWpMGI_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/EODI37Xetfq7_FV4rjLS6g/6cb40d3a-c5b2-40ac-a992-4ab05c6be344.webp",
+    "bottom_description_text": "لحظاتی پیش در نبی اکرم",
+    "has_chat": true,
+    "middle_description_text": "۲,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 2,
+    "top_description_text": "در حد نو",
+    "image_top_left_tag": {
+     "text": "۲",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWpMGI",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWpMGI_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWpMGI",
+      "index": 3,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "cities": [
+         "1"
+        ],
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        }
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:07.586559Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "میز و صندلی غذاخوری پلاستیکی طرح عماد5 تهران نواب",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaZGgsOg",
+      "web_info": {
+       "title": "میز و صندلی غذاخوری پلاستیکی طرح عماد5 تهران نواب",
+       "district_persian": "سلسبیل شمالی",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaZGgsOg_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/tlMxJy74S-bYOwF197Ctsw/e14899fe-d7b0-4514-a45c-a599c6a95dae.webp",
+    "bottom_description_text": "در سلسبیل شمالی",
+    "has_chat": true,
+    "red_text": "نردبان شده | فروشگاه",
+    "middle_description_text": "۱,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 20,
+    "top_description_text": "نو",
+    "image_top_left_tag": {
+     "text": "۲۰",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaZGgsOg",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaZGgsOg_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaZGgsOg",
+      "index": 4,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "cities": [
+         "1"
+        ],
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        }
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:07.088449Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "فروش سنگ لاشه ورقه ای مستقیم از معدن تهیه می گردد",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "Qa1mpDK0",
+      "web_info": {
+       "title": "فروش سنگ لاشه ورقه ای مستقیم از معدن تهیه می گردد",
+       "district_persian": "تهرانپارس شرقی",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_Qa1mpDK0_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/FJAaXb-I7O79hAgJmup_uA/8527c4ee-2c56-4b28-ae38-a140f96dd328.webp",
+    "bottom_description_text": "در تهرانپارس شرقی",
+    "red_text": "نردبان شده",
+    "middle_description_text": "۳۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 18,
+    "top_description_text": "نو",
+    "image_top_left_tag": {
+     "text": "۱۸",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "Qa1mpDK0",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_Qa1mpDK0_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "Qa1mpDK0",
+      "index": 5,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:05.922172Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "اجرای میکروسمنت پتینه صخره",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxSJiae",
+      "web_info": {
+       "title": "اجرای میکروسمنت پتینه صخره",
+       "district_persian": "الهیه",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxSJiae_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/8XccEtrYpm62q3dPjDuWzg/f4eb5886-9325-4a20-9552-3051a5ce1997.webp",
+    "bottom_description_text": "لحظاتی پیش در الهیه",
+    "has_divider": true,
+    "image_count": 17,
+    "image_top_left_tag": {
+     "text": "۱۷",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxSJiae",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxSJiae_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxSJiae",
+      "index": 6,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ],
+        "category": {
+         "value": "ROOT"
+        }
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:04.299359Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "فروش یک عدد چرخ گوشت توشیبا",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWJLeJ",
+      "web_info": {
+       "title": "فروش یک عدد چرخ گوشت توشیبا",
+       "district_persian": "حکیمیه",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJLeJ_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/G6ajWAxsOXTyBjqsZLg27Q/99ce0e31-b8c0-4dbc-a117-89704b710a02.webp",
+    "bottom_description_text": "لحظاتی پیش در حکیمیه",
+    "has_chat": true,
+    "middle_description_text": "۳,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "top_description_text": "کارکرده",
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWJLeJ",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJLeJ_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWJLeJ",
+      "index": 7,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ],
+        "category": {
+         "value": "ROOT"
+        }
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:03.762678Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "چارو شارژی کره ای مدل پاور بروش",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWJKiM",
+      "web_info": {
+       "title": "چارو شارژی کره ای مدل پاور بروش",
+       "district_persian": "دریاچه شهدای خلیج فارس",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJKiM_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/LWzwbaJTzbDOHvHnKcUkhw/6f8ad4fd-b2c1-40b6-b48a-49e329a4fd43.webp",
+    "bottom_description_text": "لحظاتی پیش در دریاچه شهدای خلیج فارس",
+    "has_chat": true,
+    "middle_description_text": "۷,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 6,
+    "top_description_text": "کارکرده",
+    "image_top_left_tag": {
+     "text": "۶",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWJKiM",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJKiM_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWJKiM",
+      "index": 8,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "cities": [
+         "1"
+        ],
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        }
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:03.270158Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "لباس مجلسی زنانه",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWpDbQ",
+      "web_info": {
+       "title": "لباس مجلسی زنانه",
+       "district_persian": "بهارستان",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWpDbQ_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/ktjQyzulv2JobKQGZ9O1YA/9ffe9279-6f51-4bc8-b1fe-d68f002bb78e.webp",
+    "bottom_description_text": "لحظاتی پیش در بهارستان",
+    "has_chat": true,
+    "middle_description_text": "۲۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "top_description_text": "در حد نو",
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWpDbQ",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWpDbQ_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWpDbQ",
+      "index": 9,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:36:01.974412Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "آپارتمان",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxSJic8",
+      "web_info": {
+       "title": "آپارتمان",
+       "district_persian": "حافظیه",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxSJic8_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/I7f8XZQChFMBX5v-Pyl0Sw/078296e2-67a8-4576-b3d0-494eb4c29216.webp",
+    "bottom_description_text": "لحظاتی پیش در حافظیه",
+    "has_chat": true,
+    "middle_description_text": "اجاره: ۱۴,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "top_description_text": "ودیعه: ۱۰۰,۰۰۰,۰۰۰ تومان",
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxSJic8",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxSJic8_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxSJic8",
+      "index": 10,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:57.611336Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "استخدام نیروبسته بندی باجای خواب کارخانه قطعات",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gafWQtCT",
+      "web_info": {
+       "title": "استخدام نیروبسته بندی باجای خواب کارخانه قطعات",
+       "district_persian": "شادآباد",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gafWQtCT_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/GCkr4ysXISiSu55rrKRlpA/544fc42d-ac0a-44fc-9934-5d384b470686.webp",
+    "bottom_description_text": "در شادآباد",
+    "has_chat": true,
+    "red_text": "نردبان شده",
+    "middle_description_text": "پرداخت ماهانه با بیمه",
+    "has_divider": true,
+    "image_count": 2,
+    "top_description_text": "حداکثر ۵۵ میلیون تومان",
+    "image_top_left_tag": {
+     "text": "۲",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gafWQtCT",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gafWQtCT_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gafWQtCT",
+      "index": 11,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:56.805957Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "اکانت استیم خدا برای شبیه ساز پلیرا",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxW5HB2",
+      "web_info": {
+       "title": "اکانت استیم خدا برای شبیه ساز پلیرا",
+       "district_persian": "شمس\u200cآباد",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxW5HB2_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/y1ZB1hiun8WhR7_dcdABng/132adaf2-0b41-48d2-9525-8ea1fd45d894.webp",
+    "bottom_description_text": "لحظاتی پیش در شمس\u200cآباد",
+    "has_chat": true,
+    "middle_description_text": "۱۶۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxW5HB2",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxW5HB2_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxW5HB2",
+      "index": 12,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:55.051219Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "اسکوتر",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWZIyh",
+      "web_info": {
+       "title": "اسکوتر",
+       "district_persian": "افسریه شمالی",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWZIyh_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/wjAD2wBxvgkl-2n8Oy-c-w/dee437fa-f0fe-477a-bfa3-3dadbd99cfd3.webp",
+    "bottom_description_text": "لحظاتی پیش در افسریه شمالی",
+    "has_chat": true,
+    "middle_description_text": "۶۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 2,
+    "top_description_text": "نو",
+    "image_top_left_tag": {
+     "text": "۲",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWZIyh",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWZIyh_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWZIyh",
+      "index": 13,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:52.429310Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "هندسه نشر الگو دهم",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWJImT",
+      "web_info": {
+       "title": "هندسه نشر الگو دهم",
+       "district_persian": "بریانک",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJImT_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/1kDCkKl1-ILVeIDwpvwCEw/93d81482-7096-4a46-853e-0daba6517194.webp",
+    "bottom_description_text": "لحظاتی پیش در بریانک",
+    "has_chat": true,
+    "middle_description_text": "۳۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "top_description_text": "در حد نو",
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWJImT",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJImT_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWJImT",
+      "index": 14,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "cities": [
+         "1"
+        ],
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        }
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:51.728461Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "کفتر",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWZFB-",
+      "web_info": {
+       "title": "کفتر",
+       "district_persian": "نظام\u200cآباد",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWZFB-_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/1Zw2KrnRNmZisuLprAfQ7g/98e64cc2-41e9-4f3a-9d51-1d5d5894181f.webp",
+    "bottom_description_text": "لحظاتی پیش در نظام\u200cآباد",
+    "has_chat": true,
+    "middle_description_text": "۴۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 5,
+    "image_top_left_tag": {
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/videocam.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/videocam.png",
+      "icon_name": "VIDEOCAM",
+      "icon_color": "WHITE_PRIMARY"
+     }
+    },
+    "token": "gaxWZFB-",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWZFB-_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWZFB-",
+      "index": 15,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:51.424087Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "فردائم وشش ماهه",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gagZn5ww",
+      "web_info": {
+       "title": "فردائم وشش ماهه",
+       "district_persian": "تهرانسر مرکزی",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gagZn5ww_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/VSYJ7SxMksUOBRTbWGMzmw/8adc52ed-e950-4f6b-abb9-4e15e3b26be1.webp",
+    "bottom_description_text": "در تهرانسر مرکزی",
+    "has_chat": true,
+    "red_text": "نردبان شده",
+    "has_divider": true,
+    "image_count": 3,
+    "image_top_left_tag": {
+     "text": "۳",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gagZn5ww",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gagZn5ww_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gagZn5ww",
+      "index": 16,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:51.052894Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "منشی خانم",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gajiqDIc",
+      "web_info": {
+       "title": "منشی خانم",
+       "district_persian": "نصرت",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gajiqDIc_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/mPzPYtwfZ3xiNN0aGAU__A/c5b9290a-dfec-4461-bf7b-f06245659337.webp",
+    "bottom_description_text": "در نصرت",
+    "red_text": "نردبان شده",
+    "middle_description_text": "پرداخت روزانه",
+    "has_divider": true,
+    "image_count": 1,
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gajiqDIc",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gajiqDIc_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gajiqDIc",
+      "index": 17,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:50.657986Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "کفش پاشنه بلند",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWpHCn",
+      "web_info": {
+       "title": "کفش پاشنه بلند",
+       "district_persian": "جوادیه",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWpHCn_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/lFsEPRrGu2GX95f_XJ2K0Q/084fb69f-311c-4fd5-8cca-7cd5d7184a4b.webp",
+    "bottom_description_text": "لحظاتی پیش در جوادیه",
+    "has_chat": true,
+    "middle_description_text": "۱,۵۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "top_description_text": "نو",
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWpHCn",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWpHCn_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWpHCn",
+      "index": 18,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:48.675251Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "چرخ خیاطی مارشال",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWJHgJ",
+      "web_info": {
+       "title": "چرخ خیاطی مارشال",
+       "district_persian": "شهرک بعثت",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJHgJ_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/N06739ns_X_oI_eBHZK7lQ/d46cb651-13be-4b44-8bb5-980dcb459bba.webp",
+    "bottom_description_text": "لحظاتی پیش در شهرک بعثت",
+    "has_chat": true,
+    "middle_description_text": "۲,۵۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 4,
+    "top_description_text": "در حد نو",
+    "image_top_left_tag": {
+     "text": "۴",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWJHgJ",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJHgJ_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWJHgJ",
+      "index": 19,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:48.109463Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "حلزون کیلر",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWJG-y",
+      "web_info": {
+       "title": "حلزون کیلر",
+       "district_persian": "کرمان",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJG-y_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/fy2Novfnsl-T9j-JRQZktg/dcd203ad-f3b7-4577-a489-de33532b37bd.webp",
+    "bottom_description_text": "لحظاتی پیش در کرمان",
+    "has_chat": true,
+    "middle_description_text": "۳۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 3,
+    "image_top_left_tag": {
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/videocam.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/videocam.png",
+      "icon_name": "VIDEOCAM",
+      "icon_color": "WHITE_PRIMARY"
+     }
+    },
+    "token": "gaxWJG-y",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWJG-y_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWJG-y",
+      "index": 20,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:47.601543Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "اجاره آپارتمان درنعمت آباد ۵۵ متر یک خوابه",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxWZGj6",
+      "web_info": {
+       "title": "اجاره آپارتمان درنعمت آباد ۵۵ متر یک خوابه",
+       "district_persian": "استاد معین",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWZGj6_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/unbRIDczFp7_hFXYxCqdQQ/9d1c45c1-6943-431e-b282-64ce7eed7da7.webp",
+    "bottom_description_text": "لحظاتی پیش در استاد معین",
+    "has_chat": true,
+    "middle_description_text": "اجاره: ۱۲,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 6,
+    "top_description_text": "ودیعه: ۱۰۰,۰۰۰,۰۰۰ تومان",
+    "image_top_left_tag": {
+     "text": "۶",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gaxWZGj6",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxWZGj6_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxWZGj6",
+      "index": 21,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:46.980003Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "سونیPS2(فروشگاه\u200c صداوسیما)6PROکپیPS3خور۴پلی فور۵فت",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaxSZMgA",
+      "web_info": {
+       "title": "سونیPS2(فروشگاه\u200c صداوسیما)6PROکپیPS3خور۴پلی فور۵فت",
+       "district_persian": "مسگرآباد",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxSZMgA_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/DejVn-M655ZFuPJfLuPEsg/fdd3072d-6254-4396-8812-d222d6697e23.webp",
+    "bottom_description_text": "در مسگرآباد",
+    "red_text": "فروشگاه",
+    "middle_description_text": "۱,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 20,
+    "top_description_text": "نو",
+    "image_top_left_tag": {
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/videocam.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/videocam.png",
+      "icon_name": "VIDEOCAM",
+      "icon_color": "WHITE_PRIMARY"
+     }
+    },
+    "token": "gaxSZMgA",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gaxSZMgA_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaxSZMgA",
+      "index": 22,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "cities": [
+         "1"
+        ]
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:46.776553Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "مو نداری پیام بده",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gatyKptu",
+      "web_info": {
+       "title": "مو نداری پیام بده",
+       "district_persian": "ولنجک",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gatyKptu_N"
+     }
+    },
+    "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/GAGKY9WXrd1W6H1lySS4zQ/3ead097d-1e43-4d44-85ef-cbab69eb1055.webp",
+    "bottom_description_text": "در ولنجک",
+    "has_chat": true,
+    "red_text": "نردبان شده",
+    "has_divider": true,
+    "image_count": 8,
+    "image_top_left_tag": {
+     "text": "۸",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "token": "gatyKptu",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "8fe02d1e-b213-4857-ae33-8e734db264c2_gatyKptu_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gatyKptu",
+      "index": 23,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "cities": [
+         "1"
+        ],
+        "category": {
+         "value": "ROOT"
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        }
+       },
+       "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-21T20:35:46.105189Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  }
+ ],
+ "action_log": {
+  "server_side_info": {
+   "info": {
+    "@type": "type.googleapis.com/action_log.PostListLoadPageInfo",
+    "cities": [
+     "1"
+    ],
+    "current_tab": "default",
+    "search_data": {
+     "form_data_json": "{\"data\":{\"category\":{\"str\":{\"value\":\"ROOT\"}}}}",
+     "cities": [
+      "1"
+     ],
+     "query_input_type": "TEXT",
+     "user_selected_location": {
+      "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+      "places": [
+       {
+        "place_id": "1"
+       }
+      ]
+     }
+    },
+    "tokens": [
+     "gaxWZCEz",
+     "gaxWpM5V",
+     "gaqiV8Oz",
+     "gaxWpMGI",
+     "gaZGgsOg",
+     "Qa1mpDK0",
+     "gaxSJiae",
+     "gaxWJLeJ",
+     "gaxWJKiM",
+     "gaxWpDbQ",
+     "gaxSJic8",
+     "gafWQtCT",
+     "gaxW5HB2",
+     "gaxWZIyh",
+     "gaxWJImT",
+     "gaxWZFB-",
+     "gagZn5ww",
+     "gajiqDIc",
+     "gaxWpHCn",
+     "gaxWJHgJ",
+     "gaxWJG-y",
+     "gaxWZGj6",
+     "gaxSZMgA",
+     "gatyKptu"
+    ],
+    "has_next_page": true,
+    "page": 1,
+    "last_post_date_epoch": "1790022946105189",
+    "search_id": "3c08c51403d09b9ea300772577379267",
+    "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+    "source_view": "UNKNOWN",
+    "posts_metadata": [
+     {
+      "token": "gaxWZCEz",
+      "sort_date": "1790022970203722",
+      "source": "f",
+      "extra_info": "{\"category\":\"administration-and-hr\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":1}"
+     },
+     {
+      "token": "gaxWpM5V",
+      "sort_date": "1790022969842540",
+      "source": "f",
+      "extra_info": "{\"category\":\"bookcase-shelf\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":2}"
+     },
+     {
+      "token": "gaqiV8Oz",
+      "sort_date": "1790022969707882",
+      "source": "f",
+      "extra_info": "{\"category\":\"wc-accessories\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":2}"
+     },
+     {
+      "token": "gaxWpMGI",
+      "sort_date": "1790022967586559",
+      "source": "f",
+      "extra_info": "{\"category\":\"buffet-showcases\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":4}"
+     },
+     {
+      "token": "gaZGgsOg",
+      "sort_date": "1790022967088449",
+      "source": "f",
+      "extra_info": "{\"category\":\"dining-table\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":5}"
+     },
+     {
+      "token": "Qa1mpDK0",
+      "sort_date": "1790022965922172",
+      "source": "f",
+      "extra_info": "{\"category\":\"building-equipment\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":6}"
+     },
+     {
+      "token": "gaxSJiae",
+      "sort_date": "1790022964299359",
+      "source": "f",
+      "extra_info": "{\"category\":\"craftsmen\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":7}"
+     },
+     {
+      "token": "gaxWJLeJ",
+      "sort_date": "1790022963762678",
+      "source": "f",
+      "extra_info": "{\"category\":\"food-mill\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":8}"
+     },
+     {
+      "token": "gaxWJKiM",
+      "sort_date": "1790022963270158",
+      "source": "f",
+      "extra_info": "{\"category\":\"vacuums-cleaner\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":8}"
+     },
+     {
+      "token": "gaxWpDbQ",
+      "sort_date": "1790022961974412",
+      "source": "f",
+      "extra_info": "{\"category\":\"clothing\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":10}"
+     },
+     {
+      "token": "gaxSJic8",
+      "sort_date": "1790022957611336",
+      "source": "f",
+      "extra_info": "{\"category\":\"apartment-rent\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":14}"
+     },
+     {
+      "token": "gafWQtCT",
+      "sort_date": "1790022956805957",
+      "source": "f",
+      "extra_info": "{\"category\":\"industrial-technology\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":15}"
+     },
+     {
+      "token": "gaxW5HB2",
+      "sort_date": "1790022955051219",
+      "source": "f",
+      "extra_info": "{\"category\":\"game-consoles-and-video-games\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":17}"
+     },
+     {
+      "token": "gaxWZIyh",
+      "sort_date": "1790022952429310",
+      "source": "f",
+      "extra_info": "{\"category\":\"bicycle\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":19}"
+     },
+     {
+      "token": "gaxWJImT",
+      "sort_date": "1790022951728461",
+      "source": "f",
+      "extra_info": "{\"category\":\"educational\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":20}"
+     },
+     {
+      "token": "gaxWZFB-",
+      "sort_date": "1790022951424087",
+      "source": "f",
+      "extra_info": "{\"category\":\"birds\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":20}"
+     },
+     {
+      "token": "gagZn5ww",
+      "sort_date": "1790022951052894",
+      "source": "f",
+      "extra_info": "{\"category\":\"beauty-and-haircare\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":21}"
+     },
+     {
+      "token": "gajiqDIc",
+      "sort_date": "1790022950657986",
+      "source": "f",
+      "extra_info": "{\"category\":\"janitorial-cleaning\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":21}"
+     },
+     {
+      "token": "gaxWpHCn",
+      "sort_date": "1790022948675251",
+      "source": "f",
+      "extra_info": "{\"category\":\"shoes-belt-bag\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":23}"
+     },
+     {
+      "token": "gaxWJHgJ",
+      "sort_date": "1790022948109463",
+      "source": "f",
+      "extra_info": "{\"category\":\"sewing-machine\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":24}"
+     },
+     {
+      "token": "gaxWJG-y",
+      "sort_date": "1790022947601543",
+      "source": "f",
+      "extra_info": "{\"category\":\"fish\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":24}"
+     },
+     {
+      "token": "gaxWZGj6",
+      "sort_date": "1790022946980003",
+      "source": "f",
+      "extra_info": "{\"category\":\"apartment-rent\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":25}"
+     },
+     {
+      "token": "gaxSZMgA",
+      "sort_date": "1790022946776553",
+      "source": "f",
+      "extra_info": "{\"category\":\"game-consoles-and-video-games\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":25}"
+     },
+     {
+      "token": "gatyKptu",
+      "sort_date": "1790022946105189",
+      "source": "f",
+      "extra_info": "{\"category\":\"for-sale\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":26}"
+     }
+    ],
+    "jli": {
+     "category": {
+      "value": "ROOT"
+     },
+     "places": {
+      "value": [
+       "1"
+      ]
+     },
+     "cities": [
+      "1"
+     ]
+    },
+    "search_layer": "fulltext_t1",
+    "widget_order": [
+     {
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWZCEz"
+     },
+     {
+      "index": 1,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWpM5V"
+     },
+     {
+      "index": 2,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaqiV8Oz"
+     },
+     {
+      "index": 3,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWpMGI"
+     },
+     {
+      "index": 4,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaZGgsOg"
+     },
+     {
+      "index": 5,
+      "type": "SEARCH_RESULT",
+      "track_id": "Qa1mpDK0"
+     },
+     {
+      "index": 6,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxSJiae"
+     },
+     {
+      "index": 7,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWJLeJ"
+     },
+     {
+      "index": 8,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWJKiM"
+     },
+     {
+      "index": 9,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWpDbQ"
+     },
+     {
+      "index": 10,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxSJic8"
+     },
+     {
+      "index": 11,
+      "type": "SEARCH_RESULT",
+      "track_id": "gafWQtCT"
+     },
+     {
+      "index": 12,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxW5HB2"
+     },
+     {
+      "index": 13,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWZIyh"
+     },
+     {
+      "index": 14,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWJImT"
+     },
+     {
+      "index": 15,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWZFB-"
+     },
+     {
+      "index": 16,
+      "type": "SEARCH_RESULT",
+      "track_id": "gagZn5ww"
+     },
+     {
+      "index": 17,
+      "type": "SEARCH_RESULT",
+      "track_id": "gajiqDIc"
+     },
+     {
+      "index": 18,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWpHCn"
+     },
+     {
+      "index": 19,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWJHgJ"
+     },
+     {
+      "index": 20,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWJG-y"
+     },
+     {
+      "index": 21,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxWZGj6"
+     },
+     {
+      "index": 22,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaxSZMgA"
+     },
+     {
+      "index": 23,
+      "type": "SEARCH_RESULT",
+      "track_id": "gatyKptu"
+     }
+    ],
+    "list_level_extra_info": "{}",
+    "user_selected_location": {
+     "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+     "places": [
+      {
+       "place_id": "1"
+      }
+     ]
+    }
+   },
+   "item_type": {
+    "type": "POST_LIST_LOAD_PAGE"
+   }
+  },
+  "enabled": true
+ },
+ "search_bar": {},
+ "pagination": {
+  "has_next_page": true,
+  "data": {
+   "@type": "type.googleapis.com/post_list.PaginationData",
+   "last_post_date": "2026-09-21T20:35:46.105189Z",
+   "page": 2,
+   "layer_page": 1,
+   "search_uid": "8fe02d1e-b213-4857-ae33-8e734db264c2",
+   "cumulative_widgets_count": 24,
+   "viewed_tokens": "H4sIAAAAAAAE/zTN0aqCQBDG8Rca4ZzA8Da11l0TEcOFuZvEphWUlQyzp49d6+7Hfz4YppfG5PgGB1uEDTBNponKXxESmFDwo2So6H+waf7nxrUy1Dlode7UhtwUHja9Vg61Mm0ETDddzcnFFR1m8c4D5Xr3UHLYTniKA2BiHMNlAabeTKls/cZmyeihMv7+EsHqC4p+71BjwQdgmtfczs9PAAAA//+aSt+B1wAAAA==",
+   "pelle_max_score": -1,
+   "filters_hash": "PAjFFAPQm56jAHcldzeSZw==",
+   "pelle_layer_id": -1
+  }
+ },
+ "search_id": "3c08c51403d09b9ea300772577379267",
+ "seo_details": {
+  "title": "دیوار تهران - آگهی های رایگان خرید، فروش و استخدام - صفحه ۲ | دیوار",
+  "description": "در دیوار تهران، بهترین آگهی\u200cهای رایگان خرید، فروش و استخدام را پیدا کنید. به سادگی نیازمندی\u200cهای خود را جستجو کنید و فرصت\u200cهای جدید را کشف کنید.",
+  "headline": "انواع آگهی\u200cها و نیازمندی های تهران - صفحه ۲",
+  "canonical": {
+   "form_data": {
+    "data": {
+     "category": {
+      "str": {
+       "value": "ROOT"
+      }
+     }
+    }
+   }
+  },
+  "robots_metadata": {
+   "index": true,
+   "follow": true
+  },
+  "bread_crumb": [
+   {
+    "name": "تهران",
+    "search_data": {
+     "form_data": {}
+    }
+   },
+   {
+    "name": "دیوار"
+   }
+  ],
+  "linked_data": [
+   {
+    "name": "استخدام منشی  و دستیار خانم",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/EmJ3PB5JVPbJTw_94smlCQ/e6932a20-8a7a-4068-a968-2c5f39f20869.webp",
+    "category": "administration-and-hr",
+    "web_info": {
+     "title": "استخدام منشی  و دستیار خانم",
+     "city_persian": "تهران",
+     "district_persian": "بلوار کشاورز",
+     "category_slug_persian": "اداری و مدیریت"
+    },
+    "offers": {
+     "price": "0",
+     "@type": "Offer",
+     "priceCurrency": "IRR"
+    },
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "url": "https://divar.ir/v/استخدام-منشی-و-دستیار-خانم/gaxWZCEz"
+   },
+   {
+    "offers": {
+     "price": "70000000",
+     "@type": "Offer",
+     "priceCurrency": "IRR"
+    },
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "web_info": {
+     "title": "کتابخانه ۴طبقه و ۳طبقه",
+     "city_persian": "تهران",
+     "district_persian": "میرداماد",
+     "category_slug_persian": "کتابخانه، شلف، قفسه\u200cهای دیواری"
+    },
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/4JJX5z5qVDTeZuZRvFRAgg/c5791b7f-16b5-4a7e-88e6-4d4fd1485b8c.webp",
+    "category": "bookcase-shelf",
+    "url": "https://divar.ir/v/کتابخانه-۴طبقه-و-۳طبقه/gaxWpM5V",
+    "name": "کتابخانه ۴طبقه و ۳طبقه"
+   },
+   {
+    "web_info": {
+     "title": "روشویی پایه دار معمولی تک به قیمت عمده",
+     "city_persian": "تهران",
+     "district_persian": "بنی\u200cهاشم",
+     "category_slug_persian": "لوازم سرویس بهداشتی"
+    },
+    "offers": {
+     "price": "18900000",
+     "@type": "Offer",
+     "priceCurrency": "IRR"
+    },
+    "@context": "https://schema.org",
+    "name": "روشویی پایه دار معمولی تک به قیمت عمده",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/scqmynZAhcwt7HlHKi8nNQ/e0e7392a-0009-4458-8bf4-1c08bbf21454.webp",
+    "category": "wc-accessories",
+    "@type": "Product",
+    "url": "https://divar.ir/v/روشویی-پایه-دار-معمولی-تک-به-قیمت-عمده/gaqiV8Oz"
+   },
+   {
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/EODI37Xetfq7_FV4rjLS6g/6cb40d3a-c5b2-40ac-a992-4ab05c6be344.webp",
+    "category": "buffet-showcases",
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "20000000"
+    },
+    "@type": "Product",
+    "web_info": {
+     "city_persian": "تهران",
+     "district_persian": "نبی اکرم",
+     "category_slug_persian": "بوفه، ویترین، کنسول",
+     "title": "بوفه دکوری"
+    },
+    "@context": "https://schema.org",
+    "url": "https://divar.ir/v/بوفه-دکوری/gaxWpMGI",
+    "name": "بوفه دکوری"
+   },
+   {
+    "@type": "Product",
+    "url": "https://divar.ir/v/میز-و-صندلی-غذاخوری-پلاستیکی-طرح-عماد5-تهران-نواب/gaZGgsOg",
+    "web_info": {
+     "title": "میز و صندلی غذاخوری پلاستیکی طرح عماد5 تهران نواب",
+     "city_persian": "تهران",
+     "district_persian": "سلسبیل شمالی",
+     "category_slug_persian": "میز و صندلی غذاخوری"
+    },
+    "name": "میز و صندلی غذاخوری پلاستیکی طرح عماد5 تهران نواب",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/tlMxJy74S-bYOwF197Ctsw/e14899fe-d7b0-4514-a45c-a599c6a95dae.webp",
+    "offers": {
+     "price": "10000",
+     "@type": "Offer",
+     "priceCurrency": "IRR"
+    },
+    "category": "dining-table",
+    "@context": "https://schema.org"
+   },
+   {
+    "@type": "Product",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/FJAaXb-I7O79hAgJmup_uA/8527c4ee-2c56-4b28-ae38-a140f96dd328.webp",
+    "url": "https://divar.ir/v/فروش-سنگ-لاشه-ورقه-ای-مستقیم-از-معدن-تهیه-می-گردد/Qa1mpDK0",
+    "web_info": {
+     "category_slug_persian": "مصالح و تجهیزات ساختمان",
+     "title": "فروش سنگ لاشه ورقه ای مستقیم از معدن تهیه می گردد",
+     "city_persian": "تهران",
+     "district_persian": "تهرانپارس شرقی"
+    },
+    "name": "فروش سنگ لاشه ورقه ای مستقیم از معدن تهیه می گردد",
+    "category": "building-equipment",
+    "offers": {
+     "priceCurrency": "IRR",
+     "price": "3000000",
+     "@type": "Offer"
+    },
+    "@context": "https://schema.org"
+   },
+   {
+    "web_info": {
+     "title": "اجرای میکروسمنت پتینه صخره",
+     "city_persian": "تهران",
+     "district_persian": "الهیه",
+     "category_slug_persian": "پیشه و مهارت"
+    },
+    "category": "craftsmen",
+    "@context": "https://schema.org",
+    "name": "اجرای میکروسمنت پتینه صخره",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/8XccEtrYpm62q3dPjDuWzg/f4eb5886-9325-4a20-9552-3051a5ce1997.webp",
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "0"
+    },
+    "@type": "Product",
+    "url": "https://divar.ir/v/اجرای-میکروسمنت-پتینه-صخره/gaxSJiae"
+   },
+   {
+    "url": "https://divar.ir/v/فروش-یک-عدد-چرخ-گوشت-توشیبا/gaxWJLeJ",
+    "web_info": {
+     "title": "فروش یک عدد چرخ گوشت توشیبا",
+     "city_persian": "تهران",
+     "district_persian": "حکیمیه",
+     "category_slug_persian": "خردکن، آسیاب، غذاساز"
+    },
+    "name": "فروش یک عدد چرخ گوشت توشیبا",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/G6ajWAxsOXTyBjqsZLg27Q/99ce0e31-b8c0-4dbc-a117-89704b710a02.webp",
+    "@context": "https://schema.org",
+    "category": "food-mill",
+    "offers": {
+     "priceCurrency": "IRR",
+     "price": "30000000",
+     "@type": "Offer"
+    },
+    "@type": "Product"
+   },
+   {
+    "name": "چارو شارژی کره ای مدل پاور بروش",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/LWzwbaJTzbDOHvHnKcUkhw/6f8ad4fd-b2c1-40b6-b48a-49e329a4fd43.webp",
+    "category": "vacuums-cleaner",
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "web_info": {
+     "title": "چارو شارژی کره ای مدل پاور بروش",
+     "city_persian": "تهران",
+     "district_persian": "دریاچه شهدای خلیج فارس",
+     "category_slug_persian": "جاروبرقی، جارو شارژی، بخارشو"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "70000000"
+    },
+    "url": "https://divar.ir/v/چارو-شارژی-کره-ای-مدل-پاور-بروش/gaxWJKiM"
+   },
+   {
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/ktjQyzulv2JobKQGZ9O1YA/9ffe9279-6f51-4bc8-b1fe-d68f002bb78e.webp",
+    "category": "clothing",
+    "url": "https://divar.ir/v/لباس-مجلسی-زنانه/gaxWpDbQ",
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "200000000"
+    },
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "web_info": {
+     "category_slug_persian": "لباس",
+     "title": "لباس مجلسی زنانه",
+     "city_persian": "تهران",
+     "district_persian": "بهارستان"
+    },
+    "name": "لباس مجلسی زنانه"
+   },
+   {
+    "numberOfRooms": "یک",
+    "floorSize": {
+     "@type": "QuantitativeValue",
+     "value": "40",
+     "unitCode": "MTK"
+    },
+    "geo": {
+     "latitude": "35.704420380871",
+     "longitude": "51.494381868617",
+     "@type": "GeoCoordinates",
+     "address": "تهران, حافظیه"
+    },
+    "url": "https://divar.ir/v/آپارتمان/gaxSJic8",
+    "name": "آپارتمان",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/I7f8XZQChFMBX5v-Pyl0Sw/078296e2-67a8-4576-b3d0-494eb4c29216.webp",
+    "web_info": {
+     "category_slug_persian": "آپارتمان",
+     "title": "آپارتمان",
+     "city_persian": "تهران",
+     "district_persian": "حافظیه"
+    },
+    "accommodationCategory": "آپارتمان",
+    "@context": "https://schema.org",
+    "@type": "Apartment"
+   },
+   {
+    "category": "industrial-technology",
+    "@context": "https://schema.org",
+    "web_info": {
+     "title": "استخدام نیروبسته بندی باجای خواب کارخانه قطعات",
+     "city_persian": "تهران",
+     "district_persian": "شادآباد",
+     "category_slug_persian": "صنعتی، فنی، مهندسی"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "0"
+    },
+    "@type": "Product",
+    "url": "https://divar.ir/v/استخدام-نیروبسته-بندی-باجای-خواب-کارخانه-قطعات/gafWQtCT",
+    "name": "استخدام نیروبسته بندی باجای خواب کارخانه قطعات",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/GCkr4ysXISiSu55rrKRlpA/544fc42d-ac0a-44fc-9934-5d384b470686.webp"
+   },
+   {
+    "url": "https://divar.ir/v/اکانت-استیم-خدا-برای-شبیه-ساز-پلیرا/gaxW5HB2",
+    "name": "اکانت استیم خدا برای شبیه ساز پلیرا",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/y1ZB1hiun8WhR7_dcdABng/132adaf2-0b41-48d2-9525-8ea1fd45d894.webp",
+    "category": "game-consoles-and-video-games",
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "1600000000"
+    },
+    "@type": "Product",
+    "web_info": {
+     "city_persian": "تهران",
+     "district_persian": "شمس\u200cآباد",
+     "category_slug_persian": "کنسول، بازی ویدئویی و آنلاین",
+     "title": "اکانت استیم خدا برای شبیه ساز پلیرا"
+    },
+    "@context": "https://schema.org"
+   },
+   {
+    "url": "https://divar.ir/v/اسکوتر/gaxWZIyh",
+    "name": "اسکوتر",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/wjAD2wBxvgkl-2n8Oy-c-w/dee437fa-f0fe-477a-bfa3-3dadbd99cfd3.webp",
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "6000000"
+    },
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "web_info": {
+     "city_persian": "تهران",
+     "district_persian": "افسریه شمالی",
+     "category_slug_persian": "دوچرخه، اسکیت، اسکوتر",
+     "title": "اسکوتر"
+    },
+    "category": "bicycle"
+   },
+   {
+    "@type": "Product",
+    "url": "https://divar.ir/v/هندسه-نشر-الگو-دهم/gaxWJImT",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/1kDCkKl1-ILVeIDwpvwCEw/93d81482-7096-4a46-853e-0daba6517194.webp",
+    "@context": "https://schema.org",
+    "web_info": {
+     "title": "هندسه نشر الگو دهم",
+     "city_persian": "تهران",
+     "district_persian": "بریانک",
+     "category_slug_persian": "آموزشی"
+    },
+    "name": "هندسه نشر الگو دهم",
+    "category": "educational",
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "3000000"
+    }
+   },
+   {
+    "web_info": {
+     "title": "کفتر",
+     "city_persian": "تهران",
+     "district_persian": "نظام\u200cآباد",
+     "category_slug_persian": "پرنده"
+    },
+    "category": "birds",
+    "name": "کفتر",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/1Zw2KrnRNmZisuLprAfQ7g/98e64cc2-41e9-4f3a-9d51-1d5d5894181f.webp",
+    "offers": {
+     "price": "4000000",
+     "@type": "Offer",
+     "priceCurrency": "IRR"
+    },
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "url": "https://divar.ir/v/کفتر/gaxWZFB-"
+   },
+   {
+    "url": "https://divar.ir/v/فردائم-وشش-ماهه/gagZn5ww",
+    "web_info": {
+     "city_persian": "تهران",
+     "district_persian": "تهرانسر مرکزی",
+     "category_slug_persian": "زیبایی و سلامت",
+     "title": "فردائم وشش ماهه"
+    },
+    "name": "فردائم وشش ماهه",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/VSYJ7SxMksUOBRTbWGMzmw/8adc52ed-e950-4f6b-abb9-4e15e3b26be1.webp",
+    "offers": {
+     "priceCurrency": "IRR",
+     "price": "0",
+     "@type": "Offer"
+    },
+    "category": "beauty-and-haircare",
+    "@context": "https://schema.org",
+    "@type": "Product"
+   },
+   {
+    "@context": "https://schema.org",
+    "web_info": {
+     "city_persian": "تهران",
+     "district_persian": "نصرت",
+     "category_slug_persian": "سرایداری و نظافت",
+     "title": "منشی خانم"
+    },
+    "name": "منشی خانم",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/mPzPYtwfZ3xiNN0aGAU__A/c5b9290a-dfec-4461-bf7b-f06245659337.webp",
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "0"
+    },
+    "@type": "Product",
+    "url": "https://divar.ir/v/منشی-خانم/gajiqDIc",
+    "category": "janitorial-cleaning"
+   },
+   {
+    "category": "shoes-belt-bag",
+    "offers": {
+     "price": "15000000",
+     "@type": "Offer",
+     "priceCurrency": "IRR"
+    },
+    "@type": "Product",
+    "url": "https://divar.ir/v/کفش-پاشنه-بلند/gaxWpHCn",
+    "web_info": {
+     "city_persian": "تهران",
+     "district_persian": "جوادیه",
+     "category_slug_persian": "کیف، کفش، کمربند",
+     "title": "کفش پاشنه بلند"
+    },
+    "name": "کفش پاشنه بلند",
+    "@context": "https://schema.org",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/lFsEPRrGu2GX95f_XJ2K0Q/084fb69f-311c-4fd5-8cca-7cd5d7184a4b.webp"
+   },
+   {
+    "name": "چرخ خیاطی مارشال",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/N06739ns_X_oI_eBHZK7lQ/d46cb651-13be-4b44-8bb5-980dcb459bba.webp",
+    "category": "sewing-machine",
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "25000000"
+    },
+    "url": "https://divar.ir/v/چرخ-خیاطی-مارشال/gaxWJHgJ",
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "web_info": {
+     "title": "چرخ خیاطی مارشال",
+     "city_persian": "تهران",
+     "district_persian": "شهرک بعثت",
+     "category_slug_persian": "چرخ خیاطی و ریسندگی"
+    }
+   },
+   {
+    "category": "fish",
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "IRR",
+     "price": "300000"
+    },
+    "web_info": {
+     "title": "حلزون کیلر",
+     "city_persian": "تهران",
+     "district_persian": "کرمان",
+     "category_slug_persian": "ماهی"
+    },
+    "name": "حلزون کیلر",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/fy2Novfnsl-T9j-JRQZktg/dcd203ad-f3b7-4577-a489-de33532b37bd.webp",
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "url": "https://divar.ir/v/حلزون-کیلر/gaxWJG-y"
+   },
+   {
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/unbRIDczFp7_hFXYxCqdQQ/9d1c45c1-6943-431e-b282-64ce7eed7da7.webp",
+    "geo": {
+     "address": "تهران, استاد معین",
+     "latitude": "35.691626736969",
+     "longitude": "51.343279371543",
+     "@type": "GeoCoordinates"
+    },
+    "name": "اجاره آپارتمان درنعمت آباد ۵۵ متر یک خوابه",
+    "numberOfRooms": "یک",
+    "accommodationCategory": "آپارتمان",
+    "@type": "Apartment",
+    "web_info": {
+     "district_persian": "استاد معین",
+     "category_slug_persian": "آپارتمان",
+     "title": "اجاره آپارتمان درنعمت آباد ۵۵ متر یک خوابه",
+     "city_persian": "تهران"
+    },
+    "floorSize": {
+     "value": "55",
+     "unitCode": "MTK",
+     "@type": "QuantitativeValue"
+    },
+    "@context": "https://schema.org",
+    "url": "https://divar.ir/v/اجاره-آپارتمان-درنعمت-آباد-۵۵-متر-یک-خوابه/gaxWZGj6"
+   },
+   {
+    "offers": {
+     "price": "10000",
+     "@type": "Offer",
+     "priceCurrency": "IRR"
+    },
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "web_info": {
+     "district_persian": "مسگرآباد",
+     "category_slug_persian": "کنسول، بازی ویدئویی و آنلاین",
+     "title": "سونیPS2(فروشگاه\u200c صداوسیما)6PROکپیPS3خور۴پلی فور۵فت",
+     "city_persian": "تهران"
+    },
+    "name": "سونیPS2(فروشگاه\u200c صداوسیما)6PROکپیPS3خور۴پلی فور۵فت",
+    "category": "game-consoles-and-video-games",
+    "url": "https://divar.ir/v/سونیps2-فروشگاه-صداوسیما-6proکپیps3خور۴پلی-فور۵فت/gaxSZMgA",
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/DejVn-M655ZFuPJfLuPEsg/fdd3072d-6254-4396-8812-d222d6697e23.webp"
+   },
+   {
+    "web_info": {
+     "title": "مو نداری پیام بده",
+     "city_persian": "تهران",
+     "district_persian": "ولنجک",
+     "category_slug_persian": "حراج"
+    },
+    "image": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/GAGKY9WXrd1W6H1lySS4zQ/3ead097d-1e43-4d44-85ef-cbab69eb1055.webp",
+    "category": "for-sale",
+    "offers": {
+     "priceCurrency": "IRR",
+     "price": "0",
+     "@type": "Offer"
+    },
+    "name": "مو نداری پیام بده",
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "url": "https://divar.ir/v/مو-نداری-پیام-بده/gatyKptu"
+   }
+  ]
+ },
+ "show_no_search_result_notice": true
+}

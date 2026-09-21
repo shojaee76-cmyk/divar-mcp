@@ -1,0 +1,650 @@
+{
+ "sections": [
+  {
+   "section_name": "BREADCRUMB",
+   "widgets": [
+    {
+     "widget_type": "BREADCRUMB",
+     "data": {
+      "@type": "type.googleapis.com/widgets.BreadcrumbData",
+      "parent_items": [
+       {
+        "title": "استخدام و کاریابی",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "jobs"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       },
+       {
+        "title": "استخدام اداری و مدیریت",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "administration-and-hr"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       }
+      ],
+      "current_page_title": "استخدام منشی  و دستیار خانم",
+      "padded": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "TITLE",
+   "widgets": [
+    {
+     "widget_type": "LEGEND_TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.LegendTitleRowData",
+      "title": "استخدام منشی  و دستیار خانم",
+      "high_level_heading": true,
+      "padding": "NO_PADDING"
+     }
+    },
+    {
+     "widget_type": "EXPANDABLE_SECTION",
+     "data": {
+      "@type": "type.googleapis.com/widgets.ExpandableSectionData",
+      "widget_list": [
+       {
+        "widget_type": "DESCRIPTION_ROW",
+        "data": {
+         "@type": "type.googleapis.com/widgets.DescriptionRowData",
+         "text": "انتشار آگهی: ۳۱ شهریور ۱۴۰۵، ۰۰:۰۶\nآخرین به\u200cروز\u200cرسانی: ۳۱ شهریور ۱۴۰۵، ۰۰:۰۶",
+         "is_primary": true,
+         "small": true,
+         "text_alignment": "RIGHT"
+        }
+       }
+      ],
+      "title": "لحظاتی پیش در تهران، بلوار کشاورز، خ مرجان",
+      "icon": {}
+     }
+    },
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "زنگ خطرهای قبل از همکاری",
+      "action": {
+       "type": "OPEN_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPagePayload",
+        "request_http_method": "POST",
+        "request_data": {
+         "@type": "type.googleapis.com/post_api_v2.GetFraudAlertPageRequest.Data",
+         "category": "administration-and-hr"
+        },
+        "specification": {
+         "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification",
+         "navigation_button": "BACK"
+        },
+        "is_modal": true,
+        "rest_request_path": "/v8/postview/fraud-alert",
+        "grpc_request_path": "/post_api_v2.PostApi/GetFraudAlertPage"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/warning.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/warning.png",
+       "icon_name": "WARNING",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "has_arrow": true,
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.PostWarningInfo",
+        "post_token": "gaxWZCEz"
+       },
+       "item_type": {
+        "type": "POST_WARNING"
+       }
+      },
+      "enabled": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "DESCRIPTION",
+   "widgets": [
+    {
+     "widget_type": "TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.TitleRowData",
+      "text": "توضیحات",
+      "text_color": "TEXT_PRIMARY",
+      "text_type": "SECONDARY"
+     }
+    },
+    {
+     "widget_type": "DESCRIPTION_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.DescriptionRowData",
+      "text": "شرکت مهندسی ساختمان جهت تکمیل کادر خود به یک خانم جهت دستیاری و منشی گری نیازمند میباشد \nشرایط :\nمحدوده سنی ۲۰ الی ۳۵ \nترجیحا مجرد \nروابط عمومی بالا \nفن بیان قوی \nظاهر آراسته \nمسلط به تایپ و نامه های اداری و قراردادی \nدارای حداقل یک سال سابقه کاری در زمینه منشی گری \nساعات کاری ۹ صبح الی ۵ بعد ازظهر \nحقوق توافقی \nبیمه نداریم \nمتقاضیان فقط رزومه خود را در شبکه های اجتماعی واتساپ تلگرام بله یا روبیکا ارسال کنند و از هرگونه تماس خودداری نمایند پس از رویت رزومه جهت مصاحبه حضوری دعوت بعمل می آید \nبا تشکر",
+      "is_primary": true,
+      "text_alignment": "RIGHT"
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "IMAGE",
+   "widgets": [
+    {
+     "widget_type": "IMAGE_CAROUSEL",
+     "data": {
+      "@type": "type.googleapis.com/widgets.ImageCarouselData",
+      "items": [
+       {
+        "image": {
+         "url": "https://s100.divarcdn.com/static/photo/neda/webp_post/da9IuRNunS5CqFwYLkR29Q/e6932a20-8a7a-4068-a968-2c5f39f20869.webp",
+         "alt": "استخدام منشی  و دستیار خانم|استخدام اداری و مدیریت|تهران, بلوار کشاورز|دیوار",
+         "thumbnail_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/EmJ3PB5JVPbJTw_94smlCQ/e6932a20-8a7a-4068-a968-2c5f39f20869.webp"
+        }
+       }
+      ],
+      "image_aspect_ratio": {
+       "dynamic_aspect_ratio": {
+        "height": 3,
+        "width": 4
+       }
+      },
+      "has_preview": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "LIST_DATA",
+   "widgets": [
+    {
+     "widget_type": "GROUP_INFO_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.GroupInfoRow",
+      "items": [
+       {
+        "title": "نوع همکاری",
+        "value": "تمام وقت"
+       },
+       {
+        "title": "سابقه",
+        "value": "حداقل ۱ سال"
+       }
+      ],
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "شیوهٔ پرداخت",
+      "value": "توافقی",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "عنوان شغلی",
+      "value": "منشی | دستیار",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "ساعت کاری",
+      "value": "از ۹ تا ۱۷ پنجشنبه\u200cها تا ظهر",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "بیمه",
+      "value": "ندارد",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "جنسیت",
+      "value": "خانم",
+      "has_divider": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "TAGS",
+   "widgets": [
+    {
+     "widget_type": "WRAPPER_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.WrapperRowData",
+      "chip_list": {
+       "chips": [
+        {
+         "text": "استخدام اداری و مدیریت",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_POSTLIST_PAGE_GRPC",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+           "search_data": {
+            "form_data": {
+             "data": {
+              "category": {
+               "str": {
+                "value": "administration-and-hr"
+               }
+              }
+             }
+            }
+           },
+           "source_view": "CATEGORY_BREAD_CRUMB",
+           "source_view_str": "CATEGORY_BREAD_CRUMB"
+          }
+         }
+        },
+        {
+         "text": "استخدام اداری و مدیریت در بلوار کشاورز",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_POSTLIST_PAGE_GRPC",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+           "search_data": {
+            "form_data": {
+             "data": {
+              "category": {
+               "str": {
+                "value": "administration-and-hr"
+               }
+              },
+              "districts": {
+               "repeated_string": {
+                "value": [
+                 "208"
+                ]
+               }
+              }
+             }
+            }
+           },
+           "source_view": "CATEGORY_BREAD_CRUMB",
+           "source_view_str": "CATEGORY_BREAD_CRUMB"
+          }
+         }
+        },
+        {
+         "text": "استخدام منشی",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_WEB_PAGE",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenWebPagePayload",
+           "link": "https://divar.ir/s/tehran/list/استخدام-منشی",
+           "page_type": "SAME_PAGE"
+          }
+         }
+        },
+        {
+         "text": "منشی شرکت",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_WEB_PAGE",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenWebPagePayload",
+           "link": "https://divar.ir/s/tehran/list/jobs-company-secretary",
+           "page_type": "SAME_PAGE"
+          }
+         }
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "MAP",
+   "widgets": [
+    {
+     "widget_type": "MAP_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.MapRowData",
+      "location": {
+       "type": "FUZZY",
+       "fuzzy_data": {
+        "point": {
+         "latitude": 35.71692176172678,
+         "longitude": 51.400578649140556
+        },
+        "radius": 500
+       }
+      },
+      "image_url": "https://mapimage.divarcdn.com/v8/mapimage?encrypted_data=MTIzNDU2Nzg5MTIzXGFbsoaazKzuQlRzaghoaPpL_wFE9EO8IDTtgiGz8z2xXA==&is_nearby=true"
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.MapInfo",
+        "post_token": "gaxWZCEz"
+       },
+       "item_type": {
+        "type": "MAP"
+       }
+      },
+      "enabled": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "NOTE",
+   "widgets": [
+    {
+     "widget_type": "NOTE",
+     "data": {
+      "@type": "type.googleapis.com/widgets.NoteData",
+      "title": "یادداشت من",
+      "button_title": "ویرایش یادداشت",
+      "post_token": "gaxWZCEz",
+      "icon_button": {
+       "icon": {
+        "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/more_vert.png",
+        "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/more_vert.png",
+        "icon_name": "MORE_VERT",
+        "icon_color": "ICON_SECONDARY"
+       },
+       "action": {
+        "type": "LOAD_MENU",
+        "payload": {
+         "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+         "menu": {
+          "items": [
+           {
+            "text": "ویرایش یادداشت",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/edit.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/edit.png",
+             "icon_name": "EDIT",
+             "icon_color": "ICON_SECONDARY"
+            },
+            "action": {
+             "type": "NOTE",
+             "payload": {
+              "@type": "type.googleapis.com/widgets.NotePayload",
+              "post_token": "gaxWZCEz",
+              "max_character_count": 256
+             }
+            },
+            "alignment": "RIGHT"
+           },
+           {
+            "text": "حذف یادداشت",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_primary/v1/trash_o.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_primary/v1/trash_o.png",
+             "icon_name": "TRASH_O",
+             "icon_color": "ICON_PRIMARY"
+            },
+            "action": {
+             "type": "MAKE_NETWORK_CALL",
+             "payload": {
+              "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+              "grpc_request_path": "/yaad_v2.YaadV2/DeleteNoteV2",
+              "rest_request_path": "/yaad/delete-note-v2",
+              "request_data": {
+               "@type": "type.googleapis.com/yaad_v2.DeleteNoteV2Request.RequestData",
+               "token": "gaxWZCEz"
+              },
+              "needs_auth": true
+             }
+            },
+            "alignment": "RIGHT",
+            "state": "STATE_NEGATIVE"
+           }
+          ],
+          "banner": {}
+         },
+         "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "STATIC",
+   "widgets": [
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "گزارش آگهی",
+      "action": {
+       "type": "OPEN_FORM_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenFormPagePayload",
+        "grpc_servicer": "/post_quality.PostQualityFeedback/GetFeedbackForm",
+        "request_data": {
+         "@type": "type.googleapis.com/post_quality.GetFeedbackFormRequest.RequestData",
+         "post_token": "gaxWZCEz"
+        },
+        "rest_request_path": "/v8/post-quality/feedback-form"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/report.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/report.png",
+       "icon_name": "REPORT",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     }
+    }
+   ]
+  }
+ ],
+ "share": {
+  "title": "استخدام منشی  و دستیار خانم",
+  "web_url": "https://divar.ir/v/gaxWZCEz"
+ },
+ "seo": {
+  "title": "استخدام منشی  و دستیار خانم در تهران - ۳۱ شهریور ۱۴۰۵",
+  "description": "آگهی استخدام منشی  و دستیار خانم در دیوار تهران",
+  "android_package_name": "ir.divar",
+  "android_app_url": "android-app://ir.divar/http/v/استخدام منشی  و دستیار خانم/gaxWZCEz/",
+  "web_info": {
+   "title": "استخدام منشی  و دستیار خانم",
+   "district_persian": "بلوار کشاورز",
+   "city_persian": "تهران",
+   "category_slug_persian": "استخدام اداری و مدیریت"
+  },
+  "unavailable_after": "2026-10-23T00:06:10.204155",
+  "bread_crumb": [
+   {
+    "name": "استخدام اداری و مدیریت",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "category": {
+        "str": {
+         "value": "administration-and-hr"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "208"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "استخدام و کاریابی",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "category": {
+        "str": {
+         "value": "jobs"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "208"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "بلوار کشاورز",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "208"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "1",
+    "search_data": {
+     "form_data": {}
+    }
+   },
+   {
+    "name": "دیوار"
+   }
+  ],
+  "post_seo_schema": {
+   "image": "https://s100.divarcdn.com/static/photo/neda/webp_post/da9IuRNunS5CqFwYLkR29Q/e6932a20-8a7a-4068-a968-2c5f39f20869.webp",
+   "offers": {
+    "priceCurrency": "IRR",
+    "price": "0",
+    "@type": "Offer"
+   },
+   "name": "استخدام منشی  و دستیار خانم",
+   "@context": "https://schema.org",
+   "url": "https://divar.ir/v/استخدام-منشی-و-دستیار-خانم/gaxWZCEz",
+   "web_info": {
+    "city_persian": "تهران",
+    "district_persian": "بلوار کشاورز",
+    "category_slug_persian": "استخدام اداری و مدیریت",
+    "title": "استخدام منشی  و دستیار خانم"
+   },
+   "description": "شرکت مهندسی ساختمان جهت تکمیل کادر خود به یک خانم جهت دستیاری و منشی گری نیازمند میباشد \nشرایط :\nمحدوده سنی ۲۰ الی ۳۵ \nترجیحا مجرد \nروابط عمومی بالا \nفن بیان قوی \nظاهر آراسته \nمسلط به تایپ و نامه های اداری و قراردادی \nدارای حداقل یک سال سابقه کاری در زمینه منشی گری \nساعات کاری ۹ صبح الی ۵ بعد ازظهر \nحقوق توافقی \nبیمه نداریم \nمتقاضیان فقط رزومه خود را در شبکه های اجتماعی واتساپ تلگرام بله یا روبیکا ارسال کنند و از هرگونه تماس خودداری نمایند پس از رویت رزومه جهت مصاحبه حضوری دعوت بعمل می آید \nبا تشکر",
+   "category": "administration-and-hr",
+   "@type": "Product"
+  },
+  "image_url": "https://s100.divarcdn.com/static/photo/neda/post/drfaywYmCUt2Vc79SgBIMQ/e6932a20-8a7a-4068-a968-2c5f39f20869.jpg"
+ },
+ "contact": {
+  "chat_enabled": true,
+  "action_log": {
+   "server_side_info": {
+    "info": {
+     "@type": "type.googleapis.com/action_log.ContactInfoInfo",
+     "post_token": "gaxWZCEz",
+     "method_name": "GetContactWeb",
+     "contact_uuid": "eaf2b138-899a-4c09-b33d-567565b6f083"
+    },
+    "item_type": {
+     "type": "CONTACT_INFO"
+    }
+   },
+   "enabled": true
+  },
+  "contact_uuid": "eaf2b138-899a-4c09-b33d-567565b6f083"
+ },
+ "webengage": {
+  "cat_3": "",
+  "token": "gaxWZCEz",
+  "status": "",
+  "originality": "",
+  "source_view": "",
+  "brand_model": "",
+  "image_count": 1,
+  "cat_2": "administration-and-hr",
+  "city": "tehran",
+  "district": "bolvar-e-keshavarz",
+  "price": 0,
+  "gender": "",
+  "rent": 0,
+  "cat_1": "jobs",
+  "business_ref": "",
+  "category": "administration-and-hr",
+  "business_type": "personal",
+  "credit": 0
+ },
+ "analytics": {
+  "cat1": "jobs",
+  "cat2": "administration-and-hr",
+  "city": "tehran"
+ },
+ "city": {
+  "city_id": "1",
+  "name": "تهران",
+  "parent_id": "904",
+  "second_slug": "tehran"
+ }
+}

@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "divar-mcp"
+version = "0.1.0"
+description = "MCP server for divar.ir: search Iranian classifieds, read posts, value an item against live listings."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "shojaee76-cmyk" }]
+keywords = ["mcp", "model-context-protocol", "divar", "classifieds", "iran", "scraper", "llm", "agent"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "mcp>=1.2"]
+
+[project.scripts]
+divar-mcp = "divar_mcp.server:main"
+divar = "divar_mcp.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/shojaee76-cmyk/divar-mcp"
+Issues = "https://github.com/shojaee76-cmyk/divar-mcp/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/divar_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "README.md", "LICENSE", "tools"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["live: hits the real divar.ir API (set DIVAR_LIVE=1 to run)"]

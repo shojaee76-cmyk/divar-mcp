@@ -1,0 +1,32 @@
+# bytecode / caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# environments
+.venv/
+venv/
+env/
+
+# build output
+dist/
+build/
+
+# editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# scratch: probe output and logs (the raw city/category harvests ARE committed,
+# because they are the evidence behind src/divar_mcp/data/*.json)
+tools/*.log
+tools/divar_page.html
+tools/api_paths.txt
+tools/search_raw.json
+tools/detail_raw.json
+tools/detail_sale.json
+tools/filters_tehran.json

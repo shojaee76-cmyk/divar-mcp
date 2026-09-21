@@ -1,0 +1,44 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  offline:
+    name: ${{ matrix.os }} / py${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install
+        run: python -m pip install --upgrade pip && pip install -e ".[dev]"
+      - name: Offline suite (parsers, normalization, MCP protocol, SDK interop)
+        run: pytest -q
+      - name: Server smoke test (schemas + one tool call, no network)
+        run: |
+          divar-mcp --list-tools > tools.json
+          divar-mcp --call divar_list_cities --args "{\"query\":\"تهران\"}" > cities.json
+          python -c "import json;d=json.load(open('cities.json'));assert d['cities'][0]['id']=='1'"
+
+  live:
+    name: live API smoke
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - name: Hit the real divar.ir API
+        run: DIVAR_LIVE=1 pytest tests/test_live.py -v
