@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from divar_mcp.client import DivarClient
+from divar_mcp.client import DivarClient, DivarError
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -170,20 +170,39 @@ def test_caching_avoids_second_network_call():
     assert calls["n"] == 2
 
 
+def test_unknown_category_fails_before_any_request():
+    """A bad category is caught locally with suggestions, costing zero requests."""
+    client = DivarClient(min_interval=0.0)
+    calls = {"n": 0}
+
+    def fake_attempt(method, url, payload):
+        calls["n"] += 1
+        return {"list_widgets": [], "pagination": {"has_next_page": False}}
+
+    client._attempt = fake_attempt  # type: ignore[assignment]
+    with pytest.raises(DivarError) as exc:
+        client.search(city="1", category="mobil-phones")
+    assert exc.value.suggestions, "should suggest close slugs"
+    assert "mobile-phones" in [s.get("slug") for s in exc.value.suggestions]
+    assert calls["n"] == 0
+
+    with pytest.raises(DivarError):
+        client.resolve_city("atlantis")
+    assert calls["n"] == 0
+
+
 def test_client_errors_fail_fast_without_retry():
     client = DivarClient(max_retries=3, min_interval=0.0)
     calls = {"n": 0}
 
     def fake_attempt(method, url, payload):
         calls["n"] += 1
-        from divar_mcp.client import DivarError
 
-        raise DivarError("invalid category: nope", status=400, code=3)
+        raise DivarError("bad request from divar", status=400, code=3)
 
     client._attempt = fake_attempt  # type: ignore[assignment]
-    with pytest.raises(Exception) as exc:
-        client.search(city="1", category="nope")
-    assert "invalid category" in str(exc.value)
+    with pytest.raises(DivarError):
+        client.search(city="1", query="x")
     assert calls["n"] == 1  # no pointless retries on a 4xx
 
 

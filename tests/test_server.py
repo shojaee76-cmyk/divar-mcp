@@ -46,19 +46,21 @@ def test_notifications_get_no_reply():
 def test_tools_list_schema():
     tools = run_lines({"jsonrpc": "2.0", "id": 2, "method": "tools/list"})[0]["result"]["tools"]
     names = {t["name"] for t in tools}
-    assert names == {
-        "divar_search",
-        "divar_get_post",
-        "divar_price_analysis",
-        "divar_similar_posts",
-        "divar_list_cities",
-        "divar_list_categories",
-        "divar_post_filters",
-        "divar_search_url",
-    }
+    assert len(tools) == 19, f"expected 19 tools, got {len(tools)}"
+    assert {
+        "divar_search", "divar_get_post", "divar_price_analysis", "divar_similar_posts",
+        "divar_list_cities", "divar_list_categories", "divar_post_filters", "divar_search_url",
+        "divar_appraise_post", "divar_find_deals", "divar_market_breakdown", "divar_price_trend",
+        "divar_watch_create", "divar_watch_check", "divar_watch_list", "divar_watch_delete",
+        "divar_export", "divar_status", "divar_help",
+    } <= names
     for tool in tools:
         assert tool["description"].strip()
         assert tool["inputSchema"]["type"] == "object"
+        # every tool advertises an output schema and MCP annotations
+        assert tool["outputSchema"]["type"] == "object", tool["name"]
+        assert "readOnlyHint" in tool["annotations"], tool["name"]
+        assert tool["title"]
     get_post = next(t for t in tools if t["name"] == "divar_get_post")
     assert get_post["inputSchema"]["required"] == ["token"]
 
@@ -111,8 +113,10 @@ def test_parse_error_and_unknown_method():
 def test_ping_and_empty_lists():
     reply = _handle({"jsonrpc": "2.0", "id": 7, "method": "ping"})
     assert reply == {"jsonrpc": "2.0", "id": 7, "result": {}}
-    assert _handle({"jsonrpc": "2.0", "id": 8, "method": "resources/list"})["result"] == {"resources": []}
-    assert _handle({"jsonrpc": "2.0", "id": 9, "method": "prompts/list"})["result"] == {"prompts": []}
+    resources = _handle({"jsonrpc": "2.0", "id": 8, "method": "resources/list"})["result"]["resources"]
+    assert {"divar://cities", "divar://categories", "divar://status", "divar://help"} <= {r["uri"] for r in resources}
+    prompts = _handle({"jsonrpc": "2.0", "id": 9, "method": "prompts/list"})["result"]["prompts"]
+    assert {p["name"] for p in prompts} >= {"price-an-item", "appraise-listing", "find-deals", "watch-market"}
 
 
 def test_cli_list_tools_and_version(capsys):
@@ -120,7 +124,7 @@ def test_cli_list_tools_and_version(capsys):
     assert capsys.readouterr().out.strip() == __version__
     assert main(["--list-tools"]) == 0
     tools = json.loads(capsys.readouterr().out)
-    assert len(tools) == 8
+    assert len(tools) == 19
 
 
 def test_stdio_end_to_end_subprocess():
@@ -148,7 +152,7 @@ def test_stdio_end_to_end_subprocess():
     replies = [json.loads(line) for line in proc.stdout.splitlines() if line.strip()]
     assert len(replies) == 3, proc.stderr[-500:]
     assert replies[0]["result"]["serverInfo"]["name"] == "divar-mcp"
-    assert len(replies[1]["result"]["tools"]) == 8
+    assert len(replies[1]["result"]["tools"]) == 19
     cities = json.loads(replies[2]["result"]["content"][0]["text"])
     assert cities["cities"][0]["id"] == "3"
 
@@ -173,7 +177,7 @@ def test_persian_survives_ansi_stdio():
     raw = out_file.read_bytes()
     assert "تهران".encode("utf-8") in raw, "Persian text did not survive the redirect as UTF-8"
     tools = json.loads(raw.decode("utf-8"))
-    assert len(tools) == 8
+    assert len(tools) == 19
     out_file.unlink()
 
 
@@ -217,4 +221,4 @@ def test_official_mcp_client_can_talk_to_server():
                 return names
 
     names = asyncio.run(scenario())
-    assert len(names) == 8
+    assert len(names) == 19

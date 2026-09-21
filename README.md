@@ -6,30 +6,28 @@
 [![MCP: stdio](https://img.shields.io/badge/MCP-stdio-lightgrey.svg)](https://modelcontextprotocol.io)
 [![dependencies: none](https://img.shields.io/badge/dependencies-none-lightgrey.svg)](pyproject.toml)
 
-**A Model Context Protocol server for [divar.ir](https://divar.ir)**, Iran's largest classifieds marketplace (دیوار). Give any MCP-capable agent the ability to search live listings, read a post in full, and price an item against what is actually on the market right now.
+**An agent-grade MCP server for [divar.ir](https://divar.ir)**, Iran's largest classifieds marketplace (دیوار). Search live listings, read a post in full, price an item, appraise someone else's listing, hunt underpriced stock, watch a search over time, and export bulk rows, all from any MCP client.
 
 Read-only, no account, no API key, no dependencies. Works from inside Iran and from anywhere else divar.ir's API is reachable.
 
-```
-search live listings   →  divar_search
-read one post          →  divar_get_post
-value an item          →  divar_price_analysis
-check the competition  →  divar_similar_posts
-```
+| | |
+| --- | --- |
+| **19 tools** | find, read, value, appraise, hunt, watch, export, plus self-diagnosis and a capability map |
+| **5 resources** | cities, categories, verified slugs, status, help as readable MCP resources |
+| **4 prompts** | price-an-item, appraise-listing, find-deals, watch-market |
+| **structured output** | every tool declares an `outputSchema` and returns `structuredContent` |
+| **self-repairing errors** | a wrong city or category comes back with the closest real values and a hint |
+| **conservative by design** | read-only, no contact details, polite rate limits, no fabricated links |
 
-> ۸ tool برای کار با آگهی‌های دیوار: جست‌وجوی زنده، خواندن کامل آگهی، تحلیل قیمت بازار و پیدا کردن آگهی‌های مشابه. فقط خواندنی، بدون کلید API.
+> یک MCP سرور کامل برای کار با آگهی‌های دیوار: جست‌وجو، خواندن آگهی، قیمت‌گذاری، ارزیابی آگهی دیگران، پیدا کردن زیرقیمت‌ها، دیده‌بانی جست‌وجو و خروجی CSV. فقط خواندنی، بدون کلید API، بدون وابستگی.
 
 ---
 
 ## Why this exists
 
-Divar has **no public MCP server**. What exists today:
+Divar has **no public MCP server**. The `divar-ir/*` GitHub org is Divar's own internal code-search tooling, not marketplace access. The official API (**Kenar / کنار دیوار**) needs an approved app, an API key and OAuth, which is a partner programme, not a read path. Everything else out there is Playwright page-scraping with no MCP surface, no filters and no pagination.
 
-| Option | Limitation |
-| --- | --- |
-| **Kenar (کنار دیوار)**, Divar's official API | Needs an approved app + API key + OAuth; that is for building *on* Divar as a business partner, not for reading listings |
-| Random scrapers on GitHub | Playwright/Selenium page scraping, no MCP, no filters, no pagination, no price logic |
-| This project | Speaks MCP over stdio, uses Divar's own JSON API (the one its web app calls), zero dependencies, 8 tools |
+This server talks to the same JSON endpoints divar.ir's own web app uses, and wraps them in the shape an agent actually needs.
 
 ## Install
 
@@ -58,7 +56,7 @@ Requires Python 3.10+. There are no third-party dependencies.
 }
 ```
 
-**Cursor / Cline / Windsurf**, same shape, `command` + `args`.
+**Cursor / Cline / Windsurf** — same shape, `command` + `args`.
 
 **Hermes Agent** (`~/.hermes/config.yaml`):
 
@@ -69,85 +67,140 @@ mcp_servers:
     args: ["--from", "git+https://github.com/shojaee76-cmyk/divar-mcp", "divar-mcp"]
 ```
 
-**Anything already installed:**
-
-```bash
-pip install git+https://github.com/shojaee76-cmyk/divar-mcp
-# then:  "command": "divar-mcp"
-```
-
 ## Tools
 
-| Tool | What it does |
-| --- | --- |
-| `divar_search` | Live listing search: `query`, `city`, `category`, `price_min`, `price_max`, `has_photo`, `district_ids`, `brand_model`, `sort`, `pages`, `max_age_hours`. Returns normalized rows (token, title, price in Toman, city, district, relative age, image, url). |
-| `divar_get_post` | Full post: description, price, structured attributes (برند و مدل, کارکرد, مدل سال…), image URLs, posted/updated dates in both Jalali text and ISO, city/district, category breadcrumb, and the `district_id` you can feed back into search. |
-| `divar_price_analysis` | Price distribution of comparable live listings: min / p25 / p40 / median / p75 / max, suggested ask range, price bands, freshness split, cheapest & priciest samples. This is the "what should I ask for my item?" tool. |
-| `divar_similar_posts` | Comparables for one post: same category + brand/model + city, excluding itself. |
-| `divar_list_cities` | City id ↔ Persian name lookup (400+ ids harvested from the API). |
-| `divar_list_categories` | Category slug lookup with Persian names and breadcrumb parents. |
-| `divar_post_filters` | Which filters Divar currently exposes for a city/category (price range, districts, photo-only). |
-| `divar_search_url` | A `divar.ir/s/...` URL a human can open in a browser for the same search. |
+### Find and read
 
-All prices are **Toman** (Divar displays Toman; its internal schema.org price is Rial, this server converts).
+| Tool | What it gives an agent |
+| --- | --- |
+| `divar_search` | Live listings: `query`, one or many `cities`, `category`, Toman `price_min`/`price_max`, `has_photo`, numeric `district_ids`, `brand_model`, `sort`, plus client-side `max_age_hours`, `exclude_terms`, `title_contains` that Divar itself does not offer. Compact rows by default, `brief: false` for every parsed field. |
+| `divar_get_post` | One listing in full: description, structured attributes (brand/model, year, mileage...), image URLs, Jalali text and ISO 8601 dates, city/district, district id, category breadcrumb. |
+| `divar_similar_posts` | Comparables for an existing listing: same category, brand/model and city, excluding itself. |
+| `divar_search_url` | A `divar.ir/s/...` URL a human can open. Returns `url: null` with a reason when no **verified** city slug exists, rather than a link that may 404. |
+
+### Value and decide
+
+| Tool | What it gives an agent |
+| --- | --- |
+| `divar_price_analysis` | Price distribution of live comparables: min, p25, p40, median, p75, max, mean, suggested ask range, price bands, freshness split, and a per-district median table. The "what should I ask?" tool. |
+| `divar_appraise_post` | Judges one listing: `below_market` / `fair` / `above_market`, its percentile, delta versus median, confidence from the sample size, and cheaper alternatives. |
+| `divar_find_deals` | Ranks listings below the live market with an explainable `deal_score` (price advantage, freshness, photo count, price stated) plus per-deal `reasons`. Ships with the caveat that a low price is a signal to verify, not a verdict. |
+| `divar_market_breakdown` | Where the stock sits: median price per district (busiest first), price bands, freshness. |
+
+### Watch and export
+
+| Tool | What it gives an agent |
+| --- | --- |
+| `divar_watch_create` | Save a named search; today's listings become the quiet baseline. |
+| `divar_watch_check` | Returns only listings a watch has never reported before. Cron-friendly "anything new?" |
+| `divar_watch_list` / `divar_watch_delete` | Manage saved watches. |
+| `divar_price_trend` | Local day-by-day price history for an exact filter. Every search records a price point, so the series grows with use. Says `status: collecting` (with a reason) until two days exist. |
+| `divar_export` | Walks pages and writes CSV (utf-8-sig, Excel-safe Persian) or JSONL to disk, returning the absolute path. Bulk work stays out of the model's context. |
+
+### Meta
+
+| Tool | What it gives an agent |
+| --- | --- |
+| `divar_status` | Is divar.ir reachable right now (latency, or a clear hint when it is not), dataset sizes, store size, cache counters. First call when something looks broken. |
+| `divar_help` | Capability map: tool index, units, dataset sizes and recipes for the common jobs. No network call. |
+| `divar_list_cities` | Cities by Persian name, ASCII slug or id; a miss returns the closest names. |
+| `divar_list_categories` | Category slugs by Persian or English text with breadcrumb parents; a miss returns the closest slugs. |
+| `divar_post_filters` | Which filter widgets Divar currently exposes for a city/category. |
+
+All prices are **Toman** (Divar displays Toman; its internal schema.org price is Rial, 10x larger). Dates come back as both the Jalali text and ISO 8601 with `+03:30`.
+
+## Resources and prompts
+
+MCP clients that support them get read-only resources instead of tool calls:
+
+```
+divar://cities          city id, Persian name and ASCII slug for every harvested city
+divar://categories      category slugs with Persian names and parents
+divar://cities/slugs    the validated city page slug map
+divar://status          dataset + store + cache stats, no network probe
+divar://help            the capability map
+```
+
+And four prompts that encode the workflows: `price-an-item`, `appraise-listing`, `find-deals`, `watch-market`.
+
+## Built for agents, not just for humans
+
+* **Every tool declares an `outputSchema` and returns `structuredContent`**, so a client can parse results instead of regexing prose.
+* **Errors repair themselves.** A wrong category returns `suggestions` with the closest real slugs and a `hint`; a wrong city returns the closest real names. Unknown tools return the list of valid ones. Nothing fails with a bare 400.
+* **Inputs are forgiving.** Cities accept an id (`1`), a Persian name (`تهران`), or an ASCII slug (`tehran`), case-insensitively. Categories accept a slug or a Persian name. `ROOT` is understood as "everything".
+* **Every result carries `meta`**: requests made, cached responses, elapsed seconds, rate-limit and cache settings, so an agent can tell a free call from an expensive one.
+* **Annotations on every tool** (`readOnlyHint`, `idempotentHint`, `openWorldHint`) so a client can gate the two tools that write local files or local state.
+* **Brief by default.** Search returns 10 compact fields per row; `brief: false` returns everything.
 
 ## Example agent use
 
-> "My iPhone 13 is in good shape. What is it going for in Tehran right now, and what should I ask?"
+> "My iPhone 13 is in good shape. What should I ask in Tehran right now?"
 
-The agent calls `divar_list_categories("موبایل")` → `mobile-phones`, then `divar_price_analysis(query="آیفون ۱۳", category="mobile-phones", city="تهران", pages=2)` and answers with the median, the active band, and the freshest comparables with links.
+The agent calls `divar_list_categories("موبایل")` → `mobile-phones`, then `divar_price_analysis(query="آیفون ۱۳", category="mobile-phones", city="تهران", pages=2)`, and answers with the median, the active band, the district table, and fresh comparables with links.
 
-> "Find photo-only Peugeot 206 listings under 900 million Toman in Karaj posted this week."
+> "Is this listing overpriced? https://divar.ir/v/gaxi5lYL"
 
-`divar_search(query="پژو ۲۰۶", city="کرج", price_max=900000000, has_photo=true, max_age_hours=168)`.
+`divar_appraise_post` → verdict, percentile, confidence, cheaper alternatives.
+
+> "Find a Peugeot 206 under 700 million in Karaj or Tehran, photo-only, posted this week."
+
+`divar_search(query="پژو ۲۰۶", cities=["کرج","تهران"], price_max=700000000, has_photo=true, max_age_hours=168)`.
+
+> "Tell me whenever a cheap 206 shows up."
+
+`divar_watch_create(name="206-karaj", query="پژو ۲۰۶", city="کرج")`, then `divar_watch_check("206-karaj")` on a schedule.
 
 ## CLI (same engine, for humans and cron)
 
 ```bash
-divar search "پژو ۲۰۶" --city تهران --price-max 900000000 --has-photo --sort price_asc
-divar post https://divar.ir/v/gaxi5lYL
-divar price "آیفون ۱۳" --category mobile-phones --pages 3
-divar similar gaxi5lYL
-divar categories موبایل
-divar cities مشهد
-divar url "پژو" --city کرج
-divar search "لپ‌تاپ" --json | jq '.posts[].price_toman'
+divar search "پژو ۲۰۶" --city tehran --price-max 900000000 --has-photo --sort price_asc
+divar price "آیفون ۱۳" --category موبایل --pages 3        # printed as a readable summary
+divar deals "پژو ۲۰۶" --category light --min-discount 0.1
+divar appraise https://divar.ir/v/gaxi5lYL
+divar breakdown "پژو" --city تهران                       # median price per district
+divar trend "آیفون ۱۳" --days 60
+divar watch create --name 206 --query "پژو ۲۰۶" --city کرج
+divar watch check --name 206
+divar export "لپ‌تاپ" --pages 5 --format csv
+divar status
+divar help
 ```
 
-`divar-mcp --list-tools` prints the raw MCP tool schemas, and
-`divar-mcp --call divar_search --args '{"query":"پژو","city":"1"}'` runs one tool without a client.
+`divar-mcp --list-tools` prints the raw tool schemas, `--resources` and `--prompts` list those, and `divar-mcp --call divar_search --args '{"query":"پژو","city":"1"}'` runs one tool without a client.
 
 ## How it works
 
-The server talks to the same JSON endpoints `divar.ir` uses in the browser (all discovered from Divar's own web bundles and verified against the live API):
+The server talks to the same JSON endpoints the divar.ir web app uses (discovered from Divar's own JS bundles and verified against the live API):
 
 | Endpoint | Use |
 | --- | --- |
-| `POST /v8/postlist/w/search` | listing search + filters + cursor pagination |
+| `POST /v8/postlist/w/search` | listing search, filters, cursor pagination |
 | `POST /v8/postlist/w/filters` | filter schema for a city/category |
 | `GET /v8/posts-v2/web/{token}` | single post view |
 
-Details worth knowing if you fork this:
+Things worth knowing if you fork this:
 
-* **Filters are protobuf-Any encoded.** `category` is `{"str": {"value": "<slug>"}}`, `price` is `{"number_range": {"minimum": n, "maximum": n}}`, `districts` is `{"repeated_string": {"value": ["208"]}}` (numeric district ids), `has-photo` is `{"boolean": {}}` (presence = true), `brand_model` is a repeating string.
-* **`page` is ignored by the API.** Real pagination is a cursor: echo back `pagination.data` (`last_post_date`, `pelle_max_score`, `filters_hash`, `cumulative_widgets_count`, `page`, `layer_page`) with an incremented `page`/`layer_page`. This server does that for you (`pages=3`).
-* **Divar's own recency filter (`recent_ads`) does not filter**, verified: `3h` and `7d` return identical result sets. This server instead parses the Persian relative time per row ("۳ ساعت پیش") and filters client-side via `max_age_hours`.
-* **District filter needs numeric ids**, which only appear inside post details (the district chip payload). `divar_get_post` exposes it as `district_id`.
-* **Jalali dates are converted** (e.g. `۳۱ شهریور ۱۴۰۵` → `2026-09-22T00:06:00+03:30`) so agents can reason about age without a Hijri library.
-* **Category slugs are harvested from Divar's own SEO breadcrumbs** (`mobile-phones` → `mobile-tablet` → `electronic-devices`), so the slug list and Persian names stay real instead of guessed.
-* **Web links need a real slug.** `divar.ir/s/tehran` works, a Persian city name in the path does not, and divar.ir serves the same SPA shell for *any* slug, so a slug is published only when it came from Divar's own payload and its `city_id` matched the city asked for. `divar_search_url` returns `url: null` (with a reason) instead of a link that might 404, and `tools/harvest_city_slugs.py` grows the verified map.
-* **Divar's own SEO headline is off by one** ("صفحه ۲" on the first page). Harmless, but don't read it as a page number.
+* **Filters are protobuf-`Any` encoded.** `category` is `{"str": {"value": "<slug>"}}`, `price` is `{"number_range": {"minimum": n, "maximum": n}}`, `districts` is `{"repeated_string": {"value": ["208"]}}` (numeric district ids), `has-photo` is `{"boolean": {}}` (presence = true), `brand_model` is a repeating string.
+* **`page` is ignored by the API.** Real pagination is a cursor: echo back `pagination.data` (`last_post_date`, `pelle_max_score`, `filters_hash`, `cumulative_widgets_count`, `page`, `layer_page`) with `page`/`layer_page` incremented. This server does that for you (`pages=3`).
+* **Divar's own recency filter (`recent_ads`) does not filter.** Verified: `3h` and `7d` return identical result sets, so recency filtering is done client-side from the parsed Persian relative time (`max_age_hours`).
+* **District filtering needs numeric ids**, which only appear inside a post's TAGS payload. `divar_get_post` exposes it as `district_id`.
+* **Jalali dates are converted** (`۳۱ شهریور ۱۴۰۵` → `2026-09-22T00:06:00+03:30`) so an agent can reason about age without a Hijri library.
+* **Category slugs come from Divar's own SEO breadcrumbs** (`mobile-phones` → `mobile-tablet` → `electronic-devices`), so the vocabulary and Persian names are real, not guessed.
+* **Web links need a real slug.** A Persian city name in the path is wrong, and divar.ir answers with the same SPA shell for *any* slug, so a slug is published only when it came from Divar's payload and its `city_id` matched the query. `tools/harvest_city_slugs.py` grows that verified map.
+* **Divar's own SEO headline is off by one** ("صفحه ۲" on the first page). Harmless, but do not read it as a page number.
+
+Local state (listing observations, price history, watches) lives in SQLite outside the package: `%LOCALAPPDATA%\divar-mcp\store.db` on Windows, `~/.divar-mcp/store.db` elsewhere, overridable with `DIVAR_STORE`. Set `DIVAR_STORE_DISABLE=1` for a fully stateless run.
 
 ## One-click launcher
 
-`launchers/DIVAR search.bat` (double-click, or the Desktop shortcut) asks for a phrase, a city and an optional budget, prints the live listings with prices, and offers to open the matching divar.ir page in Chrome.
+`launchers/DIVAR search.bat` (double-click, or the Desktop shortcut) asks for a phrase, a city and an optional budget, prints live listings with prices, and offers to open the matching divar.ir page in Chrome.
 
 ## Politeness and legality
 
-* **Read-only.** This server never creates, edits, deletes, reports or messages anything on Divar.
-* **No phone numbers.** Divar does not expose seller contact details to logged-out clients; this server does not try to acquire them (no auth bypass, no `GetContactWeb` calls, no PII harvesting).
-* **Rate limited.** Default one request per 0.8s with an LRU response cache, far below Divar's ~30 requests/minute throttle. Tune with `DIVAR_MIN_INTERVAL`, `DIVAR_TIMEOUT`, `DIVAR_CACHE_TTL`.
-* **Unofficial.** Not affiliated with or endorsed by Divar (Cafe Bazaar / Hezardastan). It reads public listings the same way a browser does. Respect Divar's terms and local law; if Divar ships an official MCP or you need write access (posting ads), use [Kenar](https://divar.ir/kenar).
+* **Read-only for Divar.** This server never creates, edits, deletes, reports or messages anything there. The only writes are local files (`divar_export`, the SQLite store, watch definitions).
+* **No phone numbers or contact data.** Divar does not expose seller contact details to logged-out clients and this server never tries to obtain them (no auth bypass, no `GetContactWeb`, no PII harvesting).
+* **Rate limited.** Default one request per 0.8s with an LRU response cache, well under Divar's ~30 requests/minute throttle. Tune with `DIVAR_MIN_INTERVAL`, `DIVAR_TIMEOUT`, `DIVAR_CACHE_TTL`.
+* **Unofficial.** Not affiliated with or endorsed by Divar (Hezardastan / Cafe Bazaar). It reads public listings the way a browser does. Respect Divar's terms and local law; if you need write access or official data, use [Kenar](https://divar.ir/kenar).
 
 ## Development
 
@@ -155,19 +208,21 @@ Details worth knowing if you fork this:
 git clone https://github.com/shojaee76-cmyk/divar-mcp && cd divar-mcp
 uv venv && uv pip install -e ".[dev]"
 
-pytest                      # offline: parsers, normalization, MCP protocol
-DIVAR_LIVE=1 pytest tests/test_live.py -v   # hits the real API
+pytest                                       # offline: parsers, store, analytics, MCP protocol, SDK interop
+DIVAR_LIVE=1 pytest tests/test_live.py -v    # hits the real API (needs an Iran-reachable line)
+python tools/smoke.py                        # CLI -> MCP end to end, no network
+python tools/verify_publish.py               # repo blobs vs this working tree
 ```
 
-The offline suite runs entirely on captured fixtures (`tests/fixtures/*.json`), real payloads from a live search and two live post views, so the parsers are tested against reality rather than hand-written mocks. The protocol suite also boots the real server process and, when the official `mcp` SDK is installed, drives it with `mcp.client.stdio` to prove interop.
+The offline suite runs entirely on captured fixtures (`tests/fixtures/*.json`, real payloads from a live search and two live post views) plus temp-file stores, so parsers, analytics and watch logic are all tested without a network. The protocol suite boots the real server process and, when the official `mcp` SDK is installed, drives it with `mcp.client.stdio` to prove interop.
 
-`tools/` holds the reverse-engineering and data-harvesting scripts (`probe*.py`, `harvest_cities.py`, `harvest_categories.py`, `build_data.py`), run `python tools/build_data.py` after re-harvesting to refresh the bundled city and category data.
+`tools/` holds the reverse-engineering and harvesting scripts (`probe*.py`, `harvest_cities.py`, `harvest_categories.py`, `harvest_city_slugs.py`, `build_data.py`). Run `python tools/build_data.py` after re-harvesting to refresh the bundled data.
 
 ## Roadmap
 
-* Saved-search diffing for cron jobs ("new listings since yesterday")
-* Per-district price maps
-* Optional `kenar` backend for authenticated workflows (my listings, contact details) when a user supplies their own key
+* Optional `kenar` backend for authenticated workflows (your own listings) when the user supplies a key
+* District-level price history once the store has a few weeks of observations
+* Saved-search diffing pushed by a scheduler (the watch tools are the storage side of this)
 
 ## License
 

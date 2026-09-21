@@ -23,6 +23,14 @@ import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from . import analytics
+from .datasets import (  # re-exported for backwards compatibility
+    DATA_DIR,
+    find_category,
+    load_categories,
+    load_cities,
+    load_city_slugs,
+)
 from .normalize import (
     extract_token,
     human_toman,
@@ -31,6 +39,8 @@ from .normalize import (
     parse_jalali_datetime,
     parse_price,
 )
+from .resolve import resolve_category_input, resolve_city_input, suggest_categories, suggest_cities
+from .store import Store, get_store
 
 API_BASE = "https://api.divar.ir"
 WEB_BASE = "https://divar.ir"
@@ -42,64 +52,57 @@ DEFAULT_UA = (
 
 PAGINATION_TYPE = "type.googleapis.com/post_list.PaginationData"
 
-DATA_DIR = Path(__file__).parent / "data"
-
 
 class DivarError(RuntimeError):
-    """Raised for any Divar API failure, with the message Divar itself sent."""
+    """Any Divar API or input failure, with machine-readable repair hints.
 
-    def __init__(self, message: str, status: int | None = None, code: int | None = None):
+    ``suggestions`` and ``hint`` exist so an agent can fix its own call instead
+    of giving up: a wrong category comes back with the closest real slugs, a
+    wrong city with the closest real city names.
+    """
+
+    def __init__(
+        self,
+        message: str,
+        status: int | None = None,
+        code: int | None = None,
+        *,
+        suggestions: list | None = None,
+        hint: str | None = None,
+        retryable: bool = False,
+    ):
         super().__init__(message)
         self.message = message
         self.status = status
         self.code = code
+        self.suggestions = suggestions or []
+        self.hint = hint
+        self.retryable = retryable
 
     def __str__(self) -> str:  # pragma: no cover - trivial
         bits = [self.message]
         if self.status:
             bits.append(f"(HTTP {self.status})")
+        if self.hint:
+            bits.append(f"- {self.hint}")
         return " ".join(bits)
+
+    def as_dict(self) -> dict:
+        return {
+            "error": self.message,
+            "status": self.status,
+            "code": self.code,
+            "hint": self.hint,
+            "suggestions": self.suggestions,
+            "retryable": self.retryable,
+        }
+
 
 
 # ------------------------------------------------------------------ data files
 
-_city_cache: dict | None = None
-_category_cache: dict | None = None
-_city_slug_cache: dict | None = None
-
-
-def load_cities() -> dict:
-    """{'1': 'تهران', ...} plus an inverted name -> id map."""
-    global _city_cache
-    if _city_cache is None:
-        raw = json.loads((DATA_DIR / "cities.json").read_text(encoding="utf-8"))
-        by_name = {v: k for k, v in raw.items()}
-        _city_cache = {"by_id": raw, "by_name": by_name}
-    return _city_cache
-
-
-def load_categories() -> list[dict]:
-    """[{'slug': 'mobile-phones', 'name': 'موبایل', 'parents': [...]}]"""
-    global _category_cache
-    if _category_cache is None:
-        _category_cache = json.loads((DATA_DIR / "categories.json").read_text(encoding="utf-8"))
-    return _category_cache or []
-
-
-def load_city_slugs() -> dict:
-    """{'1': 'tehran', ...}, the ASCII path segment divar.ir uses in /s/<slug>.
-
-    Persian city names 404 on divar.ir, so web URLs must use a slug; the numeric
-    city id is accepted too and is the fallback when a slug is not harvested.
-    """
-    global _city_slug_cache
-    if _city_slug_cache is None:
-        path = DATA_DIR / "city_slugs.json"
-        try:
-            _city_slug_cache = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
-        except Exception:
-            _city_slug_cache = {}
-    return _city_slug_cache
+# The reference-data loaders now live in datasets.py (imported and re-exported
+# at the top of this module for backwards compatibility with older callers).
 
 
 # ------------------------------------------------------------------ client
@@ -228,33 +231,58 @@ class DivarClient:
         return data
 
     def resolve_city(self, city: str | int | None) -> tuple[str, str]:
-        """Return (city_id, persian_name). Accepts id, Persian name or Persian alias."""
-        cities = load_cities()["by_id"]
-        if city is None or str(city).strip() == "":
-            return "1", cities.get("1", "تهران")
-        token = str(city).strip()
-        if token.isdigit():
-            return token, cities.get(token, token)
-        if token in cities.values():
-            name = token
-            cid = load_cities()["by_name"][name]
-            return cid, name
-        # slug-ish or partial match
-        normalised = token.replace("‌", "").replace("ي", "ی").replace("ك", "ک").strip()
-        for cid, name in cities.items():
-            if name.replace("‌", "") == normalised:
-                return cid, name
-        for cid, name in cities.items():
-            if normalised and normalised in name:
-                return cid, name
+        """Return (city_id, persian_name); forgiving, with suggestions on failure."""
+        resolved = resolve_city_input(city)
+        if resolved:
+            return resolved
         raise DivarError(
-            f"unknown city {city!r}. Use a city id (e.g. 1) or a Persian name from divar_list_cities."
+            f"unknown city {city!r}",
+            suggestions=suggest_cities(str(city), limit=5),
+            hint="Pass a city id or a Persian name; divar_list_cities lists all of them.",
+        )
+
+    def resolve_cities(self, cities) -> tuple[list[str], list[str]]:
+        """Normalize one city, a name, or a list of them into (ids, names)."""
+        if isinstance(cities, (str, int)) or cities is None:
+            cid, name = self.resolve_city(cities)
+            return [cid], [name]
+        ids, names = [], []
+        for entry in cities:
+            cid, name = self.resolve_city(entry)
+            if cid not in ids:
+                ids.append(cid)
+                names.append(name)
+        if not ids:
+            cid, name = self.resolve_city(None)
+            return [cid], [name]
+        return ids, names
+
+    def resolve_category(self, category: str | None) -> str | None:
+        """Validated slug (or None for 'everything'), with did-you-mean on failure."""
+        if category is None or str(category).strip() == "":
+            return None
+        slug, suggestions = resolve_category_input(category)
+        if slug:
+            return slug
+        if suggestions:
+            raise DivarError(
+                f"unknown category {category!r}",
+                suggestions=[
+                    {"slug": s.get("slug"), "name": s.get("name"), "parents": s.get("parents")}
+                    for s in suggestions
+                ],
+                hint="Use one of the suggested slugs from divar_list_categories.",
+            )
+        raise DivarError(
+            f"unknown category {category!r}",
+            suggestions=[],
+            hint="Run divar_list_categories (Persian or English text) to find the slug.",
         )
 
     # -------------------------------------------------------------- search
     @staticmethod
     def _build_search_body(
-        city_id: str,
+        city_id: str | list[str],
         query: str | None = None,
         category: str | None = None,
         price_min: int | None = None,
@@ -292,7 +320,7 @@ class DivarClient:
         if data:
             search_data["form_data"] = {"data": data}
 
-        body: dict = {"city_ids": [city_id]}
+        body: dict = {"city_ids": city_id if isinstance(city_id, list) else [city_id]}
         if search_data:
             body["search_data"] = search_data
         if cursor:
@@ -336,6 +364,76 @@ class DivarClient:
             "url": f"{WEB_BASE}/v/{token}" if token else None,
         }
 
+    def _walk_pages(
+        self,
+        *,
+        city_ids: list[str],
+        query: str | None = None,
+        category: str | None = None,
+        price_min: int | None = None,
+        price_max: int | None = None,
+        district_ids: list[str] | None = None,
+        has_photo: bool = False,
+        brand_model: str | None = None,
+        pages: int = 1,
+        page_size: int = 24,
+    ):
+        """Yield one dict per cursor page (Divar ignores ``page``; the cursor rules)."""
+        cursor = None
+        for current in range(1, max(1, int(pages)) + 1):
+            body = self._build_search_body(
+                city_ids, query, category, price_min, price_max,
+                district_ids, has_photo, brand_model, current, page_size, cursor,
+            )
+            payload = self._request("POST", "/v8/postlist/w/search", body)
+            rows = [
+                self._parse_row(w["data"])
+                for w in payload.get("list_widgets", [])
+                if w.get("widget_type") == "POST_ROW"
+            ]
+            pagination = payload.get("pagination") or {}
+            top = payload.get("list_top_widgets") or []
+            yield {
+                "page": current,
+                "rows": rows,
+                "headline": (top[0].get("data") or {}).get("text", "") if top else "",
+                "has_next_page": bool(pagination.get("has_next_page")),
+                "cursor": pagination.get("data"),
+                "search_id": payload.get("search_id"),
+                "elapsed": getattr(self, "_last_elapsed", None),
+            }
+            if not pagination.get("has_next_page"):
+                return
+            cursor_next = pagination.get("data")
+            if not cursor_next:
+                return
+            cursor = dict(cursor_next)
+            for key in ("@type", "search_uid", "viewed_tokens"):
+                cursor.pop(key, None)
+
+    def _resolve_filters(self, city, cities, category):
+        if cities and city is None:
+            ids, names = self.resolve_cities(cities)
+        elif cities:
+            ids, names = self.resolve_cities(cities)
+            one_id, one_name = self.resolve_city(city)
+            if one_id not in ids:
+                ids.insert(0, one_id)
+                names.insert(0, one_name)
+        else:
+            ids, names = self.resolve_cities(city)
+        return ids, names, self.resolve_category(category)
+
+    def _record(self, posts: list[dict], *, city: str | None, city_id: str | None,
+                category: str | None, query: str | None, store: Store | None) -> int:
+        """Best-effort history recording; never let it break a search."""
+        try:
+            target = store or get_store()
+            return target.record_posts(posts, city=city, city_id=city_id,
+                                       category=category, query=query)
+        except Exception:
+            return 0
+
     def search(
         self,
         city: str | int | None = None,
@@ -349,56 +447,56 @@ class DivarClient:
         page: int = 1,
         page_size: int = 24,
         sort: str | None = None,
+        cities: list | None = None,
+        record: bool = True,
+        store: Store | None = None,
     ) -> dict:
         """One page of listings. ``page>1`` follows Divar's cursor internally."""
-        city_id, city_name = self.resolve_city(city)
-        cursor = None
+        started = time.monotonic()
+        ids, names, slug = self._resolve_filters(city, cities, category)
         result: dict = {}
-        for current in range(1, max(1, int(page)) + 1):
-            body = self._build_search_body(
-                city_id, query, category, price_min, price_max,
-                district_ids, has_photo, brand_model, current, page_size, cursor,
-            )
-            payload = self._request("POST", "/v8/postlist/w/search", body)
-            rows = [
-                self._parse_row(w["data"])
-                for w in payload.get("list_widgets", [])
-                if w.get("widget_type") == "POST_ROW"
-            ]
-            pagination = payload.get("pagination") or {}
-            cursor_next = pagination.get("data")
-            headline = ""
-            top = payload.get("list_top_widgets") or []
-            if top:
-                headline = (top[0].get("data") or {}).get("text", "")
+        for page_data in self._walk_pages(
+            city_ids=ids, query=query, category=slug, price_min=price_min, price_max=price_max,
+            district_ids=district_ids, has_photo=has_photo, brand_model=brand_model,
+            pages=max(1, int(page)), page_size=page_size,
+        ):
             result = {
-                "city_id": city_id,
-                "city": city_name,
+                "city_id": ids[0],
+                "city_id_list": ids,
+                "city": names[0],
+                "cities": names,
                 "query": query,
-                "category": category,
-                "page": current,
+                "category": slug,
+                "page": page_data["page"],
                 "page_size": page_size,
-                "count": len(rows),
-                "has_next_page": bool(pagination.get("has_next_page")),
-                "headline": headline,
-                "posts": rows,
-                "cursor": cursor_next,
-                "search_id": payload.get("search_id"),
+                "count": len(page_data["rows"]),
+                "has_next_page": page_data["has_next_page"],
+                "headline": page_data["headline"],
+                "posts": page_data["rows"],
+                "cursor": page_data["cursor"],
+                "search_id": page_data["search_id"],
             }
-            if not pagination.get("has_next_page"):
-                break
-            if cursor_next:
-                cursor = dict(cursor_next)
-                cursor.pop("@type", None)
-                cursor.pop("search_uid", None)
-                cursor.pop("viewed_tokens", None)
-            else:
-                break
-
         if sort:
             result["posts"] = self._sort_posts(result.get("posts", []), sort)
         result["sort"] = sort
+        if record:
+            result["recorded"] = self._record(
+                result.get("posts", []), city=names[0], city_id=ids[0],
+                category=slug, query=query, store=store,
+            )
+        result["meta"] = self.meta_stats(started)
         return result
+
+    def meta_stats(self, started: float | None = None) -> dict:
+        meta = {
+            "requests_made": self.request_count,
+            "cached_responses": len(self._cache),
+            "rate_limit_seconds": self.min_interval,
+            "cache_ttl_seconds": self.cache_ttl,
+        }
+        if started is not None:
+            meta["elapsed_seconds"] = round(time.monotonic() - started, 2)
+        return meta
 
     @staticmethod
     def _sort_posts(posts: list[dict], sort: str) -> list[dict]:
@@ -415,72 +513,83 @@ class DivarClient:
             return sorted(posts, key=lambda p: -(p.get("age_hours") or 0))
         return posts
 
-    def search_many(self, pages: int = 1, **kwargs) -> dict:
+    def search_many(
+        self,
+        pages: int = 1,
+        record: bool = True,
+        store: Store | None = None,
+        **kwargs,
+    ) -> dict:
         """Search several cursor-pages, de-duplicated, in one call."""
+        started = time.monotonic()
         pages = max(1, int(pages))
+        ids, names, slug = self._resolve_filters(
+            kwargs.get("city"), kwargs.get("cities"), kwargs.get("category")
+        )
         collected: list[dict] = []
         seen: set[str] = set()
-        meta: dict = {}
-        cursor = None
-        city_id, city_name = self.resolve_city(kwargs.get("city"))
+        headline = ""
+        search_id = None
         page_size = kwargs.get("page_size", 24)
-        for current in range(1, pages + 1):
-            body = self._build_search_body(
-                city_id,
-                kwargs.get("query"),
-                kwargs.get("category"),
-                kwargs.get("price_min"),
-                kwargs.get("price_max"),
-                kwargs.get("district_ids"),
-                kwargs.get("has_photo", False),
-                kwargs.get("brand_model"),
-                current,
-                page_size,
-                cursor,
-            )
-            payload = self._request("POST", "/v8/postlist/w/search", body)
-            rows = [
-                self._parse_row(w["data"])
-                for w in payload.get("list_widgets", [])
-                if w.get("widget_type") == "POST_ROW"
-            ]
-            for row in rows:
+        fetched = 0
+        for page_data in self._walk_pages(
+            city_ids=ids,
+            query=kwargs.get("query"),
+            category=slug,
+            price_min=kwargs.get("price_min"),
+            price_max=kwargs.get("price_max"),
+            district_ids=kwargs.get("district_ids"),
+            has_photo=kwargs.get("has_photo", False),
+            brand_model=kwargs.get("brand_model"),
+            pages=pages,
+            page_size=page_size,
+        ):
+            fetched += 1
+            if fetched == 1:
+                headline = page_data["headline"]
+                search_id = page_data["search_id"]
+            for row in page_data["rows"]:
                 if row["token"] and row["token"] not in seen:
                     seen.add(row["token"])
                     collected.append(row)
-            pagination = payload.get("pagination") or {}
-            if not meta:
-                top = payload.get("list_top_widgets") or []
-                meta = {
-                    "city_id": city_id,
-                    "city": city_name,
-                    "headline": (top[0].get("data") or {}).get("text", "") if top else "",
-                    "search_id": payload.get("search_id"),
-                }
-            if not pagination.get("has_next_page"):
-                break
-            cursor_next = pagination.get("data")
-            if not cursor_next:
-                break
-            cursor = dict(cursor_next)
-            cursor.pop("@type", None)
-            cursor.pop("search_uid", None)
-            cursor.pop("viewed_tokens", None)
 
-        meta.update(
-            {
-                "pages_fetched": min(pages, max(1, (len(collected) // max(1, int(page_size))) + 1)),
-                "count": len(collected),
-                "posts": collected,
-                "query": kwargs.get("query"),
-                "category": kwargs.get("category"),
-            }
-        )
+        result = {
+            "city_id": ids[0],
+            "city_id_list": ids,
+            "city": names[0],
+            "cities": names,
+            "pages_fetched": fetched,
+            "count": len(collected),
+            "posts": collected,
+            "query": kwargs.get("query"),
+            "category": slug,
+            "headline": headline,
+            "search_id": search_id,
+        }
         sort = kwargs.get("sort")
         if sort:
-            meta["posts"] = self._sort_posts(collected, sort)
-            meta["sort"] = sort
-        return meta
+            result["posts"] = self._sort_posts(collected, sort)
+            result["sort"] = sort
+        if record:
+            result["recorded"] = self._record(
+                collected, city=names[0], city_id=ids[0],
+                category=slug, query=kwargs.get("query"), store=store,
+            )
+        result["meta"] = self.meta_stats(started)
+        return result
+
+    @staticmethod
+    def brief(post: dict) -> dict:
+        """Compact projection for agent context: the fields that matter, little else."""
+        return {
+            k: post[k]
+            for k in ("token", "title", "price_toman", "price_human", "district", "city",
+                      "time_text", "age_hours", "image_count", "url")
+            if k in post and post[k] is not None
+        }
+
+    def brief_posts(self, posts: list[dict]) -> list[dict]:
+        return [self.brief(p) for p in posts]
 
     # -------------------------------------------------------------- post view
     @staticmethod
@@ -648,7 +757,7 @@ class DivarClient:
     def filters(self, city: str | int | None = None, category: str | None = None) -> dict:
         """The filter widgets Divar currently exposes for a city/category."""
         city_id, city_name = self.resolve_city(city)
-        body: dict = {"city_ids": [city_id]}
+        body: dict = {"city_ids": city_id if isinstance(city_id, list) else [city_id]}
         if category:
             body["search_data"] = {"form_data": {"data": {"category": {"str": {"value": category}}}}}
         payload = self._request("POST", "/v8/postlist/w/filters", body)
@@ -706,6 +815,8 @@ class DivarClient:
         price_min: int | None = None,
         price_max: int | None = None,
         page_size: int = 24,
+        cities: list | None = None,
+        districts: bool = True,
     ) -> dict:
         """Price distribution for a query/category, from live listings.
 
@@ -714,6 +825,7 @@ class DivarClient:
         found = self.search_many(
             pages=pages,
             city=city,
+            cities=cities,
             query=query,
             category=category,
             price_min=price_min,
@@ -721,71 +833,297 @@ class DivarClient:
             page_size=page_size,
         )
         posts = found.get("posts", [])
-        priced = [p for p in posts if p.get("price_toman") and p["price_toman"] > 0]
-        values = sorted(p["price_toman"] for p in priced)
+        stats: dict = {
+            "city": found.get("city"),
+            "city_id": found.get("city_id"),
+            "cities": found.get("cities"),
+            "query": query,
+            "category": found.get("category"),
+        }
+        stats.update(analytics.price_summary(posts))
+        stats["freshness"] = analytics.freshness(posts)
+        priced = analytics.priced(posts)
+        stats["cheapest"] = _brief(sorted(priced, key=lambda p: p["price_toman"])[:5])
+        stats["priciest"] = _brief(sorted(priced, key=lambda p: p["price_toman"], reverse=True)[:5])
+        if districts:
+            stats["by_district"] = analytics.district_breakdown(posts)[:12]
+        stats["recorded"] = found.get("recorded")
+        stats["meta"] = found.get("meta")
+        return stats
 
-        def pct(p: float) -> int | None:
-            if not values:
-                return None
-            idx = min(len(values) - 1, max(0, int(round(p * (len(values) - 1)))))
-            return values[idx]
+    # ------------------------------------------------------- advanced features
+    def find_deals(
+        self,
+        city: str | int | None = None,
+        query: str | None = None,
+        category: str | None = None,
+        pages: int = 3,
+        price_min: int | None = None,
+        price_max: int | None = None,
+        min_discount: float = 0.05,
+        require_photo: bool = False,
+        limit: int = 10,
+        cities: list | None = None,
+    ) -> dict:
+        """Listings priced below the live market for the same query."""
+        found = self.search_many(
+            pages=pages, city=city, cities=cities, query=query, category=category,
+            price_min=price_min, price_max=price_max,
+        )
+        posts = found.get("posts", [])
+        report = analytics.rank_deals(
+            posts, limit=limit, min_discount=min_discount, require_photo=require_photo
+        )
+        report.update(
+            {
+                "city": found.get("city"),
+                "city_id": found.get("city_id"),
+                "cities": found.get("cities"),
+                "query": query,
+                "category": found.get("category"),
+                "pages_sampled": found.get("pages_fetched"),
+                "meta": found.get("meta"),
+            }
+        )
+        report["deals"] = [
+            dict(self.brief(deal), deal_score=deal["deal_score"], reasons=deal["reasons"],
+                 price_vs_median_pct=deal["factors"].get("price_vs_median_pct"))
+            for deal in report["deals"]
+        ]
+        return report
 
-        stats = {
+    def appraise_post(
+        self,
+        token_or_url: str,
+        city: str | int | None = None,
+        pages: int = 2,
+    ) -> dict:
+        """Judge one listing's asking price against live comparables."""
+        post = self.get_post(token_or_url)
+        comps = self.search_many(
+            pages=pages,
+            city=city if city is not None else post.get("city_id") or post.get("city"),
+            category=post.get("category"),
+            brand_model=post.get("brand_model"),
+            page_size=60,
+        )
+        others = comps.get("posts", [])
+        others_for_math = others
+        if post.get("brand_model") and others:
+            head = post["brand_model"].split()[0].lower()
+            same_model = [p for p in others if head in (p.get("title") or "").lower()]
+            if len(same_model) >= 5:
+                others_for_math = same_model
+        report = analytics.appraise(
+            post.get("price_toman"), others_for_math, brand_model=post.get("brand_model")
+        )
+        report.update(
+            {
+                "token": post.get("token"),
+                "title": post.get("title"),
+                "url": post.get("url"),
+                "city": post.get("city"),
+                "district": post.get("district"),
+                "category": post.get("category"),
+                "attributes": post.get("attributes"),
+                "price_context": {
+                    "asking": post.get("price_toman"),
+                    "asking_human": post.get("price_human"),
+                    "price_note": post.get("price_note"),
+                    "posted_at": post.get("posted_at"),
+                    "age_text": post.get("relative_time"),
+                },
+                "meta": comps.get("meta"),
+            }
+        )
+        return report
+
+    def market_breakdown(
+        self,
+        city: str | int | None = None,
+        query: str | None = None,
+        category: str | None = None,
+        pages: int = 2,
+        min_listings: int = 1,
+    ) -> dict:
+        """Where the stock sits: price by district, bands and freshness for one query."""
+        found = self.search_many(
+            pages=pages, city=city, query=query, category=category, page_size=60
+        )
+        posts = found.get("posts", [])
+        return {
             "city": found.get("city"),
             "city_id": found.get("city_id"),
             "query": query,
-            "category": category,
+            "category": found.get("category"),
             "sampled_posts": len(posts),
-            "priced_posts": len(priced),
-            "unpriced_posts": len(posts) - len(priced),
-            "negotiable_posts": sum(1 for p in posts if p.get("price_note") == "negotiable"),
-            "currency": "تومان (Toman)",
-            "min": values[0] if values else None,
-            "p25": pct(0.25),
-            "p40": pct(0.40),
-            "median": pct(0.50),
-            "p75": pct(0.75),
-            "max": values[-1] if values else None,
-            "mean": int(sum(values) / len(values)) if values else None,
-            "suggested_ask_range": [pct(0.40), pct(0.75)] if values else None,
-            "suggested_ask_human": None,
+            "summary": analytics.price_summary(posts),
+            "by_district": analytics.district_breakdown(posts, min_listings=min_listings),
+            "freshness": analytics.freshness(posts),
+            "meta": found.get("meta"),
         }
-        if stats["suggested_ask_range"][0] if stats["suggested_ask_range"] else None:
-            stats["suggested_ask_human"] = (
-                f"{human_toman(stats['suggested_ask_range'][0])} - "
-                f"{human_toman(stats['suggested_ask_range'][1])}"
+
+    def price_trend(
+        self,
+        city: str | int | None = None,
+        query: str | None = None,
+        category: str | None = None,
+        days: int = 30,
+        store: Store | None = None,
+    ) -> dict:
+        """Local price history for this exact filter (every search adds a data point)."""
+        target = store or get_store()
+        cid, cname = self.resolve_city(city)
+        slug = self.resolve_category(category)
+        series = target.price_history(city=cname, category=slug, query=query, days=days)
+        report = analytics.trend_report(series)
+        report.update({"city": cname, "city_id": cid, "query": query, "category": slug})
+        return report
+
+    def export_rows(
+        self,
+        city: str | int | None = None,
+        query: str | None = None,
+        category: str | None = None,
+        pages: int = 3,
+        price_min: int | None = None,
+        price_max: int | None = None,
+        path: str | None = None,
+        fmt: str = "csv",
+        full: bool = False,
+    ) -> dict:
+        """Dump listings to a CSV/JSONL file on disk and return the path."""
+        import csv as _csv
+
+        found = self.search_many(
+            pages=max(1, min(int(pages), 10)), city=city, query=query, category=category,
+            price_min=price_min, price_max=price_max,
+        )
+        posts = found.get("posts", [])
+        fmt = "jsonl" if str(fmt).lower() in ("jsonl", "json") else "csv"
+        out_path = Path(path) if path else Path.cwd() / f"divar-{int(time.time())}.{fmt}"
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        columns = ["token", "title", "price_toman", "price_human", "price_note", "city",
+                   "district", "time_text", "age_hours", "image_count", "url"]
+        if fmt == "jsonl":
+            with out_path.open("w", encoding="utf-8", newline="\n") as fh:
+                for post in posts:
+                    fh.write(json.dumps(post, ensure_ascii=False) + "\n")
+        else:
+            if posts and full:
+                columns = list(posts[0].keys())
+            with out_path.open("w", encoding="utf-8-sig", newline="") as fh:
+                writer = _csv.DictWriter(fh, fieldnames=columns, extrasaction="ignore")
+                writer.writeheader()
+                for post in posts:
+                    writer.writerow({k: post.get(k) for k in columns})
+        return {
+            "path": str(out_path.resolve()),
+            "format": fmt,
+            "rows": len(posts),
+            "columns": columns,
+            "city": found.get("city"),
+            "query": query,
+            "category": found.get("category"),
+            "note": "utf-8-sig CSV opens correctly in Excel for Persian text.",
+            "meta": found.get("meta"),
+        }
+
+    def watch_create(self, name: str, params: dict, store: Store | None = None) -> dict:
+        """Save a search as a watch and remember today's results as the baseline."""
+        target = store or get_store()
+        found = self.search_many(pages=1, **params)
+        tokens = [p["token"] for p in found.get("posts", [])]
+        saved = target.save_watch(name, params)
+        if "error" in saved:
+            raise DivarError(f"could not save watch: {saved['error']}", hint="Check the store path.")
+        target.diff_watch(name, tokens, update=True)  # seed the baseline silently
+        return {
+            "name": name,
+            "params": params,
+            "baseline_listings": len(tokens),
+            "city": found.get("city"),
+            "note": "The current listings are now the baseline; divar_watch_check reports only newer ones.",
+        }
+
+    def watch_list(self, store: Store | None = None) -> dict:
+        target = store or get_store()
+        watches = target.list_watches()
+        return {"count": len(watches), "watches": watches, "store": target.path}
+
+    def watch_check(self, name: str, pages: int = 1, store: Store | None = None) -> dict:
+        """Run a saved search and report listings never seen for it before."""
+        target = store or get_store()
+        watch = target.get_watch(name)
+        if not watch:
+            known = [w["name"] for w in target.list_watches()]
+            raise DivarError(
+                f"no watch named {name!r}",
+                suggestions=known,
+                hint="divar_watch_list shows saved watches; divar_watch_create adds one.",
             )
-        for key in ("min", "p25", "p40", "median", "p75", "max", "mean"):
-            stats[f"{key}_human"] = human_toman(stats[key])
-        if values:
-            buckets: dict[str, int] = {}
-            for value in values:
-                millions = value / 1_000_000
-                if millions < 1:
-                    label = "زیر ۱ میلیون"
-                elif millions < 5:
-                    label = "۱-۵ میلیون"
-                elif millions < 20:
-                    label = "۵-۲۰ میلیون"
-                elif millions < 100:
-                    label = "۲۰-۱۰۰ میلیون"
-                elif millions < 500:
-                    label = "۱۰۰-۵۰۰ میلیون"
-                elif millions < 2000:
-                    label = "۵۰۰ میلیون - ۲ میلیارد"
-                else:
-                    label = "بیش از ۲ میلیارد"
-                buckets[label] = buckets.get(label, 0) + 1
-            stats["price_bands"] = buckets
-        ages = [p["age_hours"] for p in posts if p.get("age_hours") is not None]
-        stats["freshness"] = {
-            "sampled_with_time": len(ages),
-            "under_24h": sum(1 for a in ages if a < 24),
-            "under_7d": sum(1 for a in ages if a < 24 * 7),
+        params = dict(watch["params"])
+        params.pop("pages", None)
+        found = self.search_many(pages=pages, **params)
+        posts = found.get("posts", [])
+        tokens = [p["token"] for p in posts]
+        fresh = target.diff_watch(name, tokens, update=True)
+        fresh_set = set(fresh)
+        new_posts = [self.brief(p) for p in posts if p["token"] in fresh_set]
+        return {
+            "watch": name,
+            "params": params,
+            "checked_at_listings": len(posts),
+            "new_listings": len(new_posts),
+            "new": new_posts,
+            "city": found.get("city"),
+            "total_new_since_created": (target.get_watch(name) or {}).get("new_total"),
+            "meta": found.get("meta"),
         }
-        stats["cheapest"] = _brief(sorted(priced, key=lambda p: p["price_toman"])[:5])
-        stats["priciest"] = _brief(sorted(priced, key=lambda p: p["price_toman"], reverse=True)[:5])
-        return stats
+
+    def watch_delete(self, name: str, store: Store | None = None) -> dict:
+        target = store or get_store()
+        removed = target.delete_watch(name)
+        return {"watch": name, "deleted": removed}
+
+    def health(self, probe: bool = True) -> dict:
+        """Self-diagnosis: datasets, store, and whether divar.ir answers right now."""
+        started = time.monotonic()
+        report: dict = {
+            "api_base": self.api_base,
+            "datasets": {
+                "cities": len(load_cities()["by_id"]),
+                "categories": len(load_categories()),
+                "city_slugs": len(load_city_slugs()),
+            },
+            "store": get_store().stats().as_dict(),
+        }
+        if probe:
+            try:
+                payload = self._request(
+                    "POST", "/v8/postlist/w/search",
+                    {"city_ids": ["1"],
+                     "pagination_data": {"@type": PAGINATION_TYPE, "page": 1, "page_size": 1}},
+                )
+                report["api"] = {
+                    "reachable": True,
+                    "latency_seconds": round(time.monotonic() - started, 2),
+                    "sample_rows": sum(1 for w in payload.get("list_widgets", [])
+                                       if w.get("widget_type") == "POST_ROW"),
+                }
+            except DivarError as exc:
+                report["api"] = {
+                    "reachable": False,
+                    "status": exc.status,
+                    "error": exc.message[:200],
+                    "retryable": True,
+                    "hint": (
+                        "divar.ir did not answer: from Iran that usually means the line or VPN is down "
+                        "rather than a bad request, so retry shortly."
+                    ),
+                }
+        report["meta"] = self.meta_stats(started)
+        return report
 
     def similar_posts(self, token_or_url: str, city: str | int | None = None, limit: int = 12) -> dict:
         """Comparable listings for a post: same category + brand/model + city."""

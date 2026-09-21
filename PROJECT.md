@@ -1,63 +1,78 @@
-# PROJECT.md, divar-mcp
+# PROJECT.md - divar-mcp
 
-**What it is.** An open-source MCP (Model Context Protocol) server for [divar.ir](https://divar.ir), Iran's largest classifieds marketplace. It gives any MCP-capable agent read access to live Divar listings: search with real filters, read a post in full, value an item against current market prices, and list the competition for an existing ad.
+**What it is.** An open-source, agent-grade MCP (Model Context Protocol) server for [divar.ir](https://divar.ir), Iran's largest classifieds marketplace. 19 tools, 5 resources and 4 prompts over Divar's public web API: search live listings, read a post in full, value an item, appraise someone else's listing, hunt underpriced stock, watch a search over time, and export bulk rows.
 
-**Why it exists.** No Divar MCP server existed (checked GitHub + web search: the `divar-ir/*` repos are Divar's own internal code-search tooling, not marketplace tools). Divar's official API ("Kenar", کنار دیوار) needs an approved app, an API key and OAuth, which is a partner programme, not a read path. Everything else on GitHub is Playwright/Selenium page scraping with no MCP surface, no filters and no pagination. So: built one, tested it against the live API, published it as public MIT.
+**Why it exists.** No Divar MCP server existed (checked GitHub and web search: the `divar-ir/*` repos are Divar's own internal code-search tooling, not marketplace tools). Divar's official API ("Kenar", کنار دیوار) needs an approved app, an API key and OAuth, which is a partner programme rather than a read path. Everything else on GitHub is Playwright/Selenium page scraping with no MCP surface, no filters and no pagination.
 
-**Status: v0.1.0, working and verified against the live API, 2026-09-21.**
+**Status: v0.2.0, working and verified against the live API - 2026-09-21.**
 
 ## Verified facts (all checked against the live API, not assumed)
 
-* Public read endpoints, no key, no account: `POST /v8/postlist/w/search`, `POST /v8/postlist/w/filters`, `GET /v8/posts-v2/web/{token}`. Discovered by harvesting Divar's own JS bundles for API paths (`tools/probe8.py`) and verified by probing.
+* Public read endpoints, no key, no account: `POST /v8/postlist/w/search`, `POST /v8/postlist/w/filters`, `GET /v8/posts-v2/web/{token}`. Discovered by harvesting Divar's own JS bundles for API paths (`tools/probe8.py`).
 * Filters are protobuf-`Any` values: `{"category": {"str": {"value": "<slug>"}}}`, `{"price": {"number_range": {...}}}`, `{"districts": {"repeated_string": {"value": ["208"]}}}` (numeric ids), `{"has-photo": {"boolean": {}}}` (presence = true), `{"brand_model": {"repeated_string": {"value": [...]}}}`.
-* `page` in `pagination_data` is **ignored**; real pagination is a cursor (echo back `pagination.data` with `page`/`layer_page` incremented). Verified: page 1 vs 2 vs 3 return disjoint token sets only when the cursor is echoed.
-* Divar's `recent_ads` filter does **not** filter (3h and 7d returned identical token sets) → implemented client-side `max_age_hours` from the parsed Persian relative time instead.
-* Category slugs and Persian names harvested from Divar's own SEO breadcrumbs (`mobile-phones` → `mobile-tablet` → `electronic-devices`), not guessed. Persian digits, Jalali→Gregorian conversion and Toman parsing verified against known Nowruz dates (1403/01/01 = 2024-03-20, 1405/06/31 = 2026-09-22).
-* City id ↔ Persian name map harvested: **378 ids** (`tools/harvest_cities.py`).
-* **Web page slugs** (`divar.ir/s/tehran`) harvested and *validated*: a slug is accepted only when it comes from Divar's payload AND its `city_id` matches the id we asked for. 39 cities verified; neighbourhood/pseudo-ids (آجودانیه, کل ایران) are correctly rejected. Persian names in the path are wrong, and divar.ir serves the same SPA shell for any slug, so `divar_search_url` returns `url: null` rather than a link that might 404.
+* `page` in `pagination_data` is **ignored**; real pagination is a cursor (echo back `pagination.data` with `page`/`layer_page` incremented). Verified: pages 1/2/3 return disjoint token sets only when the cursor is echoed.
+* Divar's `recent_ads` filter does **not** filter (3h and 7d returned identical token sets) so recency is filtered client-side (`max_age_hours`) from the parsed Persian relative time.
+* `category: ROOT` means "everything" in Divar's own payloads but is rejected as a filter value; the client treats ROOT as "no category filter" (verified live: same unfiltered set).
+* Category slugs and Persian names harvested from Divar's SEO breadcrumbs; city id map has **378 ids**; **39 city page slugs** validated (a slug is accepted only when the post's `city_id` matches the id queried, so Tehran neighbourhoods and `کل ایران` are rejected).
+* Persian digits, Jalali→Gregorian conversion and Toman parsing verified against known Nowruz dates (1403/01/01 = 2024-03-20, 1405/06/31 = 2026-09-22).
 
-## Test state
+## Test state (v0.2.0)
 
 | Suite | Result |
 | --- | --- |
-| `pytest` (offline: normalization, parsers on real captured fixtures, MCP protocol, server subprocess, official SDK interop, URL rules) | 57 passed, 0 failed |
-| `DIVAR_LIVE=1 pytest tests/test_live.py` | **9 passed in 38.7s** against the real divar.ir API |
-| `uvx --from git+… divar-mcp` + Claude/Hermes-style client config | documented in README, stdio verified by subprocess test |
-| Hermes registration | `hermes mcp test divar` -> connected in 891ms, 8 tools discovered |
-| Desktop launcher | `DIVAR search.bat` -> real listings printed, page opened in Chrome |
+| `pytest` (offline: normalization, parsers on real captured fixtures, store, analytics, resolution, export, MCP protocol, structured output, resources, prompts, server subprocess, official SDK interop) | all green on Linux, macOS and Windows, Python 3.10 and 3.12 |
+| `DIVAR_LIVE=1 pytest tests/test_live.py` | green against the real divar.ir API (search, pagination, filters, detail, district isolation, price analysis, multi-city, deals, appraisal, breakdown, watch round trip, export, trend, status) |
+| `python tools/smoke.py` | 19 tools, 5 resources, 4 prompts; every tool has an outputSchema and annotations; Persian survives the CLI redirect |
+| Hermes registration | `hermes mcp test divar` connected, all tools discovered |
+| Desktop launcher | `DIVAR search.bat` prints real listings and opens the page in Chrome |
 
-Bugs the tests caught during the build (worth remembering): `brand_model` lives at `action_log.server_side_info.info.field/value`, not inside `jli`; Divar appends brand/model chips to the post breadcrumb, so the leaf category must be de-duplicated; stdio must use `readline()` on the **binary** buffer (pipe iteration buffers and the Windows ANSI code page would mangle Persian); `build_data.py` wrote CRLF on Windows so published JSON differed from a clean checkout (fixed with `newline="\n"` + `.gitattributes`); a search URL containing `&` broke `cmd /c start` (open Chrome directly instead); and Divar ignores `page`, so page 1/2/3 returned identical rows until the cursor was echoed.
+Bugs the tests caught during the build (worth remembering):
+
+* `brand_model` lives at `action_log.server_side_info.info.field/value`, not inside `jli`.
+* Divar appends brand/model chips to a post breadcrumb, so the leaf category must be de-duplicated.
+* stdio must use `readline()` on the **binary** buffer (pipe iteration buffers, and the Windows ANSI code page mangles Persian).
+* `build_data.py` wrote CRLF on Windows, so published JSON differed from a clean checkout (fixed with `newline="\n"` plus `.gitattributes`).
+* A search URL containing `&` broke `cmd /c start` (open Chrome directly instead).
+* CI on Windows used PowerShell, whose `>` redirection writes UTF-16, so the smoke test lives in `tools/smoke.py` rather than a shell pipeline.
+* Two harvesters writing the same output file interleaved; stop the running one first.
 
 ## Layout
 
 ```
-src/divar_mcp/client.py      HTTP + politeness + caching + all response parsing
+src/divar_mcp/client.py      HTTP, politeness, caching, all response parsing
 src/divar_mcp/normalize.py   Persian digits, prices, relative time, Jalali dates
-src/divar_mcp/tools.py       the 8 tools + JSON schemas (shared by MCP and CLI)
-src/divar_mcp/server.py      zero-dependency MCP stdio server (JSON-RPC 2.0)
-src/divar_mcp/cli.py         human CLI (`divar search ...`)
-src/divar_mcp/data/          harvested cities.json + categories.json + city_slugs.json
+src/divar_mcp/datasets.py    bundled cities / categories / city page slugs
+src/divar_mcp/resolve.py     forgiving input resolution with did-you-mean suggestions
+src/divar_mcp/analytics.py   percentiles, deal scoring, appraisal, district breakdown, trends
+src/divar_mcp/store.py       SQLite: listing observations, price history, watches
+src/divar_mcp/tools.py       the 19 tools + input/output schemas + MCP annotations
+src/divar_mcp/server.py      zero-dependency MCP stdio server (JSON-RPC 2.0, resources, prompts)
+src/divar_mcp/cli.py         human CLI (`divar search|price|deals|appraise|watch|export|status`)
+src/divar_mcp/data/          harvested cities.json, categories.json, city_slugs.json
 launch/divar_search.py       interactive search (what the .bat runs)
 launchers/DIVAR search.bat   one-click launcher (Desktop copy too)
-tests/                       offline suite + fixtures (real payloads) + live suite
-tools/                       reverse-engineering probes and data harvesters (provenance)
+tests/                       offline suite + real-payload fixtures + live suite
+tools/                       probes, harvesters, smoke test, publish verifier
 ```
 
 ## Rebuild / maintain
 
 ```bash
-python tools/harvest_cities.py        # ~400 probes, polite 2s spacing
-python tools/harvest_categories.py    # category tree from SEO breadcrumbs
-python tools/build_data.py            # -> src/divar_mcp/data/*.json
+python tools/harvest_cities.py                   # ~400 probes, 2s spacing
+python tools/harvest_categories.py               # category tree from SEO breadcrumbs
+python tools/harvest_city_slugs.py --max-id 60   # validates city_id before accepting a slug
+python tools/build_data.py                       # -> src/divar_mcp/data/*.json (LF)
 pytest && DIVAR_LIVE=1 pytest tests/test_live.py
+python tools/smoke.py && uv tool install --force --from . divar-mcp
+python tools/verify_publish.py                   # git blob SHAs vs the published repo
 ```
 
 ## Ethics / constraints baked in
 
-Read-only (no posting, editing, messaging), no phone numbers (no `GetContactWeb`, no auth bypass, no PII), rate-limited well under Divar's throttle, unofficial and clearly labelled as such in the README. Not affiliated with Divar.
+Read-only for Divar (no posting, editing, messaging or reporting; the only writes are local files). No phone numbers or contact data (no `GetContactWeb`, no auth bypass, no PII harvesting). Rate-limited well under Divar's throttle. Unofficial and labelled as such. Not affiliated with Divar.
 
 ## Next steps
 
-* Saved-search diffing for cron ("new listings since yesterday")
-* Per-district price maps
-* Optional `kenar` backend for authenticated workflows (my listings) when a user brings their own key
+* Optional `kenar` backend for authenticated workflows (a user's own listings) when they bring a key
+* District-level price history once the store has a few weeks of observations
+* A scheduler that pushes watch diffs, built on the existing watch storage
