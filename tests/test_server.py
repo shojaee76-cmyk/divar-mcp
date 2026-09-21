@@ -65,6 +65,36 @@ def test_tools_list_schema():
     assert get_post["inputSchema"]["required"] == ["token"]
 
 
+def test_output_schemas_match_what_tools_return():
+    """The advertised output contract must hold for real responses.
+
+    Rules checked for every offline-callable tool:
+      * every key in the schema's ``required`` list is actually returned
+      * a key that appears without being declared is only allowed when the
+        schema explicitly sets additionalProperties (our _out() helper does)
+    """
+    from divar_mcp.tools import TOOL_SPECS, call_tool
+
+    specs = {spec["name"]: spec["outputSchema"] for spec in TOOL_SPECS}
+    offline_calls = {
+        "divar_help": {},
+        "divar_list_cities": {"query": "تهران"},
+        "divar_list_categories": {"query": "mobile"},
+        "divar_price_trend": {"query": "x"},
+        "divar_watch_list": {},
+        "divar_status": {"probe": False},
+    }
+    for name, args in offline_calls.items():
+        schema = specs[name]
+        payload = call_tool(name, args)
+        missing = set(schema.get("required", [])) - set(payload)
+        assert not missing, f"{name} is missing required output keys: {sorted(missing)}"
+        extra = set(payload) - set(schema.get("properties", {}))
+        assert not extra or schema.get("additionalProperties") is True, (
+            f"{name} returns undeclared keys {sorted(extra)} and does not allow additionalProperties"
+        )
+
+
 def test_call_tool_offline():
     response = run_lines(
         {"jsonrpc": "2.0", "id": 3, "method": "tools/call",

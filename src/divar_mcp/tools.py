@@ -621,7 +621,12 @@ _APPRAISE_OUT = _out({"verdict": {"type": "string",
                       "confidence": {"type": "string"}, "summary": {"type": "string"}},
                      ["verdict", "comparable_posts"])
 _DEALS_OUT = _out({"median_price": {"type": ["integer", "null"]}, "deal_count": {"type": "integer"},
-                   "deals": {"type": "array"}, "sampled_posts": {"type": "integer"}},
+                   "deals": {"type": "array"},
+                   "suspicious_count": {"type": "integer",
+                                        "description": "Prices under 15% of the median, quarantined as implausible"},
+                   "suspicious": {"type": "array",
+                                  "description": "The quarantined listings with an 'insight' explaining why"},
+                   "sampled_posts": {"type": "integer"}},
                   ["deal_count", "deals"])
 
 TOOL_SPECS: list[dict[str, Any]] = [
