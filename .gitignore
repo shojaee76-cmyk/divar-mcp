@@ -30,3 +30,8 @@ tools/search_raw.json
 tools/detail_raw.json
 tools/detail_sale.json
 tools/filters_tehran.json
+
+# benchmark run outputs (regenerate with tools/bench.py)
+tools/bench_*.txt
+tools/bench_*.json
+tools/*.log
