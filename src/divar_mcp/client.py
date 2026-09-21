@@ -65,6 +65,7 @@ class DivarError(RuntimeError):
 
 _city_cache: dict | None = None
 _category_cache: dict | None = None
+_city_slug_cache: dict | None = None
 
 
 def load_cities() -> dict:
@@ -83,6 +84,22 @@ def load_categories() -> list[dict]:
     if _category_cache is None:
         _category_cache = json.loads((DATA_DIR / "categories.json").read_text(encoding="utf-8"))
     return _category_cache or []
+
+
+def load_city_slugs() -> dict:
+    """{'1': 'tehran', ...} — the ASCII path segment divar.ir uses in /s/<slug>.
+
+    Persian city names 404 on divar.ir, so web URLs must use a slug; the numeric
+    city id is accepted too and is the fallback when a slug is not harvested.
+    """
+    global _city_slug_cache
+    if _city_slug_cache is None:
+        path = DATA_DIR / "city_slugs.json"
+        try:
+            _city_slug_cache = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+        except Exception:
+            _city_slug_cache = {}
+    return _city_slug_cache
 
 
 # ------------------------------------------------------------------ client

@@ -10,7 +10,7 @@ import os
 import urllib.parse
 from typing import Any
 
-from .client import DivarClient, DivarError, WEB_BASE, load_categories, load_cities
+from .client import DivarClient, DivarError, WEB_BASE, load_categories, load_cities, load_city_slugs
 
 SORT_VALUES = ["newest", "price_asc", "price_desc"]
 
@@ -196,23 +196,42 @@ def divar_search_url(
     price_min: int | None = None,
     price_max: int | None = None,
 ) -> dict:
-    """A divar.ir URL a human can open in a browser for the same search."""
+    """A divar.ir URL a human can open in a browser for the same search.
+
+    divar.ir wants an ASCII slug in the path (``/s/tehran``). A Persian city name
+    there is wrong, and divar.ir answers with the same SPA shell for any slug, so
+    a slug is only used when it came from Divar's own payload and was validated
+    against that city's id. Without one we return ``url: None`` rather than hand
+    out a link that may 404.
+    """
     client = build_client()
     city_id, city_name = client.resolve_city(city)
-    slug = None
-    for entry in load_categories():
-        if entry.get("slug") == category:
-            slug = category
-            break
+    slug = load_city_slugs().get(str(city_id))
+    known_slugs = {entry.get("slug") for entry in load_categories()}
+    if not slug:
+        return {
+            "url": None,
+            "city_id": city_id,
+            "city": city_name,
+            "city_path_segment": None,
+            "category": category,
+            "verified": False,
+            "note": (
+                f"no verified divar.ir page slug for city {city_name!r} (id {city_id}). "
+                "Post links from divar_search (https://divar.ir/v/<token>) always work; "
+                "run tools/harvest_city_slugs.py to resolve slugs for more cities."
+            ),
+        }
+
+    path = "/s/" + urllib.parse.quote(slug)
+    if category and category in known_slugs:
+        path += "/" + urllib.parse.quote(category)
     params = {}
     if query:
         params["q"] = query
     for key, value in (("price_min", price_min), ("price_max", price_max)):
         if value is not None:
             params[key] = int(value)
-    path = "/s/" + urllib.parse.quote(city_name)
-    if slug:
-        path += "/" + urllib.parse.quote(slug)
     url = WEB_BASE + path
     if params:
         url += "?" + urllib.parse.urlencode(params)
@@ -220,8 +239,10 @@ def divar_search_url(
         "url": url,
         "city_id": city_id,
         "city": city_name,
-        "category": category,
-        "note": "Open in a browser; Divar's web UI accepts q and price_min/price_max query params.",
+        "city_path_segment": slug,
+        "category": category if category in known_slugs else None,
+        "verified": True,
+        "note": "Open in a browser; divar.ir accepts q and price_min/price_max query params.",
     }
 
 

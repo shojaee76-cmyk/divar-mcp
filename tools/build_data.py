@@ -29,4 +29,15 @@ if os.path.exists(cats_src):
         fh.write("\n")
     print("categories.json:", len(items), "entries")
 else:
-    print("no categories_raw.json yet; keeping placeholder", file=sys.stderr)
+    print("no categories_raw.json yet; keeping the existing categories.json", file=sys.stderr)
+
+slugs_src = os.path.join(ROOT, "tools", "city_slugs_raw.json")
+if os.path.exists(slugs_src):
+    raw = json.load(open(slugs_src, encoding="utf-8"))
+    clean = {str(k): v.strip() for k, v in sorted(raw.items(), key=lambda kv: int(kv[0])) if v}
+    with open(os.path.join(DATA, "city_slugs.json"), "w", encoding="utf-8", newline="\n") as fh:
+        json.dump(clean, fh, ensure_ascii=False, indent=1)
+        fh.write("\n")
+    print("city_slugs.json:", len(clean), "entries")
+else:
+    print("no city_slugs_raw.json yet; web URLs will fall back to numeric city ids", file=sys.stderr)

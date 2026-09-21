@@ -94,4 +94,6 @@ def test_live_search_url_is_openable(client):
     from divar_mcp.tools import divar_search_url
 
     payload = divar_search_url(query="پژو ۲۰۶", city="تهران")
-    assert payload["url"].startswith("https://divar.ir/s/")
+    assert payload["verified"] is True
+    assert payload["url"].startswith("https://divar.ir/s/tehran")
+    assert payload["url"].split("divar.ir")[1].split("?")[0].isascii()

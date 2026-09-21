@@ -129,6 +129,12 @@ Details worth knowing if you fork this:
 * **District filter needs numeric ids**, which only appear inside post details (the district chip payload). `divar_get_post` exposes it as `district_id`.
 * **Jalali dates are converted** (e.g. `۳۱ شهریور ۱۴۰۵` → `2026-09-22T00:06:00+03:30`) so agents can reason about age without a Hijri library.
 * **Category slugs are harvested from Divar's own SEO breadcrumbs** (`mobile-phones` → `mobile-tablet` → `electronic-devices`), so the slug list and Persian names stay real instead of guessed.
+* **Web links need a real slug.** `divar.ir/s/tehran` works, a Persian city name in the path does not, and divar.ir serves the same SPA shell for *any* slug — so a slug is published only when it came from Divar's own payload and its `city_id` matched the city asked for. `divar_search_url` returns `url: null` (with a reason) instead of a link that might 404, and `tools/harvest_city_slugs.py` grows the verified map.
+* **Divar's own SEO headline is off by one** ("صفحه ۲" on the first page). Harmless, but don't read it as a page number.
+
+## One-click launcher
+
+`launchers/DIVAR search.bat` (double-click, or the Desktop shortcut) asks for a phrase, a city and an optional budget, prints the live listings with prices, and offers to open the matching divar.ir page in Chrome.
 
 ## Politeness and legality
 

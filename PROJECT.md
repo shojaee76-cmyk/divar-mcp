@@ -14,16 +14,19 @@
 * Divar's `recent_ads` filter does **not** filter (3h and 7d returned identical token sets) → implemented client-side `max_age_hours` from the parsed Persian relative time instead.
 * Category slugs and Persian names harvested from Divar's own SEO breadcrumbs (`mobile-phones` → `mobile-tablet` → `electronic-devices`), not guessed. Persian digits, Jalali→Gregorian conversion and Toman parsing verified against known Nowruz dates (1403/01/01 = 2024-03-20, 1405/06/31 = 2026-09-22).
 * City id ↔ Persian name map harvested: **378 ids** (`tools/harvest_cities.py`).
+* **Web page slugs** (`divar.ir/s/tehran`) harvested and *validated*: a slug is accepted only when it comes from Divar's payload AND its `city_id` matches the id we asked for. 39 cities verified; neighbourhood/pseudo-ids (آجودانیه, کل ایران) are correctly rejected. Persian names in the path are wrong, and divar.ir serves the same SPA shell for any slug, so `divar_search_url` returns `url: null` rather than a link that might 404.
 
 ## Test state
 
 | Suite | Result |
 | --- | --- |
-| `pytest` (offline: normalization, parsers on real captured fixtures, MCP protocol, server subprocess, official SDK interop) | 56 passed, 0 failed |
+| `pytest` (offline: normalization, parsers on real captured fixtures, MCP protocol, server subprocess, official SDK interop, URL rules) | 57 passed, 0 failed |
 | `DIVAR_LIVE=1 pytest tests/test_live.py` | **9 passed in 38.7s** against the real divar.ir API |
 | `uvx --from git+… divar-mcp` + Claude/Hermes-style client config | documented in README, stdio verified by subprocess test |
+| Hermes registration | `hermes mcp test divar` -> connected in 891ms, 8 tools discovered |
+| Desktop launcher | `DIVAR search.bat` -> real listings printed, page opened in Chrome |
 
-Bugs the tests caught during the build (worth remembering): `brand_model` lives at `action_log.server_side_info.info.field/value`, not inside `jli`; Divar appends brand/model chips to the post breadcrumb, so the leaf category must be de-duplicated; stdio must use `readline()` on the **binary** buffer (pipe iteration buffers and Windows ANSI code page would mangle Persian).
+Bugs the tests caught during the build (worth remembering): `brand_model` lives at `action_log.server_side_info.info.field/value`, not inside `jli`; Divar appends brand/model chips to the post breadcrumb, so the leaf category must be de-duplicated; stdio must use `readline()` on the **binary** buffer (pipe iteration buffers and the Windows ANSI code page would mangle Persian); `build_data.py` wrote CRLF on Windows so published JSON differed from a clean checkout (fixed with `newline="\n"` + `.gitattributes`); a search URL containing `&` broke `cmd /c start` (open Chrome directly instead); and Divar ignores `page`, so page 1/2/3 returned identical rows until the cursor was echoed.
 
 ## Layout
 
@@ -33,7 +36,9 @@ src/divar_mcp/normalize.py   Persian digits, prices, relative time, Jalali dates
 src/divar_mcp/tools.py       the 8 tools + JSON schemas (shared by MCP and CLI)
 src/divar_mcp/server.py      zero-dependency MCP stdio server (JSON-RPC 2.0)
 src/divar_mcp/cli.py         human CLI (`divar search ...`)
-src/divar_mcp/data/          harvested cities.json + categories.json
+src/divar_mcp/data/          harvested cities.json + categories.json + city_slugs.json
+launch/divar_search.py       interactive search (what the .bat runs)
+launchers/DIVAR search.bat   one-click launcher (Desktop copy too)
 tests/                       offline suite + fixtures (real payloads) + live suite
 tools/                       reverse-engineering probes and data harvesters (provenance)
 ```

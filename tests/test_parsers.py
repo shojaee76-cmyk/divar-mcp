@@ -173,6 +173,31 @@ def test_client_errors_fail_fast_without_retry():
     assert calls["n"] == 1  # no pointless retries on a 4xx
 
 
+def test_search_url_uses_ascii_path_segment():
+    """divar.ir 404s on a Persian city name in the path; it wants a real slug."""
+    from divar_mcp.tools import divar_search_url
+
+    payload = divar_search_url(query="پژو ۲۰۶", city="تهران", category="light")
+    assert payload["verified"] is True
+    path = payload["url"].split("divar.ir")[1].split("?")[0]
+    assert path.isascii(), f"non-ascii city segment in {path!r}"
+    assert path.startswith("/s/tehran")
+    assert "%" in payload["url"]  # the query itself is percent-encoded
+    assert divar_search_url(query="x", city="3")["city_path_segment"] == "mashhad"
+
+
+def test_search_url_refuses_unverified_city():
+    """No guessed links: a city without a validated slug returns url=None."""
+    from divar_mcp.tools import divar_search_url
+
+    payload = divar_search_url(query="x", city="9999")
+    # 9999 is not in the harvested slug map, but the client resolves unknown ids
+    # to themselves, so this must not produce a fabricated link.
+    assert payload["url"] is None
+    assert payload["verified"] is False
+    assert "no verified" in payload["note"]
+
+
 def test_price_stats_math():
     client = DivarClient()
     rows = [
