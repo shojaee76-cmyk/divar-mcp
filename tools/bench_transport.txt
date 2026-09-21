@@ -1,0 +1,8 @@
+divar_search               cold  0.65s (1 http)   warm  6.39s (1 http)
+divar_price_analysis       cold  1.66s (2 http)   warm  1.60s (2 http)
+divar_market_breakdown     cold  1.65s (2 http)   warm  4.73s (2 http)
+divar_find_deals           cold  4.60s (3 http)   warm  2.60s (3 http)
+divar_appraise_post        cold  2.39s (3 http)   warm  2.33s (3 http)
+divar_get_post             cold  0.63s (1 http)   warm  0.88s (1 http)
+TOTAL                      cold 11.58s           warm 18.53s   [transport]
+EXIT_transport=0

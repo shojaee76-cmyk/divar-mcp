@@ -1,0 +1,8 @@
+divar_search                 2.04s median  (0.00-4.08)  0 http
+divar_price_analysis         1.78s median  (0.00-3.56)  0 http
+divar_market_breakdown       2.94s median  (0.00-5.88)  0 http
+divar_find_deals             0.41s median  (0.00-0.81)  0 http
+divar_appraise_post          3.26s median  (0.00-6.51)  0 http
+divar_get_post               0.00s median  (0.00-0.00)  0 http
+TOTAL                       10.42s across 6 tools  [optimized]
+AFTER_EXIT=0

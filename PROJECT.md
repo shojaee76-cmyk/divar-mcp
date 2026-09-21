@@ -71,6 +71,41 @@ python tools/verify_publish.py                   # git blob SHAs vs the publishe
 
 Read-only for Divar (no posting, editing, messaging or reporting; the only writes are local files). No phone numbers or contact data (no `GetContactWeb`, no auth bypass, no PII harvesting). Rate-limited well under Divar's throttle. Unofficial and labelled as such. Not affiliated with Divar.
 
+## Performance work (2026-09-21)
+
+Latency to divar.ir is dominated by a TCP+TLS handshake per request plus the
+polite 0.8s gap between requests. Changes, all measured with `tools/bench.py`:
+
+1. **Keep-alive sockets.** One HTTP connection per thread, held across requests;
+   a closed idle socket is detected and reconnected transparently.
+2. **Shared client.** `build_client()` returns a singleton for the long-lived MCP
+   process, so sockets and cache survive between tool calls instead of a new
+   client (and a new handshake) per call.
+3. **Response cache** with a request-start-stamped TTL, disabled by
+   `DIVAR_CACHE_TTL=0`.
+4. **Store in WAL mode** with `synchronous=NORMAL` and one commit per page
+   instead of a per-row fsync (Windows fsync was the slow part).
+5. **Retry backoff trimmed** from `min(6s, 1.2*2^n)` to `min(3s, 0.6*2^n)`, so a
+   stalled line fails over in seconds instead of tens of seconds.
+6. `brief_posts` made static: a whole client was being constructed just to
+   re-project rows.
+
+Benchmark modes: `--mode before` (fresh client, urllib, no cache),
+`--mode transport` (keep-alive, cache off), `--mode warm` (keep-alive + cache).
+Cold figures are medians of `--repeat` samples because this line is noisy.
+
+Bugs found while measuring:
+
+- **Cache TTL was stamped at completion**, so `cache_ttl=0` still served hits for
+  as long as the request itself had taken (measured: a 0 TTL entry lived 1.5s).
+  TTL is now stamped when the request starts, and `0` means no caching at all.
+- The test fixture did not drain request bodies, so leftovers corrupted the next
+  request on a reused socket. A real server consumes the body; the fixture does now.
+- The first benchmark blended a network call with a cache hit into a single
+  median, which hid the caching entirely. Cold and warm are now separate columns.
+- `divar <cmd> --json` was accepted by the search-shaped commands and rejected by
+  the rest, although the rest already print JSON. Now uniform.
+
 ## Next steps
 
 * Optional `kenar` backend for authenticated workflows (a user's own listings) when they bring a key

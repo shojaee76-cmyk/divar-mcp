@@ -15,6 +15,7 @@ Design rules for agent friendliness:
 from __future__ import annotations
 
 import os
+import threading
 import urllib.parse
 from typing import Any
 
@@ -41,19 +42,50 @@ CAVEATS = {
 }
 
 
-def build_client() -> DivarClient:
-    """Client configured from env (handy for slow networks / shared IPs)."""
-    def _float(name: str, default: float) -> float:
-        try:
-            return float(os.environ.get(name, default))
-        except (TypeError, ValueError):
-            return default
+def _float_env(name: str, default: float) -> float:
+    try:
+        return float(os.environ.get(name, default))
+    except (TypeError, ValueError):
+        return default
 
+
+def _make_client() -> DivarClient:
     return DivarClient(
-        timeout=_float("DIVAR_TIMEOUT", 25.0),
-        min_interval=_float("DIVAR_MIN_INTERVAL", 0.8),
-        cache_ttl=_float("DIVAR_CACHE_TTL", 180.0),
+        timeout=_float_env("DIVAR_TIMEOUT", 25.0),
+        min_interval=_float_env("DIVAR_MIN_INTERVAL", 0.8),
+        cache_ttl=_float_env("DIVAR_CACHE_TTL", 180.0),
     )
+
+
+_client_singleton: DivarClient | None = None
+_client_lock = threading.Lock()
+
+
+def build_client() -> DivarClient:
+    """The shared, env-configured client.
+
+    The MCP server is a long-lived process, so one client is reused across tool
+    calls: its keep-alive sockets survive between calls (no repeated TLS
+    handshakes) and identical requests inside the cache TTL are served locally.
+    Set DIVAR_POOL=0 to force a fresh client per call (used by the benchmark and
+    by tests that want full isolation).
+    """
+    global _client_singleton
+    if os.environ.get("DIVAR_POOL", "1") == "0":
+        return _make_client()
+    with _client_lock:
+        if _client_singleton is None:
+            _client_singleton = _make_client()
+        return _client_singleton
+
+
+def reset_client() -> None:
+    """Forget the shared client (after changing env vars, or between tests)."""
+    global _client_singleton
+    with _client_lock:
+        if _client_singleton is not None:
+            _client_singleton.close()
+        _client_singleton = None
 
 
 def build_store() -> Store:
@@ -99,7 +131,7 @@ def _text_filter(result: dict, exclude_terms: list[str] | None, title_contains: 
 def _client_view(result: dict, brief: bool) -> dict:
     if brief:
         keep = {k: v for k, v in result.items() if k != "posts"}
-        keep["posts"] = DivarClient().brief_posts(result.get("posts") or [])
+        keep["posts"] = DivarClient.brief_posts(result.get("posts") or [])
         return keep
     return result
 

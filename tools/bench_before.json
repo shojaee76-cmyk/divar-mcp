@@ -1,0 +1,55 @@
+{
+ "mode": "before",
+ "total_cold_s": 16.05,
+ "total_warm_s": 18.31,
+ "cases": [
+  {
+   "tool": "divar_search",
+   "cold_s": 1.59,
+   "samples": 3,
+   "warm_s": 1.93,
+   "cold_http": 1,
+   "warm_http": 1
+  },
+  {
+   "tool": "divar_price_analysis",
+   "cold_s": 2.78,
+   "samples": 3,
+   "warm_s": 2.58,
+   "cold_http": 2,
+   "warm_http": 2
+  },
+  {
+   "tool": "divar_market_breakdown",
+   "cold_s": 2.46,
+   "samples": 3,
+   "warm_s": 2.92,
+   "cold_http": 2,
+   "warm_http": 2
+  },
+  {
+   "tool": "divar_find_deals",
+   "cold_s": 3.92,
+   "samples": 3,
+   "warm_s": 5.88,
+   "cold_http": 3,
+   "warm_http": 3
+  },
+  {
+   "tool": "divar_appraise_post",
+   "cold_s": 4.07,
+   "samples": 3,
+   "warm_s": 4.24,
+   "cold_http": 3,
+   "warm_http": 3
+  },
+  {
+   "tool": "divar_get_post",
+   "cold_s": 1.23,
+   "samples": 3,
+   "warm_s": 0.76,
+   "cold_http": 1,
+   "warm_http": 1
+  }
+ ]
+}

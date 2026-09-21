@@ -168,6 +168,59 @@ divar help
 
 `divar-mcp --list-tools` prints the raw tool schemas, `--resources` and `--prompts` list those, and `divar-mcp --call divar_search --args '{"query":"پژو","city":"1"}'` runs one tool without a client.
 
+## Performance
+
+Latency to divar.ir is dominated by two things: a TCP+TLS handshake per request,
+and the polite delay between requests. Both are handled:
+
+- **Keep-alive sockets.** The client holds one HTTP connection per thread, so a
+  multi-request tool pays for the handshake once instead of once per page. Idle
+  sockets that Divar has closed are detected and reconnected transparently.
+- **A shared client.** The MCP server is long lived, so the same client (and its
+  sockets and cache) is reused across tool calls instead of rebuilt per call.
+- **A response cache.** Identical requests inside `DIVAR_CACHE_TTL` (default 180
+  seconds) are served locally. Set `DIVAR_CACHE_TTL=0` to disable it entirely.
+- **Batched local writes.** The SQLite store runs in WAL mode with relaxed fsync
+  and one commit per page of listings instead of one per row.
+
+Every result's `meta` block reports `connections_reused`, `requests_made` and
+`elapsed_seconds`, so the effect is visible from a client:
+
+```bash
+python tools/bench.py --mode before      # fresh client + urllib + no cache
+python tools/bench.py --mode transport   # keep-alive, cache off
+python tools/bench.py --mode warm        # keep-alive + cache
+```
+
+Measured against the real API from an Iranian line (`--repeat 3`, medians, cache
+disabled so only the transport is compared):
+
+| Tool | before | keep-alive | speedup | repeat call |
+|---|---|---|---|---|
+| `divar_search` | 1.59s | 1.11s | 1.43x | 0.00s |
+| `divar_price_analysis` | 2.78s | 1.40s | 1.99x | 0.00s |
+| `divar_market_breakdown` | 2.46s | 1.72s | 1.43x | 0.00s |
+| `divar_find_deals` | 3.92s | 2.59s | 1.51x | 0.00s |
+| `divar_appraise_post` | 4.07s | 2.44s | 1.67x | 0.00s |
+| `divar_get_post` | 1.23s | 0.75s | 1.64x | 0.00s |
+| **total** | **16.05s** | **10.01s** | **1.60x** | **0.00s** |
+
+Tools that make several requests gain most (a handshake saved per request); a
+repeated identical call inside the cache TTL costs nothing. Numbers vary with
+the line: treat them as a median of the hour they were taken, not a promise.
+
+Tuning knobs, all optional environment variables:
+
+| Variable | Default | Meaning |
+|---|---|---|
+| `DIVAR_CACHE_TTL` | `180` | seconds a response stays cached; `0` disables caching |
+| `DIVAR_POOL` | `1` | `0` builds a fresh client per call (isolation, benchmarks) |
+| `DIVAR_NO_KEEPALIVE` | unset | `1` reverts to a connection per request |
+| `DIVAR_MIN_INTERVAL` | `0.8` | minimum seconds between requests (be polite) |
+| `DIVAR_TIMEOUT` | `25` | per-request timeout in seconds |
+| `DIVAR_STORE` | platform data dir | path to the local SQLite store |
+| `DIVAR_STORE_DISABLE` | unset | `1` runs fully stateless (no history, no watches) |
+
 ## How it works
 
 The server talks to the same JSON endpoints the divar.ir web app uses (discovered from Divar's own JS bundles and verified against the live API):

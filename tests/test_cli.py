@@ -40,6 +40,35 @@ def test_cli_shared_flags_are_accepted_by_the_tool(tool):
     )
 
 
+OFFLINE_JSON_INVOCATIONS = [
+    ["cities", "تهران", "--json"],
+    ["categories", "mobile", "--json"],
+    ["url", "پژو", "--city", "تهران", "--json"],
+    ["status", "--no-probe", "--json"],
+    ["help", "--json"],
+    ["store", "stats", "--json"],
+    ["watch", "list", "--json"],
+]
+
+
+def test_every_offline_subcommand_accepts_json_flag(tmp_path):
+    """`divar <cmd> --json` must never fail with 'unrecognized arguments'.
+
+    The flag was accepted by the search-shaped commands and rejected by the
+    others, even though those others already print JSON.
+    """
+    env = {**os.environ, "DIVAR_STORE": str(tmp_path / "cli.db")}
+    for argv in OFFLINE_JSON_INVOCATIONS:
+        proc = subprocess.run(
+            [sys.executable, "-m", "divar_mcp.cli", *argv],
+            capture_output=True, text=True, timeout=120, cwd=str(Path(__file__).resolve().parent.parent),
+            env=env, encoding="utf-8", errors="replace",
+        )
+        assert proc.returncode == 0, f"{argv}: {proc.stderr[-300:]}"
+        assert "unrecognized arguments" not in proc.stderr
+        json.loads(proc.stdout)  # must actually be JSON
+
+
 def _run_cli(*args: str, store: Path) -> subprocess.CompletedProcess:
     env = dict(os.environ)
     env["PYTHONPATH"] = str(ROOT / "src") + os.pathsep + env.get("PYTHONPATH", "")

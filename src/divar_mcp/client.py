@@ -13,7 +13,9 @@ here; see the README for the difference.
 from __future__ import annotations
 
 import hashlib
+import http.client
 import json
+import os
 import random
 import threading
 import time
@@ -124,9 +126,12 @@ class DivarClient:
     api_base: str = API_BASE
     cache_size: int = 256
     _last_call: float = field(default=0.0, init=False, repr=False)
-    _lock: threading.Lock = field(default_factory=threading.Lock, init=False, repr=False)
+    _lock: threading.RLock = field(default_factory=threading.RLock, init=False, repr=False)
     _cache: dict = field(default_factory=dict, init=False, repr=False)
     _request_count: int = field(default=0, init=False, repr=False)
+    _local: threading.local = field(default_factory=threading.local, init=False, repr=False)
+    _connects: int = field(default=0, init=False, repr=False)
+    _reuses: int = field(default=0, init=False, repr=False)
 
     # -------------------------------------------------------------- transport
     def _throttle(self) -> None:
@@ -141,24 +146,136 @@ class DivarClient:
         return self._request_count
 
     def _cached(self, key: str):
+        if self.cache_ttl <= 0:
+            return None  # caching disabled
         hit = self._cache.get(key)
         if not hit:
             return None
         expires, value = hit
-        if expires < time.monotonic():
+        if expires <= time.monotonic():
             self._cache.pop(key, None)
             return None
         return value
 
-    def _store(self, key: str, value):
-        if len(self._cache) >= self.cache_size:
-            oldest = min(self._cache, key=lambda k: self._cache[k][0])
-            self._cache.pop(oldest, None)
-        self._cache[key] = (time.monotonic() + self.cache_ttl, value)
+    def _store(self, key: str, value, started: float | None = None):
+        """Cache a response, stamped from the moment the request STARTED.
+
+        Stamping at completion made the effective lifetime "request duration +
+        ttl", so a cache_ttl of 0 still served hits for seconds and a slow
+        response lived longer than a fast one. A ttl of 0 now means no caching.
+        """
+        if self.cache_ttl <= 0:
+            return value
+        base = time.monotonic() if started is None else started
+        with self._lock:
+            if len(self._cache) >= self.cache_size:
+                oldest = min(self._cache, key=lambda k: self._cache[k][0])
+                self._cache.pop(oldest, None)
+            self._cache[key] = (base + self.cache_ttl, value)
         return value
+
+    # ------------------------------------------------------------ connection
+    def _http(self, method: str, url: str, payload: bytes | None) -> bytes:
+        """One HTTP trip over a keep-alive connection held per thread.
+
+        A fresh urllib call pays a TCP + TLS handshake every time, which is the
+        single biggest cost of a multi-request tool on this network. Sockets are
+        kept per thread (never shared) so the same client is safe to use from a
+        thread pool. If the server has closed an idle socket, the request is
+        retried once on a new connection.
+        """
+        parsed = urllib.parse.urlsplit(url)
+        path = parsed.path + (f"?{parsed.query}" if parsed.query else "")
+        headers = {
+            "user-agent": self.user_agent,
+            "accept": "application/json, text/plain, */*",
+            "accept-language": "fa-IR,fa;q=0.9,en;q=0.8",
+            "origin": WEB_BASE,
+            "referer": WEB_BASE + "/",
+            "connection": "keep-alive",
+        }
+        if payload is not None:
+            headers["content-type"] = "application/json"
+
+        last: Exception | None = None
+        for attempt in (0, 1):
+            conn = self._conn(parsed)
+            try:
+                conn.request(method, path, body=payload, headers=headers)
+                resp = conn.getresponse()
+                body = resp.read()  # must be drained before the socket is reused
+                if resp.status >= 400:
+                    raise DivarError(self._error_message(body), status=resp.status,
+                                     code=self._error_code(body))
+                return body
+            except DivarError:
+                raise
+            except (http.client.HTTPException, OSError) as exc:
+                last = exc
+                self._drop_conn()  # stale or broken socket: reconnect once
+        raise DivarError(f"network error talking to divar.ir: {last}")
+
+    def _conn(self, parsed):
+        conn = getattr(self._local, "conn", None)
+        key = (parsed.hostname, parsed.port, parsed.scheme)
+        if conn is not None and getattr(self._local, "key", None) != key:
+            try:
+                conn.close()
+            except Exception:
+                pass
+            conn = None
+        if conn is None:
+            factory = http.client.HTTPSConnection if parsed.scheme == "https" else http.client.HTTPConnection
+            conn = factory(parsed.hostname, parsed.port, timeout=self.timeout)
+            self._local.conn = conn
+            self._local.key = key
+            with self._lock:
+                self._connects += 1
+        else:
+            with self._lock:
+                self._reuses += 1
+        return conn
+
+    def _drop_conn(self) -> None:
+        conn = getattr(self._local, "conn", None)
+        if conn is not None:
+            try:
+                conn.close()
+            except Exception:
+                pass
+        self._local.conn = None
+
+    @staticmethod
+    def _error_message(body: bytes) -> str:
+        text = body.decode("utf-8", "replace")
+        try:
+            return json.loads(text).get("message", text[:400])
+        except Exception:
+            return text[:400]
+
+    @staticmethod
+    def _error_code(body: bytes):
+        try:
+            return json.loads(body.decode("utf-8", "replace")).get("code")
+        except Exception:
+            return None
+
+    def close(self) -> None:
+        """Drop this thread's keep-alive socket (other threads keep theirs)."""
+        self._drop_conn()
+
+    @property
+    def connection_stats(self) -> dict:
+        with self._lock:
+            return {"connections_opened": self._connects, "connections_reused": self._reuses}
 
     def _attempt(self, method: str, url: str, payload: bytes | None) -> dict:
         """One HTTP round trip. Split out so tests can stub the transport."""
+        if os.environ.get("DIVAR_NO_KEEPALIVE") == "1":
+            return self._attempt_urllib(method, url, payload)
+        return json.loads(self._http(method, url, payload).decode("utf-8", "replace"))
+
+    def _attempt_urllib(self, method: str, url: str, payload: bytes | None) -> dict:
         req = urllib.request.Request(url, data=payload, method=method)
         req.add_header("user-agent", self.user_agent)
         req.add_header("accept", "application/json, text/plain, */*")
@@ -198,11 +315,12 @@ class DivarClient:
 
         for attempt in range(self.max_retries):
             self._throttle()
+            started = time.monotonic()
             try:
                 data = self._attempt(method, url, payload)
                 self._request_count += 1
                 if cache_key:
-                    self._store(cache_key, data)
+                    self._store(cache_key, data, started)
                 return data
             except DivarError as exc:
                 # 4xx (other than 429) are caller errors: fail fast, no retry.
@@ -212,7 +330,7 @@ class DivarClient:
             except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
                 last_error = exc
             if attempt < self.max_retries - 1:
-                time.sleep(min(6.0, 1.2 * (2 ** attempt)) + random.random() * 0.4)
+                time.sleep(min(3.0, 0.6 * (2 ** attempt)) + random.random() * 0.25)
 
         if isinstance(last_error, DivarError):
             raise last_error
@@ -493,6 +611,8 @@ class DivarClient:
             "cached_responses": len(self._cache),
             "rate_limit_seconds": self.min_interval,
             "cache_ttl_seconds": self.cache_ttl,
+            "connections_reused": self.connection_stats["connections_reused"],
+            "connections_opened": self.connection_stats["connections_opened"],
         }
         if started is not None:
             meta["elapsed_seconds"] = round(time.monotonic() - started, 2)
@@ -588,8 +708,9 @@ class DivarClient:
             if k in post and post[k] is not None
         }
 
-    def brief_posts(self, posts: list[dict]) -> list[dict]:
-        return [self.brief(p) for p in posts]
+    @staticmethod
+    def brief_posts(posts: list[dict]) -> list[dict]:
+        return [DivarClient.brief(p) for p in posts]
 
     # -------------------------------------------------------------- post view
     @staticmethod

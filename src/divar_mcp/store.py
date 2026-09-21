@@ -122,6 +122,12 @@ class Store:
                 Path(self.path).parent.mkdir(parents=True, exist_ok=True)
             self._conn = sqlite3.connect(self.path, timeout=10.0)
             self._conn.row_factory = sqlite3.Row
+            # WAL + NORMAL: writes stop paying a full fsync per row on Windows,
+            # which is what made recording a page of listings slow. Safe here:
+            # this is local, append-mostly state that is rebuilt from the API.
+            self._conn.execute("PRAGMA journal_mode=WAL")
+            self._conn.execute("PRAGMA synchronous=NORMAL")
+            self._conn.execute("PRAGMA busy_timeout=10000")
             self._conn.executescript(SCHEMA)
             self._conn.commit()
         return self._conn

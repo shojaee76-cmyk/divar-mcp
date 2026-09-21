@@ -75,6 +75,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--version", action="version", version=__version__)
     sub = parser.add_subparsers(dest="command", required=True)
 
+    def add_json_flag(p):
+        """Accept --json on every subcommand.
+
+        Most commands already emit JSON, so the flag is a no-op there, but a
+        uniform CLI is worth more than a strict one: `divar <cmd> --json` must
+        never fail with "unrecognized arguments".
+        """
+        p.add_argument("--json", action="store_true", help="raw JSON (most commands default to it)")
+        return p
+
     def add_search_args(p):
         # accept the search text either positionally or as -q/--query, so both
         # `divar search "پژو"` and `divar watch create --query "پژو"` work
@@ -96,7 +106,7 @@ def main(argv: list[str] | None = None) -> int:
 
     add_search_args(sub.add_parser("search", help="search live listings"))
 
-    post = sub.add_parser("post", help="show one post in full")
+    post = add_json_flag(sub.add_parser("post", help="show one post in full"))
     post.add_argument("token")
 
     price = add_search_args(sub.add_parser("price", help="price distribution for comparables"))
@@ -107,7 +117,7 @@ def main(argv: list[str] | None = None) -> int:
     deals.add_argument("--require-photo", action="store_true")
     deals.set_defaults(pages=3)
 
-    appraise = sub.add_parser("appraise", help="is this listing overpriced?")
+    appraise = add_json_flag(sub.add_parser("appraise", help="is this listing overpriced?"))
     appraise.add_argument("token")
     appraise.add_argument("--city")
     appraise.add_argument("--pages", type=int, default=2)
@@ -125,7 +135,7 @@ def main(argv: list[str] | None = None) -> int:
     trend.add_argument("--days", type=int, default=30)
     trend.add_argument("--json", action="store_true")
 
-    similar = sub.add_parser("similar", help="comparables for a post")
+    similar = add_json_flag(sub.add_parser("similar", help="comparables for a post"))
     similar.add_argument("token")
     similar.add_argument("--city")
     similar.add_argument("--limit", type=int, default=12)
@@ -134,11 +144,11 @@ def main(argv: list[str] | None = None) -> int:
     watch_sub = watch.add_subparsers(dest="watch_action", required=True)
     w_create = add_search_args(watch_sub.add_parser("create", help="save a watch"))
     w_create.add_argument("--name", required=True)
-    w_check = watch_sub.add_parser("check", help="new listings since the baseline")
+    w_check = add_json_flag(watch_sub.add_parser("check", help="new listings since the baseline"))
     w_check.add_argument("--name", required=True)
     w_check.add_argument("--pages", type=int, default=1)
-    watch_sub.add_parser("list", help="list saved watches")
-    w_delete = watch_sub.add_parser("delete", help="forget a watch")
+    add_json_flag(watch_sub.add_parser("list", help="list saved watches"))
+    w_delete = add_json_flag(watch_sub.add_parser("delete", help="forget a watch"))
     w_delete.add_argument("--name", required=True)
 
     export = add_search_args(sub.add_parser("export", help="write listings to CSV/JSONL"))
@@ -146,32 +156,32 @@ def main(argv: list[str] | None = None) -> int:
     export.add_argument("--format", choices=["csv", "jsonl"], default="csv")
     export.set_defaults(pages=3)
 
-    cities = sub.add_parser("cities", help="find city ids")
+    cities = add_json_flag(sub.add_parser("cities", help="find city ids"))
     cities.add_argument("query", nargs="?")
 
-    cats = sub.add_parser("categories", help="find category slugs")
+    cats = add_json_flag(sub.add_parser("categories", help="find category slugs"))
     cats.add_argument("query", nargs="?")
 
-    filters = sub.add_parser("filters", help="filters Divar exposes for a city")
+    filters = add_json_flag(sub.add_parser("filters", help="filters Divar exposes for a city"))
     filters.add_argument("--city", default="تهران")
     filters.add_argument("--category")
 
-    url = sub.add_parser("url", help="print a divar.ir URL for a search")
+    url = add_json_flag(sub.add_parser("url", help="print a divar.ir URL for a search"))
     url.add_argument("query", nargs="?")
     url.add_argument("--city", default="تهران")
     url.add_argument("--category")
     url.add_argument("--price-min", type=int)
     url.add_argument("--price-max", type=int)
 
-    status = sub.add_parser("status", help="health check")
+    status = add_json_flag(sub.add_parser("status", help="health check"))
     status.add_argument("--no-probe", action="store_true")
 
-    sub.add_parser("help", help="capability map")
+    add_json_flag(sub.add_parser("help", help="capability map"))
 
     store_cmd = sub.add_parser("store", help="local store maintenance")
     store_sub = store_cmd.add_subparsers(dest="store_action", required=True)
-    store_sub.add_parser("stats", help="row counts and file size")
-    prune = store_sub.add_parser("prune", help="drop old price points")
+    add_json_flag(store_sub.add_parser("stats", help="row counts and file size"))
+    prune = add_json_flag(store_sub.add_parser("prune", help="drop old price points"))
     prune.add_argument("--days", type=int, default=180)
 
     args = parser.parse_args(argv)
