@@ -1,6 +1,12 @@
 # divar-mcp
 
-**A Model Context Protocol server for [divar.ir](https://divar.ir)** — Iran's largest classifieds marketplace (دیوار). Give any MCP-capable agent the ability to search live listings, read a post in full, and price an item against what is actually on the market right now.
+[![tests](https://github.com/shojaee76-cmyk/divar-mcp/actions/workflows/tests.yml/badge.svg)](https://github.com/shojaee76-cmyk/divar-mcp/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-lightgrey.svg)](pyproject.toml)
+[![MCP: stdio](https://img.shields.io/badge/MCP-stdio-lightgrey.svg)](https://modelcontextprotocol.io)
+[![dependencies: none](https://img.shields.io/badge/dependencies-none-lightgrey.svg)](pyproject.toml)
+
+**A Model Context Protocol server for [divar.ir](https://divar.ir)**, Iran's largest classifieds marketplace (دیوار). Give any MCP-capable agent the ability to search live listings, read a post in full, and price an item against what is actually on the market right now.
 
 Read-only, no account, no API key, no dependencies. Works from inside Iran and from anywhere else divar.ir's API is reachable.
 
@@ -21,7 +27,7 @@ Divar has **no public MCP server**. What exists today:
 
 | Option | Limitation |
 | --- | --- |
-| **Kenar (کنار دیوار)** — Divar's official API | Needs an approved app + API key + OAuth; that is for building *on* Divar as a business partner, not for reading listings |
+| **Kenar (کنار دیوار)**, Divar's official API | Needs an approved app + API key + OAuth; that is for building *on* Divar as a business partner, not for reading listings |
 | Random scrapers on GitHub | Playwright/Selenium page scraping, no MCP, no filters, no pagination, no price logic |
 | This project | Speaks MCP over stdio, uses Divar's own JSON API (the one its web app calls), zero dependencies, 8 tools |
 
@@ -52,7 +58,7 @@ Requires Python 3.10+. There are no third-party dependencies.
 }
 ```
 
-**Cursor / Cline / Windsurf** — same shape, `command` + `args`.
+**Cursor / Cline / Windsurf**, same shape, `command` + `args`.
 
 **Hermes Agent** (`~/.hermes/config.yaml`):
 
@@ -125,11 +131,11 @@ Details worth knowing if you fork this:
 
 * **Filters are protobuf-Any encoded.** `category` is `{"str": {"value": "<slug>"}}`, `price` is `{"number_range": {"minimum": n, "maximum": n}}`, `districts` is `{"repeated_string": {"value": ["208"]}}` (numeric district ids), `has-photo` is `{"boolean": {}}` (presence = true), `brand_model` is a repeating string.
 * **`page` is ignored by the API.** Real pagination is a cursor: echo back `pagination.data` (`last_post_date`, `pelle_max_score`, `filters_hash`, `cumulative_widgets_count`, `page`, `layer_page`) with an incremented `page`/`layer_page`. This server does that for you (`pages=3`).
-* **Divar's own recency filter (`recent_ads`) does not filter** — verified: `3h` and `7d` return identical result sets. This server instead parses the Persian relative time per row ("۳ ساعت پیش") and filters client-side via `max_age_hours`.
+* **Divar's own recency filter (`recent_ads`) does not filter**, verified: `3h` and `7d` return identical result sets. This server instead parses the Persian relative time per row ("۳ ساعت پیش") and filters client-side via `max_age_hours`.
 * **District filter needs numeric ids**, which only appear inside post details (the district chip payload). `divar_get_post` exposes it as `district_id`.
 * **Jalali dates are converted** (e.g. `۳۱ شهریور ۱۴۰۵` → `2026-09-22T00:06:00+03:30`) so agents can reason about age without a Hijri library.
 * **Category slugs are harvested from Divar's own SEO breadcrumbs** (`mobile-phones` → `mobile-tablet` → `electronic-devices`), so the slug list and Persian names stay real instead of guessed.
-* **Web links need a real slug.** `divar.ir/s/tehran` works, a Persian city name in the path does not, and divar.ir serves the same SPA shell for *any* slug — so a slug is published only when it came from Divar's own payload and its `city_id` matched the city asked for. `divar_search_url` returns `url: null` (with a reason) instead of a link that might 404, and `tools/harvest_city_slugs.py` grows the verified map.
+* **Web links need a real slug.** `divar.ir/s/tehran` works, a Persian city name in the path does not, and divar.ir serves the same SPA shell for *any* slug, so a slug is published only when it came from Divar's own payload and its `city_id` matched the city asked for. `divar_search_url` returns `url: null` (with a reason) instead of a link that might 404, and `tools/harvest_city_slugs.py` grows the verified map.
 * **Divar's own SEO headline is off by one** ("صفحه ۲" on the first page). Harmless, but don't read it as a page number.
 
 ## One-click launcher
@@ -153,9 +159,9 @@ pytest                      # offline: parsers, normalization, MCP protocol
 DIVAR_LIVE=1 pytest tests/test_live.py -v   # hits the real API
 ```
 
-The offline suite runs entirely on captured fixtures (`tests/fixtures/*.json`) — real payloads from a live search and two live post views, so the parsers are tested against reality rather than hand-written mocks. The protocol suite also boots the real server process and, when the official `mcp` SDK is installed, drives it with `mcp.client.stdio` to prove interop.
+The offline suite runs entirely on captured fixtures (`tests/fixtures/*.json`), real payloads from a live search and two live post views, so the parsers are tested against reality rather than hand-written mocks. The protocol suite also boots the real server process and, when the official `mcp` SDK is installed, drives it with `mcp.client.stdio` to prove interop.
 
-`tools/` holds the reverse-engineering and data-harvesting scripts (`probe*.py`, `harvest_cities.py`, `harvest_categories.py`, `build_data.py`) — run `python tools/build_data.py` after re-harvesting to refresh the bundled city and category data.
+`tools/` holds the reverse-engineering and data-harvesting scripts (`probe*.py`, `harvest_cities.py`, `harvest_categories.py`, `build_data.py`), run `python tools/build_data.py` after re-harvesting to refresh the bundled city and category data.
 
 ## Roadmap
 

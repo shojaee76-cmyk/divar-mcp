@@ -1,10 +1,10 @@
-# PROJECT.md — divar-mcp
+# PROJECT.md, divar-mcp
 
 **What it is.** An open-source MCP (Model Context Protocol) server for [divar.ir](https://divar.ir), Iran's largest classifieds marketplace. It gives any MCP-capable agent read access to live Divar listings: search with real filters, read a post in full, value an item against current market prices, and list the competition for an existing ad.
 
 **Why it exists.** No Divar MCP server existed (checked GitHub + web search: the `divar-ir/*` repos are Divar's own internal code-search tooling, not marketplace tools). Divar's official API ("Kenar", کنار دیوار) needs an approved app, an API key and OAuth, which is a partner programme, not a read path. Everything else on GitHub is Playwright/Selenium page scraping with no MCP surface, no filters and no pagination. So: built one, tested it against the live API, published it as public MIT.
 
-**Status: v0.1.0, working and verified against the live API — 2026-09-21.**
+**Status: v0.1.0, working and verified against the live API, 2026-09-21.**
 
 ## Verified facts (all checked against the live API, not assumed)
 

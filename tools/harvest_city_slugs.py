@@ -7,7 +7,7 @@ city.city_id equals the id we queried. Pseudo-ids ("کل ایران") and posts 
 leak in from elsewhere are rejected instead of producing a wrong URL.
 
 divar.ir serves the same SPA shell for /s/<anything>, so HTTP status cannot be
-used to check a slug — Divar's own payload is the only source of truth.
+used to check a slug, Divar's own payload is the only source of truth.
 
 Run: python tools/harvest_city_slugs.py [--limit N] [--max-id N]
 Output: tools/city_slugs_raw.json   {"1": "tehran", ...}

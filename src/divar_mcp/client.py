@@ -87,7 +87,7 @@ def load_categories() -> list[dict]:
 
 
 def load_city_slugs() -> dict:
-    """{'1': 'tehran', ...} — the ASCII path segment divar.ir uses in /s/<slug>.
+    """{'1': 'tehran', ...}, the ASCII path segment divar.ir uses in /s/<slug>.
 
     Persian city names 404 on divar.ir, so web URLs must use a slug; the numeric
     city id is accepted too and is the fallback when a slug is not harvested.
