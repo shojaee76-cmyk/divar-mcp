@@ -267,7 +267,10 @@ class DivarClient:
         cursor: dict | None = None,
     ) -> dict:
         data: dict = {}
-        if category:
+        # Divar's own payloads use {"category": {"str": {"value": "ROOT"}}} for
+        # "every category", but the API rejects ROOT as a filter value. Treat it
+        # as "no category filter" so an agent copying Divar's vocabulary works.
+        if category and category.strip().upper() != "ROOT":
             data["category"] = {"str": {"value": category}}
         if price_min is not None or price_max is not None:
             rng = {}

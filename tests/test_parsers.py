@@ -118,6 +118,20 @@ def test_search_body_omits_empty_filters():
     assert body["pagination_data"]["page"] == 1
 
 
+def test_search_body_treats_root_as_all_categories():
+    """Divar writes category ROOT for 'everything' but rejects it as a filter."""
+    for value in ("ROOT", "root", " Root "):
+        body = DivarClient._build_search_body("1", category=value)
+        # ROOT alone means "no filters", so form_data is omitted entirely
+        data = (body.get("search_data") or {}).get("form_data", {}).get("data", {})
+        assert "category" not in data
+    body = DivarClient._build_search_body("1", category="mobile-phones")
+    assert body["search_data"]["form_data"]["data"]["category"] == {"str": {"value": "mobile-phones"}}
+    # ROOT next to a real filter must not suppress the real one
+    body = DivarClient._build_search_body("1", category="ROOT", has_photo=True)
+    assert body["search_data"]["form_data"]["data"] == {"has-photo": {"boolean": {}}}
+
+
 def test_city_resolution():
     client = DivarClient()
     assert client.resolve_city("1") == ("1", "تهران")
