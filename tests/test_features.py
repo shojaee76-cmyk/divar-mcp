@@ -54,6 +54,17 @@ def store(tmp_path):
     s.close()
 
 
+def test_package_version_matches_pyproject():
+    """The advertised version and the packaged one must not drift."""
+    import tomllib
+
+    from divar_mcp import __version__
+
+    pyproject = Path(__file__).resolve().parent.parent / "pyproject.toml"
+    declared = tomllib.loads(pyproject.read_text(encoding="utf-8"))["project"]["version"]
+    assert declared == __version__, f"pyproject says {declared}, package says {__version__}"
+
+
 # ------------------------------------------------------------------ analytics
 
 
