@@ -10,6 +10,8 @@ observations the user's own searches have collected.
 """
 
 import os
+import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -63,6 +65,26 @@ def test_live_search_returns_real_posts(client):
     brief = divar_search(city="1", query="پژو", limit=5, client=client)
     assert "price_text" not in brief["posts"][0]
     assert brief["posts"][0]["url"].startswith("https://divar.ir/v/")
+    # the local price history records the whole fetched page, not just the rows shown
+    assert brief["price_points_recorded"] >= len(brief["posts"])
+
+
+def test_live_cli_human_output(client):
+    """Exercise the non-JSON CLI path, which is what a double-click runs.
+
+    It must print a readable list, and it must NOT print Divar's decorative
+    headline (which reads like our own summary: "all ads in <city> - page 2").
+    """
+    proc = subprocess.run(
+        [sys.executable, "-m", "divar_mcp.cli", "search", "پژو", "--city", "tehran", "--limit", "2"],
+        capture_output=True, text=True, timeout=180, encoding="utf-8", errors="replace",
+        cwd=str(Path(__file__).resolve().parent.parent),
+    )
+    assert proc.returncode == 0, proc.stderr[-500:]
+    out = proc.stdout
+    assert "listing" in out, out[-500:]
+    assert "divar.ir/v/" in out
+    assert "انواع آگهی" not in out and "صفحه" not in out
 
 
 def test_live_pagination_pages_are_distinct(client):

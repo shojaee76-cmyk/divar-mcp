@@ -480,7 +480,7 @@ class DivarClient:
             result["posts"] = self._sort_posts(result.get("posts", []), sort)
         result["sort"] = sort
         if record:
-            result["recorded"] = self._record(
+            result["price_points_recorded"] = self._record(
                 result.get("posts", []), city=names[0], city_id=ids[0],
                 category=slug, query=query, store=store,
             )
@@ -571,7 +571,7 @@ class DivarClient:
             result["posts"] = self._sort_posts(collected, sort)
             result["sort"] = sort
         if record:
-            result["recorded"] = self._record(
+            result["price_points_recorded"] = self._record(
                 collected, city=names[0], city_id=ids[0],
                 category=slug, query=kwargs.get("query"), store=store,
             )
@@ -849,7 +849,7 @@ class DivarClient:
         stats["priciest"] = _brief(sorted(priced, key=lambda p: p["price_toman"], reverse=True)[:5])
         if districts:
             stats["by_district"] = analytics.district_breakdown(posts)[:12]
-        stats["recorded"] = found.get("recorded")
+        stats["price_points_recorded"] = found.get("price_points_recorded")
         stats["meta"] = found.get("meta")
         return stats
 

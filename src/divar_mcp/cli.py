@@ -215,7 +215,9 @@ def main(argv: list[str] | None = None) -> int:
             if args.json:
                 _dump(result)
             else:
-                print(result.get("headline", ""))
+                # Divar's own decorative headline ("all ads in <city> - page 2")
+                # is intentionally not printed: it reads like our summary and is
+                # misleading. It stays in the structured payload for agents.
                 _table(result.get("posts", []))
                 print(f"{result.get('count')} listings - cities: {', '.join(result.get('cities') or [])}")
         elif args.command == "post":
