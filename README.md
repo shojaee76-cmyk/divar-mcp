@@ -4,6 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-lightgrey.svg)](pyproject.toml)
 [![MCP: stdio](https://img.shields.io/badge/MCP-stdio-lightgrey.svg)](https://modelcontextprotocol.io)
+[![M8ven Score](https://m8ven.ai/badge/mcp/shojaee76-cmyk/divar-mcp)](https://m8ven.ai/mcp/shojaee76-cmyk/divar-mcp)
 [![dependencies: none](https://img.shields.io/badge/dependencies-none-lightgrey.svg)](pyproject.toml)
 
 **An agent-grade MCP server for [divar.ir](https://divar.ir)**, Iran's largest classifieds marketplace (دیوار). Search live listings, read a post in full, price an item, appraise someone else's listing, hunt underpriced stock, watch a search over time, and export bulk rows, all from any MCP client.

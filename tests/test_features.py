@@ -77,6 +77,27 @@ def test_package_version_matches_pyproject():
     assert declared == __version__, f"pyproject says {declared}, package says {__version__}"
 
 
+def test_every_tool_declares_all_four_annotations():
+    """OpenAI's directory rejects tools where any of the four MCP hints is
+    missing or non-boolean, so the invariant is enforced here forever:
+    readOnlyHint, destructiveHint, idempotentHint and openWorldHint must be
+    explicit booleans on all 19 tools, and they must not drift from the
+    handlers' real behaviour (15 read-only, only watch_delete destructive).
+    """
+    from divar_mcp.tools import TOOL_SPECS
+
+    required = ("readOnlyHint", "destructiveHint", "idempotentHint", "openWorldHint")
+    assert len(TOOL_SPECS) == 19
+    for spec in TOOL_SPECS:
+        annotations = spec.get("annotations", {})
+        missing = [h for h in required if not isinstance(annotations.get(h), bool)]
+        assert not missing, f"{spec['name']}: missing or non-boolean hints {missing}"
+    read_only = {s["name"] for s in TOOL_SPECS if s["annotations"]["readOnlyHint"]}
+    assert len(read_only) == 15, f"read-only set drifted: {sorted(read_only)}"
+    destructive = {s["name"] for s in TOOL_SPECS if s["annotations"]["destructiveHint"]}
+    assert destructive == {"divar_watch_delete"}, f"unexpected destructive set: {destructive}"
+
+
 # ------------------------------------------------------------------ analytics
 
 

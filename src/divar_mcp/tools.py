@@ -696,7 +696,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
             "brief": {"type": "boolean", "description": "Compact rows (default true). false returns every parsed field."},
         }),
         "outputSchema": _SEARCH_OUT,
-        "annotations": {"readOnlyHint": True, "openWorldHint": True, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
     },
     {
         "name": "divar_get_post",
@@ -712,7 +712,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
                               "attributes": {"type": "object"}, "images": {"type": "array"},
                               "district_id": {"type": ["string", "null"]},
                               "posted_at": {"type": ["string", "null"]}}, ["token"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": True, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
     },
     {
         "name": "divar_price_analysis",
@@ -729,7 +729,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
             "price_min": _PRICE, "price_max": _PRICE,
         }),
         "outputSchema": _PRICE_OUT,
-        "annotations": {"readOnlyHint": True, "openWorldHint": True, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
     },
     {
         "name": "divar_appraise_post",
@@ -743,7 +743,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
                                 "pages": {"type": "integer", "description": "Comparable pages to sample (1-4)."}},
                                ["token"]),
         "outputSchema": _APPRAISE_OUT,
-        "annotations": {"readOnlyHint": True, "openWorldHint": True, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
     },
     {
         "name": "divar_find_deals",
@@ -762,7 +762,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
             "limit": {"type": "integer", "description": "Max deals to return (default 10)."},
         }),
         "outputSchema": _DEALS_OUT,
-        "annotations": {"readOnlyHint": True, "openWorldHint": True, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
     },
     {
         "name": "divar_market_breakdown",
@@ -778,7 +778,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         }),
         "outputSchema": _out({"by_district": {"type": "array"}, "summary": {"type": "object"},
                               "freshness": {"type": "object"}, "sampled_posts": {"type": "integer"}}),
-        "annotations": {"readOnlyHint": True, "openWorldHint": True, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
     },
     {
         "name": "divar_price_trend",
@@ -796,7 +796,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
                               "days_tracked": {"type": "integer"}, "direction": {"type": ["string", "null"]},
                               "change_pct": {"type": ["number", "null"]}, "series": {"type": "array"}},
                              ["status", "days_tracked"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": False, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False},
     },
     {
         "name": "divar_similar_posts",
@@ -807,7 +807,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
                                ["token"]),
         "outputSchema": _out({"count": {"type": "integer"}, "posts": _POST_ROW,
                               "source_post": {"type": "object"}}, ["count"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": True, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
     },
     {
         "name": "divar_watch_create",
@@ -824,7 +824,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         }, ["name"]),
         "outputSchema": _out({"name": {"type": "string"}, "params": {"type": "object"},
                               "baseline_listings": {"type": "integer"}}, ["name"]),
-        "annotations": {"readOnlyHint": False, "openWorldHint": True, "idempotentHint": False},
+        "annotations": {"readOnlyHint": False, "destructiveHint": False, "idempotentHint": False, "openWorldHint": True},
     },
     {
         "name": "divar_watch_check",
@@ -838,7 +838,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         "outputSchema": _out({"watch": {"type": "string"}, "new_listings": {"type": "integer"},
                               "new": {"type": "array"}, "checked_at_listings": {"type": "integer"}},
                              ["watch", "new_listings"]),
-        "annotations": {"readOnlyHint": False, "openWorldHint": True, "idempotentHint": False},
+        "annotations": {"readOnlyHint": False, "destructiveHint": False, "idempotentHint": False, "openWorldHint": True},
     },
     {
         "name": "divar_watch_list",
@@ -846,7 +846,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         "description": "Every saved watch with its search params, check counters and how many listings it has seen.",
         "inputSchema": _schema({}),
         "outputSchema": _out({"count": {"type": "integer"}, "watches": {"type": "array"}}, ["count"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": False, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False},
     },
     {
         "name": "divar_watch_delete",
@@ -854,7 +854,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         "description": "Forget a saved watch and its seen-listing history.",
         "inputSchema": _schema({"name": {"type": "string"}}, ["name"]),
         "outputSchema": _out({"watch": {"type": "string"}, "deleted": {"type": "boolean"}}, ["deleted"]),
-        "annotations": {"readOnlyHint": False, "openWorldHint": False, "idempotentHint": True},
+        "annotations": {"readOnlyHint": False, "destructiveHint": True, "idempotentHint": True, "openWorldHint": False},
     },
     {
         "name": "divar_export",
@@ -874,7 +874,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         }),
         "outputSchema": _out({"path": {"type": "string"}, "rows": {"type": "integer"},
                               "format": {"type": "string"}}, ["path", "rows"]),
-        "annotations": {"readOnlyHint": False, "openWorldHint": True, "idempotentHint": False},
+        "annotations": {"readOnlyHint": False, "destructiveHint": False, "idempotentHint": False, "openWorldHint": True},
     },
     {
         "name": "divar_status",
@@ -888,7 +888,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
                                           "description": "Make a live 1-row request to test reachability (default true)."}}),
         "outputSchema": _out({"api": {"type": "object"}, "datasets": {"type": "object"},
                               "store": {"type": "object"}, "server": {"type": "object"}}, ["datasets"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": True, "idempotentHint": False},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
     },
     {
         "name": "divar_help",
@@ -901,7 +901,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         "inputSchema": _schema({}),
         "outputSchema": _out({"tools": {"type": "object"}, "recipes": {"type": "array"},
                               "units": {"type": "object"}}, ["tools", "recipes"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": False, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False},
     },
     {
         "name": "divar_list_cities",
@@ -913,7 +913,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         "inputSchema": _schema({"query": {"type": "string", "description": 'e.g. "مشهد" or "mashhad".'}}),
         "outputSchema": _out({"count": {"type": "integer"}, "cities": {"type": "array"},
                               "suggestions": {"type": "array"}}, ["count"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": False, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False},
     },
     {
         "name": "divar_list_categories",
@@ -925,7 +925,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         "inputSchema": _schema({"query": {"type": "string", "description": 'e.g. "موبایل" or "mobile".'}}),
         "outputSchema": _out({"count": {"type": "integer"}, "categories": {"type": "array"},
                               "suggestions": {"type": "array"}}, ["count"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": False, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False},
     },
     {
         "name": "divar_post_filters",
@@ -933,7 +933,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         "description": "Which filter widgets divar.ir currently offers for a city (and category): price range, districts, photo-only.",
         "inputSchema": _schema({"city": _CITY, "category": _CATEGORY}),
         "outputSchema": _out({"filters": {"type": "array"}, "city": {"type": ["string", "null"]}}, ["filters"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": True, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True},
     },
     {
         "name": "divar_search_url",
@@ -947,7 +947,7 @@ TOOL_SPECS: list[dict[str, Any]] = [
         "outputSchema": _out({"url": {"type": ["string", "null"]}, "verified": {"type": "boolean"},
                               "city_path_segment": {"type": ["string", "null"]}, "note": {"type": "string"}},
                              ["url"]),
-        "annotations": {"readOnlyHint": True, "openWorldHint": False, "idempotentHint": True},
+        "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False},
     },
 ]
 

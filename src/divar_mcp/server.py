@@ -8,7 +8,8 @@ but a Python 3.10+ interpreter.
 Beyond tools it serves what a serious MCP client expects:
 
   tools     19 read/write tools, each with an inputSchema, an outputSchema and
-            MCP annotations (readOnlyHint / idempotentHint / openWorldHint)
+            MCP annotations (readOnlyHint / destructiveHint / idempotentHint /
+            openWorldHint)
   outputs   every successful call returns both a text block and
             ``structuredContent`` so an agent can parse instead of regex
   resources divar://cities, divar://categories, divar://cities/slugs,
